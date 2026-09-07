@@ -22,13 +22,6 @@ BASE_URL = "https://javiercursocorreo-gif.github.io/Curso-Robotica-IA-Comun/"
 ITEMS = [
     {
         "subfolder": "0. INTRODUCCION GENERAL",
-        "filename": "0.CUESTIONARIO_DIAGNOSTICO_Y_REQUISITOS.pdf",
-        "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
-        "titulo": "0. Cuestionario de Diagnóstico y Requisitos Técnicos (PDF)",
-        "descripcion": "Cuestionario previo y diagnóstico de requisitos indispensables para el aula: ordenador, ratón físico con rueda y conexión a Internet."
-    },
-    {
-        "subfolder": "0. INTRODUCCION GENERAL",
         "filename": "1.INTRODUCCION_GENERAL.pdf",
         "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
         "titulo": "1. Presentación Inaugural: Introducción General (Robótica e IA) (PDF)",
