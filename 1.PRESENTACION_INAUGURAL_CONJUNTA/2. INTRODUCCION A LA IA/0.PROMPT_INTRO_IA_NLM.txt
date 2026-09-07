@@ -1,0 +1,94 @@
+MISIÓN
+
+Transforma el contenido didáctico en una presentación visual completa con estructura narrativa cinematográfica. La audiencia son personas de 65-75 años sin experiencia técnica previa. La presentación debe tener 21 diapositivas organizadas en 5 actos.
+
+ESTILO VISUAL — IDENTIDAD IA
+
+El estilo visual debe transmitir innovación, claridad, creatividad y cercanía:
+• FONDO: gradiente oscuro de morado profundo (#1A0A2E) a azul noche (#0D1B4A). Nunca negro puro ni blanco.
+• TÍTULOS: blanco cálido (#F0EEFF) o violeta claro (#BF9FFF). Grandes, limpios y legibles.
+• TEXTO CUERPO: gris lavanda suave (#C8B8E8).
+• ACENTOS: azul IA (#6EA8FE) y violeta medio (#9B72CF). Con moderación.
+• FOTOGRAFÍAS / ILUSTRACIONES: Personas reales en situaciones cotidianas con tratamiento de color frío-morado, personas mayores usando tecnología con naturalidad, comparativas de fotos antiguas restauradas, arte digital fotorrealista y viñetas de cómic.
+• ELEMENTOS GRÁFICOS: Líneas finas de luz y nodos suaves evocando conexiones neuronales como textura sutil de fondo.
+• TIPOGRAFÍA: sans-serif moderna. Una sola idea principal por diapositiva. Máximo 4 líneas de texto visible.
+
+ESTRUCTURA NARRATIVA — 5 ACTOS
+
+La presentación cuenta una historia, no un temario. Empieza con impacto visual y asombro cotidiano, avanza desmitificando cómo piensa la IA y termina empoderando al alumno mediante el uso práctico del prompt.
+
+ACTO 1 — LA GALERÍA DEL ASOMBRO (slides 1-8)
+
+Slide 1 — PORTADA
+Fondo gradiente morado-azul noche intenso. Título enorme en blanco: 'Por qué la Inteligencia Artificial es para ti'. Subtítulo en violeta claro: 'Descubriendo el cerebro digital que potencia nuestra creatividad'.
+
+Slide 2 — APERTURA
+Foto de persona mayor mirando una pantalla con curiosidad y sonrisa, tratamiento violeta. Una sola frase grande: 'Lo que vas a ver hoy no es magia: pronto lo harás tú mismo.'
+
+Slide 3 — RESTAURACIÓN DE FOTOS ANTIGUAS
+Imagen comparativa de fotografía familiar antigua: dañada y en blanco y negro (izquierda) frente a restaurada, nítida y coloreada por IA (derecha). Texto: 'Recuperar recuerdos del pasado con la tecnología del presente.'
+
+Slide 4 — FOTOS QUE COBRAN VIDA
+Imagen evocadora de una fotografía histórica en movimiento sutil. Texto: 'La foto de tus abuelos... sonriendo y moviéndose.' Subtítulo: 'Herramientas de animación de imágenes con IA.'
+
+Slide 5 — CREATIVIDAD VISUAL Y ARTE
+Dos imágenes lado a lado: foto cotidiana y la misma convertida en cuadro al óleo impresionista o ilustración artística. Texto: 'Tu idea. Tu estilo. Tu propia creación.'
+
+Slide 6 — CÓMICS E HISTORIAS ILUSTRADAS
+Paneles maquetados de cómic con personajes históricos y diálogos. Texto: 'Crear cómics e historias completas a partir de tus palabras.'
+
+Slide 7 — EL ASISTENTE EN TU VIDA DIARIA
+Imagen de dos ejemplos que ya te rodean: WhatsApp y búsquedas en Google. Texto: 'La IA no llegó ayer: ya convive contigo en tus aplicaciones cotidianas.'
+
+Slide 8 — CONSULTA EN VIVO
+Diseño simulado de chat oscuro. Burbuja de usuario en violeta claro: 'Tengo 72 años y me acaban de decir que tengo la tensión a 150/90. ¿Qué significa y qué debo saber?' Respuesta clara y empática de la IA en azul oscuro. Texto: 'Así de natural es conversar con la IA.'
+
+ACTO 2 — QUÉ ES REALMENTE LA IA (slides 9-13)
+
+Slide 9 — LA PREGUNTA
+Fondo oscuro, texto enorme en blanco: '¿Tienes preguntas que nunca sabes a quién hacerle?' Imagen de persona mayor pensativa.
+
+Slide 10 — LA ANALOGÍA DEL ASISTENTE INCANSABLE
+Imagen de biblioteca luminosa o red de nodos de luz. Titular grande: 'Imagina un asistente que ha leído millones de libros.' Subtítulo en gris lavanda: 'Siempre disponible. Nunca se cansa. Espera tus instrucciones.'
+
+Slides 11-13 — LO QUE LA IA NO ES (3 slides individuales)
+    Slide 11: 'No es magia.' — Funciona aprendiendo patrones en millones de textos e imágenes.
+    Slide 12: 'No es un robot con sentimientos.' — Es un programa digital sin emociones ni agenda propia.
+    Slide 13: 'No siempre tiene la razón.' — Es una ayuda excepcional, pero tú mantienes siempre el criterio y la última palabra.
+
+ACTO 3 — EL PROMPT: CÓMO HABLARLE A LA IA (slides 14-18)
+
+Slide 14 — EL PROMPT ES COMO UN MENSAJE DE WHATSAPP
+Imagen de manos escribiendo en el teclado o móvil. Texto en azul IA: 'Escríbele como si hablaras con un amigo.' Subtítulo: 'Cuanto más claro y detallado le expliques lo que quieres, mejor te responderá.'
+
+Slides 15-18 — EJEMPLOS DE PROMPTS COTIDIANOS (Diseño tipo pantalla de chat)
+    Slide 15 — Salud y Bienestar: 'Tengo 72 años, tensión a 150/90. ¿Qué significa y qué debo consultar a mi médico?'
+    Slide 16 — Cocina con lo que hay en casa: 'Tengo en la nevera: pollo, pimientos y arroz. Dame una receta rica para dos personas mayores.'
+    Slide 17 — Gestiones y Documentos: 'Explícame en lenguaje sencillo qué es el Bono Social de la luz y qué requisitos piden en España.'
+    Slide 18 — Creación de Imágenes: 'Un gato naranja tomando café en una terraza soleada de París. Estilo fotorrealista, luz de tarde.' + Imagen resultante visible en la misma diapositiva.
+
+ACTO 4 — EL MAPA DE HERRAMIENTAS DEL CURSO (slide 19)
+
+Slide 19 — MAPA VISUAL DE HERRAMIENTAS
+Mapa mental visual elegante sobre fondo oscuro con las herramientas que exploraremos en el curso:
+• Asistentes de Lenguaje (Gemini): Redacción, resúmenes y conversación inteligente.
+• Generación de Imágenes (Image Creator / Gemini): Creación artística y retoque fotográfico.
+• Cuadernos Inteligentes (NotebookLM): Convertir tus apuntes, libros y documentos en resúmenes interactivos y podcasts.
+• Sentido Crítico y Seguridad: Privacidad, protección de datos y detección de noticias falsas.
+Texto al pie: 'Todas accesibles desde tu navegador web. Las iremos conociendo paso a paso.'
+
+ACTO 5 — CIERRE Y MOTIVACIÓN (slides 20-21)
+
+Slide 20 — LA REGLA DE ORO
+Fondo con gradiente intenso tipo aurora boreal morada. Texto grande en blanco: 'No hay preguntas tontas.' Subtítulo en violeta claro: 'La IA no se cansa, no te juzga y puedes pedirle la misma explicación de mil formas distintas.'
+
+Slide 21 — LO QUE VIENE EN LA CLASE 1
+Fondo oscuro. Título en azul IA: 'En la próxima clase...' Tres líneas en blanco y violeta:
+• Conocerás a tu primer asistente de IA.
+• Escribirás tu primer prompt en directo.
+• Verás la respuesta en tiempo real y aprenderás a mejorarla.
+Cierre al pie: '¡Trae una pregunta o tema que te apasione para hacérselo a la IA!'
+
+TONO GENERAL
+
+Evocador al principio, clarificador en el medio y profundamente motivador al final. El alumno debe sentir que la IA no es una amenaza ni algo exclusivo para jóvenes informáticos, sino una herramienta fascinante diseñada exactamente para potenciar su curiosidad.

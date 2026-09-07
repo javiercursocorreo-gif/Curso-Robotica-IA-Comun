@@ -1,0 +1,98 @@
+MISIÓN
+
+Transforma el contenido didáctico en una presentación visual completa con estructura narrativa cinematográfica. La audiencia son personas de 65-75 años sin experiencia técnica previa. La presentación debe tener 21 diapositivas organizadas en 5 actos.
+
+ESTILO VISUAL — IDENTIDAD ROBÓTICA
+
+El estilo visual debe transmitir ingeniería moderna, precisión y cercanía:
+• FONDO: gradiente oscuro de azul profundo noche (#0A192F) a azul petróleo (#0F2942). Nunca negro puro ni blanco.
+• TÍTULOS: blanco cálido (#F8FAFC) o cian brillante (#38BDF8). Grandes, limpios y legibles.
+• TEXTO CUERPO: gris metálico suave (#CBD5E1).
+• ACENTOS: naranja robótico (#FF6B35) y verde esmeralda (#10B981). Con moderación.
+• FOTOGRAFÍAS / SIMULACIONES: Mecanismos reales en movimiento, personas mayores interactuando con robots útiles (sillas eléctricas, puertas automáticas, domótica, robots de asistencia), brazos industriales y renders 3D limpios de piezas mecánicas.
+• ELEMENTOS GRÁFICOS: Líneas finas de engranajes, cotas técnicas y ejes mecánicos suaves como textura de fondo.
+• TIPOGRAFÍA: sans-serif moderna. Una sola idea principal por diapositiva. Máximo 4 líneas de texto visible.
+
+ESTRUCTURA NARRATIVA — 5 ACTOS
+
+La presentación cuenta una historia, no un temario. Empieza con impacto visual y curiosidad, avanza desmitificando la mecánica y termina empoderando al alumno mediante simuladores interactivos.
+
+ACTO 1 — LA GALERÍA DEL MOVIMIENTO Y EL ASOMBRO (slides 1-8)
+
+Slide 1 — PORTADA
+Fondo gradiente azul noche a petróleo. Título enorme en blanco: 'Por qué la Robótica es para ti'. Subtítulo en cian brillante: 'Descubriendo las máquinas que dan vida al movimiento'.
+
+Slide 2 — APERTURA
+Foto de persona mayor mirando un brazo robótico o una maqueta 3D con sonrisa y curiosidad. Una sola frase grande: 'Las máquinas que te rodean no son magia: son pura mecánica inteligente.'
+
+Slide 3 — LA MECÁNICA COTIDIANA
+Imagen comparativa: la puerta automática del supermercado y el tambor de una lavadora. Texto en blanco: 'Un solo motor, una correa y una polea.' Subtítulo: 'Así empieza la robótica en tu vida diaria.'
+
+Slide 4 — LOS OJOS INVISIBLES (SENSORES)
+Imagen del sensor ultrasónico de un coche aparcando y una aspiradora redonda en un salón. Texto: 'Sentir antes de chocar.' Subtítulo en cian: 'Los sensores son los ojos y oídos de la máquina.'
+
+Slide 5 — LA PRECISIÓN Y LA DESTREZA
+Imagen de brazo robótico articulado colocando una pieza con exactitud milimétrica. Texto: 'Hombro, codo y muñeca.' Subtítulo: 'Imitando la anatomía del brazo humano.'
+
+Slide 6 — EL RETO DEL EQUILIBRIO
+Imagen de robot bípedo dando un paso firme y robot cuadrúpedo de rescate. Texto: 'El milagro de caminar sobre dos piernas.' Subtítulo: 'De los autómatas de cuerda a los androides modernos.'
+
+Slide 7 — ROBOTS QUE NOS CUIDAN
+Imagen emotiva de persona mayor utilizando una silla de ruedas eléctrica inteligente o un robot asistente en el hogar. Texto: 'Tecnología para vivir con más autonomía y seguridad.'
+
+Slide 8 — HACIA LAS ESTRELLAS
+Imagen del brazo robótico de la Estación Espacial Internacional y un rover explorando Marte. Texto: 'Máquinas que llegan donde el ser humano no puede pisar.'
+
+ACTO 2 — QUÉ ES REALMENTE UN ROBOT (slides 9-13)
+
+Slide 9 — LA PREGUNTA
+Fondo oscuro, texto enorme en blanco: '¿Una lavadora es un robot? ¿Y un ascensor?' Imagen de mecanismos cotidianos.
+
+Slide 10 — LA TRÍADA DE LA ROBÓTICA
+Diagrama circular elegante con 3 nodos conectados por luz:
+1. SENTIR (Sensores) ➔ 2. PENSAR (Controlador) ➔ 3. ACTUAR (Motores).
+Texto al pie: 'Si cumple estos tres pasos, es un robot.'
+
+Slides 11-13 — LO QUE LA ROBÓTICA NO ES (3 slides individuales)
+    Slide 11: 'No es ciencia ficción lejana.' — Convive contigo en tu casa, tu coche y tu ciudad.
+    Slide 12: 'No requiere saber soldar cables.' — Hoy todo se diseña y prueba de forma digital.
+    Slide 13: 'No necesitas saber matemáticas complejas.' — Los simuladores calculan la física por ti; tú controlas los mandos.
+
+ACTO 3 — NUESTRO MÉTODO: EL SIMULADOR 3D (slides 14-18)
+
+Slide 14 — TOCAR Y EXPERIMENTAR EN VIVO
+Imagen de mano sobre un ratón de ordenador girando un modelo 3D en pantalla. Texto en cian: 'Aprender tocando en tiempo real.' Subtítulo: 'Tu navegador web es tu laboratorio de robótica.'
+
+Slides 15-18 — EJEMPLOS DE SIMULADORES QUE USARÁS
+    Slide 15 — La Puerta Automática: 'Mueve la polea, ajusta el sensor y mira cómo abre el cristal.'
+    Slide 16 — La Silla de Ruedas: 'Conduce por un pasillo virtual esquivando obstáculos con sensores.'
+    Slide 17 — El Brazo Articulado: 'Gira los diales de hombro y codo para agarrar objetos con la pinza.'
+    Slide 18 — El Androide Bípedo: 'Controla el equilibrio y los pasos de un robot sobre dos piernas.'
+
+ACTO 4 — EL MAPA DEL VIAJE (slide 19)
+
+Slide 19 — MAPA DEL CURSO DE ROBÓTICA
+Mapa visual estructurado sobre fondo oscuro de la paleta con los 6 bloques del curso:
+• Bloque 1: Máquinas de un motor (Puertas, lavadoras, ascensores).
+• Bloque 2: Sensores y decisiones (Sillas de ruedas, coches inteligentes).
+• Bloque 3: Navegación autónoma (Robots de reparto y aspiradoras).
+• Bloque 4: Brazo robótico (Cinemática y pinzas de precisión).
+• Bloque 5: Androides y bípedos (Equilibrio y robots de cine).
+• Bloque 6: Exploración y naves espaciales (Simulaciones orbitales).
+Texto al pie: 'Un recorrido paso a paso, visual y sin estrés.'
+
+ACTO 5 — CIERRE Y MOTIVACIÓN (slides 20-21)
+
+Slide 20 — LA REGLA DE ORO
+Fondo con gradiente intenso azul y verde esmeralda. Texto grande en blanco: 'En el simulador nada se puede romper.' Subtítulo en cian: 'Si te equivocas, recargas la página y vuelves a empezar.'
+
+Slide 21 — LO QUE VIENE EN LA CLASE 1
+Fondo oscuro. Título en cian: 'En la próxima clase...' Tres líneas en blanco y naranja:
+• Abrirás tu primer simulador 3D interactivo.
+• Montarás las piezas de una puerta automática de supermercado.
+• Controlarás el motor y el sensor con tu propio ratón.
+Cierre al pie: '¡Prepárate para construir tu primera máquina!'
+
+TONO GENERAL
+
+Cercano, estimulante, claro y visual. El alumno debe sentir que la robótica no es un misterio de ingenieros, sino una disciplina fascinante y comprensible que puede experimentar y dominar desde su propio ordenador.

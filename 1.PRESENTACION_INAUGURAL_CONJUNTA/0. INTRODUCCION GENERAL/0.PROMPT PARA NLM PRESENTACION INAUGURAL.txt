@@ -1,0 +1,120 @@
+# CURSO DE ROBÓTICA + INTELIGENCIA ARTIFICIAL: PRESENTACIÓN INAUGURAL
+## APRENDE · EXPERIMENTA · SIN MIEDO A LA TECNOLOGÍA
+### Sesión conjunta de bienvenida, diagnóstico pedagógico y mapa de los cursos
+
+---
+
+### 1. PORTADA: BIENVENIDOS AL CURSO 2025–2026
+CURSO DE ROBÓTICA + INTELIGENCIA ARTIFICIAL
+Aprende · Experimenta · Sin miedo a la tecnología.
+Un curso diseñado especialmente para personas senior que quieren comprender, disfrutar y ser protagonistas del futuro digital.
+
+---
+
+### 2. BIENVENIDA: EL FUTURO NO TIENE EDAD
+Durante décadas, el cine nos mostró robots inteligentes y máquinas parlantes como una fantasía lejana. Hoy, esa tecnología nos rodea en nuestro día a día: en los teléfonos, en los hospitales, en el hogar y en la exploración del universo.
+Este curso no busca convertirnos en matemáticos ni en programadores informáticos; su único propósito es disfrutar comprendiendo cómo funciona la tecnología, perderle el miedo a los botones y descubrir que cualquier persona, con su experiencia de vida, es capaz de entenderlo y utilizarlo.
+En nuestra aula no hay exámenes ni notas: todas las dudas son bienvenidas y nadie se queda atrás.
+
+---
+
+### 3. CONOCIÉNDONOS: PROFESOR Y ALUMNOS
+El aprendizaje es ante todo una experiencia humana y compartida:
+- **El Profesor:** Un guía cercano con vocación y paciencia infinita, cuyo compromiso es traducir la tecnología a un lenguaje cotidiano y explicar cada concepto tantas veces como sea necesario.
+- **Ronda de Alumnos:** Una breve presentación para romper el hielo:
+  1. ¿Cómo te llamas y qué te motivó a apuntarte?
+  2. ¿Qué sabes de robots y de IA? Y si no lo sabes, ¿qué piensas que son?
+  Descubriremos que todos compartimos las mismas dudas y el mismo entusiasmo.
+
+---
+
+### 4. DIAGNÓSTICO (PARTE 1): REQUISITOS TÉCNICOS INDISPENSABLES
+Para garantizar que todos disfrutemos del curso sin frustraciones, repasamos lo necesario:
+- **Equipamiento en Casa:**
+  - Ordenador portátil o de sobremesa.
+  - Ratón físico (imprescindible con rueda de desplazamiento para hacer zoom y rotar en los simuladores 3D).
+  - Conexión estable a Internet en casa.
+  - Navegador moderno actualizado (Google Chrome o Microsoft Edge).
+- **Cuenta y Acceso Digital:**
+  - Cuenta de Google / Gmail activa y operativa.
+  - Saber tu correo y contraseña (apuntada en una libreta para no olvidarla).
+  - Todo funciona directamente desde el navegador web, sin necesidad de instalar programas pesados.
+
+---
+
+### 5. DIAGNÓSTICO (PARTE 2): TUS HÁBITOS DIGITALES COTIDIANOS
+Comprobamos que ya cuentas con la soltura necesaria a través de tus gestos diarios:
+- **Navegación web habitual:** Lees periódicos digitales, consultas el tiempo o realizas gestiones por Internet.
+- **Correo y mensajería:** Abres y respondes correos electrónicos y utilizas WhatsApp con soltura.
+- **Manejo de ratón y teclado:** Sabes hacer clic, doble clic, arrastrar y escribir textos sencillos con el teclado.
+
+---
+
+### 6. DIAGNÓSTICO (PARTE 3): DERRIBANDO MITOS Y MIEDOS
+- **Cero Matemáticas Avanzadas:** No hace falta saber álgebra, trigonometría ni fórmulas complejas. El ordenador realiza todos los cálculos por dentro; nosotros nos centramos en la lógica y la diversión.
+- **Cero Código en Inglés:** No escribiremos código de programación abstracto. Utilizaremos paneles visuales, botones y controles deslizantes en perfecto español.
+- **Nada se Puede Romper:** Los simuladores son mundos virtuales seguros. Si cometes un error, basta con recargar la página web y todo vuelve a empezar de cero limpiamente.
+
+---
+
+### 7. ¿QUÉ ES LA ROBÓTICA? EL CUERPO Y EL MOVIMIENTO
+La robótica es la rama de la ingeniería que diseña y construye máquinas capaces de interactuar físicamente con el mundo real:
+- **Los Músculos (Actuadores y Motores):** Componentes que transforman la energía eléctrica en movimiento: girar una rueda, abrir una compuerta o cerrar una pinza.
+- **Los Sentidos (Sensores):** Dispositivos que captan información del entorno: sensores de distancia por ultrasonidos (como los de aparcamiento), sensores de luz y cámaras ópticas.
+- **El Controlador (Sistema Nervioso):** El circuito electrónico que recibe la señal del sensor y decide qué motor accionar en fracciones de segundo.
+
+---
+
+### 8. EL MAPA DEL CURSO DE ROBÓTICA (BLOQUE A BLOQUE)
+Recorreremos un itinerario visual progresivo a través de simuladores 3D interactivos:
+1. **Máquinas de un solo motor:** Descubriremos la mecánica de puertas automáticas de supermercado, lavadoras, ascensores y semáforos inteligentes.
+2. **Sensores y Toma de Decisiones:** Sillas de ruedas eléctricas, robots repartidores autónomos, aspiradoras Roomba y coches que esquivan obstáculos.
+3. **Brazos Robóticos y Precisión:** Articulaciones de hombro, codo y muñeca, cinemática inversa y pinzas industriales de agarre.
+4. **Androides y Bípedos:** El reto del equilibrio sobre dos piernas, robots cuadrúpedos y los secretos de robots de cine como C-3PO, R2-D2 y BB-8.
+5. **Naves y Estaciones Espaciales:** Maniobras orbitales, el transbordador espacial y la Estación Espacial Internacional (ISS).
+
+---
+
+### 9. ¿QUÉ ES LA INTELIGENCIA ARTIFICIAL? EL CEREBRO DIGITAL
+Si la robótica es el cuerpo, la Inteligencia Artificial es la mente. Es la disciplina informática que permite a las máquinas aprender, comprender el lenguaje y razonar:
+- **Comprensión del Lenguaje Humano:** La IA procesa millones de textos para entender lo que le pedimos en español y respondernos con explicaciones claras, resúmenes y asistencia personalizada.
+- **Visión y Reconocimiento de Patrones:** Capacidad para identificar caras, objetos en fotos o analizar imágenes médicas.
+- **Creatividad Generativa:** Herramientas que ayudan a redactar historias, componer recetas personalizadas o generar imágenes artísticas desde cero.
+
+---
+
+### 10. EL MAPA DEL CURSO DE INTELIGENCIA ARTIFICIAL
+Un aprendizaje 100% práctico y aplicado a nuestra vida diaria:
+1. **Asistentes de Lenguaje Inteligentes:** Aprenderemos a formular peticiones precisas (prompts) para que la IA nos ayude a redactar cartas, organizar ideas, resumir libros o traducir idiomas.
+2. **Creación Visual, Ilustración y Cómics:** Generaremos imágenes fotorrealistas, retratos y cómics completos a partir de simples descripciones textuales.
+3. **Cuadernos Inteligentes con NotebookLM:** Convertiremos nuestros propios documentos, apuntes, recetas familiares o libros favoritos en asistentes interactivos que nos responden preguntas y generan resúmenes en audio.
+4. **Sentido Crítico y Seguridad:** Aprenderemos a detectar noticias falsas (fake news), proteger nuestra privacidad y utilizar la tecnología con criterio ético.
+
+---
+
+### 11. LA GRAN UNIÓN: CUERPO MECÁNICO + MENTE INTELIGENTE
+- Un robot sin IA es solo una marioneta mecánica: repite ciegamente la misma rutina una y otra vez sin entender qué pasa a su alrededor.
+- Una IA sin cuerpo físico es una voz atrapada dentro de una pantalla: tiene conocimiento, pero no puede mover un objeto en el mundo real.
+- Cuando se unen, nace la autonomía real: vehículos que detectan peatones y frenan automáticamente, robots asistentes en el hogar que reconocen estados de ánimo y rovers en Marte que navegan esquivando rocas por sí mismos.
+
+---
+
+### 12. NUESTRA METODOLOGÍA: LA "CATA PRÁCTICA" EN DIRECTO
+En nuestras clases no nos limitamos a escuchar teoría:
+- **Simuladores 3D en Pantalla Grande:** Probaremos los modelos tridimensionales en vivo; cualquier alumno podrá coger el ratón para rotar el robot, accionar motores y comprobar su funcionamiento.
+- **Consultas a la IA en Tiempo Real:** Lanzaremos peticiones en directo propuestas por la clase para ver cómo razona y responde la inteligencia artificial al instante.
+- **Aprender Experimentando:** La mejor forma de perder el miedo es comprobar con nuestros propios ojos que la tecnología responde de manera predecible y sencilla.
+
+---
+
+### 13. NUESTRA AULA VIRTUAL: GOOGLE CLASSROOM
+Para que puedas repasar cómodamente desde casa:
+- **Todo en un Solo Lugar:** Tendrás un enlace directo a cada simulador 3D, a los resúmenes en PDF y a los vídeos de cada clase.
+- **Fácil y Seguro:** Entrarás directamente con tu cuenta de correo habitual, sin contraseñas complicadas ni publicidad.
+- **A tu Propio Ritmo:** Podrás volver a abrir las prácticas tantas veces como quieras para disfrutar con tus familiares o amigos.
+
+---
+
+### 14. CIERRE Y TURNO DE PREGUNTAS: ¡COMENZAMOS!
+La tecnología no es un obstáculo, sino una herramienta maravillosa para mantener la mente activa, estimular la creatividad y seguir aprendiendo a lo largo de toda la vida.
+Abrimos el turno de preguntas y comentarios. ¡Bienvenidos a esta apasionante aventura tecnológica!

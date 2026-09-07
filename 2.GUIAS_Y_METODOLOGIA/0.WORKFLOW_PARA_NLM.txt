@@ -1,0 +1,44 @@
+TÍTULO: FLUJO DE TRABAJO AUTOMATIZADO (PROFESOR + INTELIGENCIA ARTIFICIAL)
+OBJETIVO: Publicar materiales educativos desde un Mac local hasta Google Classroom de forma masiva y automatizada. Este sistema maestro se utiliza para publicar múltiples cursos del profesor.
+
+EJEMPLOS DE CURSOS QUE USAN ESTE SISTEMA:
+1. Curso de Robótica (8 Bloques temáticos).
+2. Curso de Inteligencia Artificial. Estructura:
+   - 3 Bloques principales de 20 sesiones cada uno.
+   - Bloque: Introducción a Gemini.
+   - Bloque: Introducción a NotebookLM (NLM).
+   - Bloque: Creación de Cómics con Gemini y NLM.
+
+ACTORES DEL PROCESO:
+1. Profesor (Humano): Experto en contenido pedagógico. Decide la estructura y revisa.
+2. Antigravity (Inteligencia Artificial): Asistente técnico. Ejecuta scripts, usa la terminal y programa.
+
+--- FASES DEL WORKFLOW ---
+
+FASE 1: PREPARACIÓN LOCAL (EL MAC)
+- ACTOR: Profesor
+- ACCIÓN: El profesor crea los materiales (PDFs de teoría, simuladores HTML, vídeos MP4) y los guarda ordenados en las carpetas de su Mac estructuradas por Bloques.
+
+FASE 2: SINCRONIZACIÓN EN LA NUBE (GITHUB)
+- ACTOR: Inteligencia Artificial
+- ACCIÓN: El profesor le pide a la IA que suba los archivos. La IA abre la terminal, añade los archivos (git add), los consolida (git commit) y los envía a los servidores públicos de GitHub (git push).
+- POR QUÉ: GitHub aloja los archivos gratis y proporciona URLs públicas. Si se corrige un PDF en el Mac y se vuelve a subir, se actualiza automáticamente para todos los alumnos.
+
+FASE 3: CREACIÓN DEL MAPA DE ENLACES
+- ACTOR: Inteligencia Artificial
+- ACCIÓN: La IA ejecuta un script de Python en el ordenador local. Este script escanea todas las carpetas, extrae los nombres de los archivos, construye las URLs de GitHub y genera un archivo CSV (base de datos) con el mapa completo de enlaces.
+
+FASE 4: PREPARACIÓN DE GOOGLE CLASSROOM
+- ACTOR: Profesor
+- ACCIÓN: El profesor entra en Google Classroom y crea el "cascarón" de la clase (Ej: "ROBÓTICA. BLOQUE 1" o "IA. BLOQUE INTRO GEMINI"). Obtiene el número identificador (ID) de esta nueva clase.
+
+FASE 5: INGESTA DE DATOS EN LA BASE DE DATOS VISUAL (EXCEL)
+- ACTOR: Profesor
+- ACCIÓN: El profesor abre Google Sheets, importa el archivo CSV generado en la Fase 3 y pega el ID de su clase de Classroom. Ahora el Excel relaciona el aula virtual con los enlaces de GitHub.
+
+FASE 6: PUBLICACIÓN AUTOMÁTICA MEDIANTE CÓDIGO (APPS SCRIPT)
+- ACTOR: Profesor (ejecuta) / Código (procesa)
+- ACCIÓN: El profesor entra en la extensión "Apps Script" conectada al Excel y pulsa "Ejecutar". Un código JavaScript lee las filas del Excel, se conecta por detrás a Google Classroom a través de su API, crea las carpetas correspondientes y publica todos los enlaces alojados en GitHub. Todo se sube en modo "Borrador" para que el profesor tenga el control de cuándo enseñarlo a los alumnos.
+
+CONCLUSIÓN:
+Gracias a este modelo "Cyborg", un proceso que tardaría horas de clics manuales en Classroom se realiza en minutos para cualquier asignatura (Robótica, IA...), combinando la pedagogía del profesor con la capacidad técnica de la Inteligencia Artificial.

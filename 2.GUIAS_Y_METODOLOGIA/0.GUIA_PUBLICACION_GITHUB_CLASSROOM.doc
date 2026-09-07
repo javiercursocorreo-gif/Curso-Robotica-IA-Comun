@@ -1,0 +1,203 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head><meta charset='utf-8'><title>GUÍA DE PUBLICACIÓN GITHUB Y CLASSROOM</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.5; }
+h1 { color: #004488; text-align: center; border-bottom: 2px solid #004488; padding-bottom: 10px; }
+h2 { color: #333333; margin-top: 30px; background-color: #f0f0f0; padding: 10px; border-left: 5px solid #004488; }
+h3 { color: #e65c00; margin-top: 20px; }
+pre { background: #f4f4f4; padding: 10px; font-family: 'Courier New', monospace; font-size: 11px; border: 1px solid #ccc; overflow-x: auto; }
+li { margin-bottom: 10px; }
+.note { background-color: #fff3cd; padding: 10px; border-left: 5px solid #ffeeba; margin: 10px 0; }
+.badge-user { display: inline-block; background: #004488; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 10px; }
+.badge-ai { display: inline-block; background: #e65c00; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 10px; }
+</style>
+</head>
+<body>
+
+<h1>GUÍA DE PUBLICACIÓN EN GITHUB Y CLASSROOM<br><small>(Workflow de Trabajo en Equipo)</small></h1>
+
+<div class="note">
+<b>INTRODUCCIÓN AL SISTEMA:</b> Este no es un manual tradicional, es un flujo de trabajo para un equipo de dos: <b>Tú (el Profesor)</b> y <b>Yo (Antigravity, tu asistente IA)</b>. Aquí explicamos exactamente quién se encarga de qué paso para que el contenido viaje desde tu Mac hasta Google Classroom sin que tengas que tocar código.
+</div>
+
+<h2>FASE 1: PREPARACIÓN LOCAL EN EL MAC <span class="badge-user">🧑🏻‍🏫 TAREA TUYA</span></h2>
+<ul>
+  <li>Escribe tu teoría, genera tus PDFs, graba los vídeos y organiza todo en la carpeta correspondiente de tu Mac (Ej: <code>BLOQUE-1_Un-motor > 1.1_Puerta-supermercado > 2.TEORIA</code>).</li>
+  <li>Nombra los archivos correctamente (ej: <code>T0.DEBATE.pdf</code>, <code>T2.VIDEO.mp4</code>, etc.).</li>
+</ul>
+
+<h2>FASE 2: SINCRONIZACIÓN AL SERVIDOR (GITHUB) <span class="badge-ai">🤖 TAREA DE LA IA</span></h2>
+<ul>
+  <li><b>Tú me dices:</b> <i>"Ya he metido todos los archivos nuevos en la carpeta del Mac, súbelos a GitHub".</i></li>
+  <li><b>Yo (la IA) me encargo de:</b> Abrir la terminal por ti, añadir los archivos modificados, hacer el <i>commit</i> y enviarlos a la nube (<code>git push</code>) de forma invisible.</li>
+  <li><b>Objetivo:</b> Alojarlos gratis en internet para que Google Classroom pueda enlazarlos sin gastar espacio en tu Drive. Si algún día editas un PDF que ya subimos, solo tienes que pedirme que lo vuelva a subir y se actualizará automáticamente para todos tus alumnos.</li>
+</ul>
+
+<h2>FASE 3: CREACIÓN DEL MAPA DE ENLACES <span class="badge-ai">🤖 TAREA DE LA IA</span></h2>
+<ul>
+  <li><b>Tú me dices:</b> <i>"Genera los CSVs con los enlaces actualizados".</i></li>
+  <li><b>Yo (la IA) me encargo de:</b> Ejecutar el script <code>python3 generate_multiple_csvs.py</code> en tu ordenador. Este robot escanea tus carpetas y fabrica los archivos <b>.csv</b> (ej: <code>1.PANEL_B1.csv</code>) con las URLs públicas exactas de GitHub.</li>
+</ul>
+
+<h2>FASE 4: PREPARACIÓN DE GOOGLE CLASSROOM <span class="badge-user">🧑🏻‍🏫 TAREA TUYA</span></h2>
+<ul>
+  <li>Entra en <b>classroom.google.com</b> con tu cuenta de profesor.</li>
+  <li>Crea una nueva clase (una por cada bloque). Nómbrala con la nomenclatura oficial, por ejemplo: <b>ROBÓTICA. BLOQUE 1. UN MOTOR</b>.</li>
+</ul>
+
+<h2>FASE 5: INGESTA DE DATOS (EXCEL) <span class="badge-user">🧑🏻‍🏫 TAREA TUYA</span></h2>
+<ul>
+  <li>Abre tu navegador en modo <b>VENTANA DE INCÓGNITO</b> (o Privada). Esto es vital para evitar bugs de cuentas de Google.</li>
+  <li>Entra a Google Drive y abre tu Excel permanente llamado <b>0.PANEL_CLASSROOM</b>.</li>
+  <li>Ve a <b>Archivo > Importar > Subir</b> y arrastra el archivo CSV que yo te generé en la Fase 3 (ej: <code>1.PANEL_B1.csv</code>).</li>
+  <li>⚠️ Elige siempre <b>Reemplazar hoja de cálculo actual</b> y dale a Importar.</li>
+  <li>En la Columna A (<code>ID_CURSO</code>), que estará vacía, <b>pega el ID numérico de tu clase de Classroom</b> (consúltalo en el Anexo 2). Arrastra el número hacia abajo para que todas las filas lo tengan.</li>
+</ul>
+
+<h2>FASE 6: PUBLICACIÓN AUTOMÁTICA <span class="badge-user">🧑🏻‍🏫 TAREA TUYA</span></h2>
+<ul>
+  <li>Dentro del Excel, ve a <b>Extensiones > Apps Script</b>.</li>
+  <li>Selecciona la función <b>publicarTodoConTemas</b> y dale a <b>Ejecutar</b>.</li>
+  <li>El script creará automáticamente las carpetas (Temas) en Classroom y subirá todos los enlaces en modo <b>BORRADOR</b>. ¡Listo! Ya puedes ir publicándolos poco a poco durante las clases.</li>
+</ul>
+
+<hr>
+
+<h2>ANEXO 1: EL BOTÓN DEL PÁNICO <span class="badge-user">🧑🏻‍🏫 TAREA TUYA</span></h2>
+<p>Si la subida ha quedado mal (por ejemplo, importaste el CSV antiguo sin querer) y necesitas borrarlo TODO de Classroom para empezar de cero:</p>
+<ol>
+  <li>Asegúrate de que el ID de tu curso está puesto en la celda <b>A2</b> del Excel.</li>
+  <li>Ve a <i>Apps Script</i>, selecciona la función <b>borrarAbsolutamenteTodo</b> y dale a Ejecutar.</li>
+  <li>Toda tu clase (Temas y Borradores) quedará borrada en segundos.</li>
+</ol>
+
+<h2>ANEXO 2: LISTADO DE IDs DE TUS CLASES</h2>
+<p>Para no tener que averiguar el número ID cada vez que limpias el Excel, apúntalos aquí conforme vayas creando tus clases a lo largo del año:</p>
+<ul>
+  <li><b>Bloque 1:</b> ROBÓTICA. 1. UN MOTOR ---> ID REAL: <b>876316970006</b></li>
+  <li><b>Bloque 2:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+  <li><b>Bloque 3:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+  <li><b>Bloque 4:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+  <li><b>Bloque 5:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+  <li><b>Bloque 6:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+  <li><b>Bloque 7:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+  <li><b>Bloque 8:</b> <i>(Aún no creada)</i> ---> ID REAL: </li>
+</ul>
+
+<h2>ANEXO 3: EL CÓDIGO MAESTRO DE APPS SCRIPT</h2>
+<p>Si alguna vez pierdes el Excel original, crea uno nuevo, ve a Extensiones > Apps Script, añade el Servicio "Google Classroom API" a la izquierda, y pega todo este código:</p>
+<pre>
+// 1. AVERIGUAR IDs
+function dimeMisIDs() {
+  var cursos = Classroom.Courses.list().courses;
+  if (cursos && cursos.length > 0) {
+    for (var i = 0; i < cursos.length; i++) {
+      Logger.log("Curso: " + cursos[i].name + "  --->  ID REAL: " + cursos[i].id);
+    }
+  } else {
+    Logger.log("No tienes cursos en esta cuenta.");
+  }
+}
+
+// 2. PUBLICAR AGRUPADO POR TEMAS (EN BORRADOR)
+function publicarTodoConTemas() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  var temasCacheados = {}; 
+
+  for (var i = 1; i < data.length; i++) {
+    var fila = data[i];
+    var cursoId = String(fila[0]).trim();
+    var claseNombre = String(fila[1]).trim();
+    var titulo = fila[2];
+    var descripcion = fila[3];
+    var urlGitHub = fila[4];
+    
+    if (!cursoId || cursoId === "") continue; 
+    
+    var topicId = null;
+    if (claseNombre !== "") {
+      var cacheKey = cursoId + "_" + claseNombre;
+      if (temasCacheados[cacheKey]) {
+        topicId = temasCacheados[cacheKey];
+      } else {
+        var existe = false;
+        try {
+          var response = Classroom.Courses.Topics.list(cursoId);
+          var temas = response.topic || [];
+          for (var t = 0; t < temas.length; t++) {
+            if (temas[t].name === claseNombre) {
+              topicId = temas[t].topicId;
+              existe = true;
+              break;
+            }
+          }
+        } catch(e) {}
+        
+        if (!existe) {
+          try {
+            var nuevoTema = Classroom.Courses.Topics.create({name: claseNombre}, cursoId);
+            topicId = nuevoTema.topicId;
+          } catch(e) {}
+        }
+        if (topicId) temasCacheados[cacheKey] = topicId;
+      }
+    }
+    
+    var material = {
+      title: titulo,
+      description: descripcion,
+      materials: [{ link: { url: urlGitHub } }],
+      state: "DRAFT"
+    };
+    
+    if (topicId) material.topicId = topicId;
+    
+    try {
+      Classroom.Courses.CourseWorkMaterials.create(material, cursoId);
+    } catch(e) {}
+  }
+}
+
+// 3. BOTÓN DEL PÁNICO (BORRAR TODO)
+function borrarAbsolutamenteTodo() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var cursoId = String(sheet.getRange("A2").getValue()).trim();
+  
+  var pageTokenMats = null;
+  do {
+    try {
+      var params = { courseWorkMaterialStates: ["DRAFT", "PUBLISHED"] };
+      if (pageTokenMats) params.pageToken = pageTokenMats;
+      
+      var response = Classroom.Courses.CourseWorkMaterials.list(cursoId, params);
+      var mats = response.courseWorkMaterial || [];
+      for (var i = 0; i < mats.length; i++) {
+        Classroom.Courses.CourseWorkMaterials.remove(cursoId, mats[i].id);
+      }
+      pageTokenMats = response.nextPageToken;
+    } catch(e){
+      break;
+    }
+  } while (pageTokenMats);
+  
+  var pageTokenTemas = null;
+  do {
+    try {
+      var paramsTemas = {};
+      if (pageTokenTemas) paramsTemas.pageToken = pageTokenTemas;
+      
+      var responseTemas = Classroom.Courses.Topics.list(cursoId, paramsTemas);
+      var temas = responseTemas.topic || [];
+      for (var t = 0; t < temas.length; t++) {
+        Classroom.Courses.Topics.remove(cursoId, temas[t].topicId);
+      }
+      pageTokenTemas = responseTemas.nextPageToken;
+    } catch(e){
+      break;
+    }
+  } while (pageTokenTemas);
+}
+</pre>
+</body>
+</html>
