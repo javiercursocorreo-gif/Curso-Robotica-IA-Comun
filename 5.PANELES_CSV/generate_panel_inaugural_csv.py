@@ -11,9 +11,13 @@ import csv
 import urllib.parse
 import unicodedata
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if os.path.basename(script_dir) in ("5.PANELES_CSV", "PANELES_CSV"):
+    ROOT_DIR = os.path.dirname(script_dir)
+else:
+    ROOT_DIR = script_dir
 INAUGURAL_DIR = os.path.join(ROOT_DIR, "1.PRESENTACION_INAUGURAL_CONJUNTA")
-OUTPUT_DIR = os.path.join(ROOT_DIR, "PANELES_CSV")
+OUTPUT_DIR = os.path.join(ROOT_DIR, "5.PANELES_CSV")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 BASE_URL = "https://javiercursocorreo-gif.github.io/Curso-Robotica-IA-Comun/"

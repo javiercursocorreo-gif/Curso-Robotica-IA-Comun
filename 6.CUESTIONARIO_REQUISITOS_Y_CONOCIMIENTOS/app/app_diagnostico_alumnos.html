@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico y Admisión - Curso de Inteligencia Artificial</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Cabecera */
+    .app-header {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .app-header h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+    .app-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .badge-top {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    /* Formulario Alumno */
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0369a1;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e0f2fe;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-control {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+
+    /* Preguntas y Opciones */
+    .question-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border-bottom: 1px solid #f1f5f9;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+    .question-row:hover {
+      background: #f8fafc;
+    }
+    .question-desc {
+      flex: 1;
+      min-width: 260px;
+    }
+    .question-desc strong {
+      display: block;
+      font-size: 0.92rem;
+      color: #0f172a;
+    }
+    .question-desc span {
+      font-size: 0.86rem;
+      color: #475569;
+    }
+    .tag-rule {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 3px;
+    }
+    .tag-rule-danger {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+    .tag-rule-warning {
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    /* Botones de Selección SÍ / NO */
+    .btn-toggle-group {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .btn-toggle {
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e1;
+      background: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      min-width: 60px;
+      text-align: center;
+    }
+    .btn-toggle:hover {
+      background: #f1f5f9;
+    }
+    .btn-toggle.active-yes {
+      background: #16a34a;
+      border-color: #16a34a;
+      color: white;
+      box-shadow: 0 2px 4px rgba(22,163,74,0.25);
+    }
+    .btn-toggle.active-no {
+      background: #64748b;
+      border-color: #64748b;
+      color: white;
+      box-shadow: 0 2px 4px rgba(100,116,139,0.25);
+    }
+
+    /* Panel de Diagnóstico en Tiempo Real */
+    .diagnosis-card {
+      background: linear-gradient(135deg, #1e3a8a, #1e40af);
+      color: white;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(30,58,138,0.2);
+    }
+    .diag-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      padding-bottom: 10px;
+    }
+    .diag-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .diag-badge {
+      font-size: 1.05rem;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .badge-apto {
+      background: #22c55e;
+      color: #052e16;
+    }
+    .badge-refuerzo {
+      background: #fbbf24;
+      color: #451a03;
+    }
+    .badge-noapto {
+      background: #ef4444;
+      color: #ffffff;
+    }
+    .badge-evaluando {
+      background: #38bdf8;
+      color: #082f49;
+    }
+    .badge-esperando {
+      background: #94a3b8;
+      color: #ffffff;
+    }
+    .diag-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 12px;
+      font-size: 0.92rem;
+    }
+    .diag-detail-box {
+      background: rgba(255,255,255,0.1);
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+    .diag-reasons {
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+    .diag-reasons ul {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+
+    /* Acciones */
+    .actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+    .btn-success:hover {
+      background: #15803d;
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    /* Tabla de Alumnos Guardados */
+    .history-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .table-container {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    th {
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+    tr:hover td {
+      background: #f8fafc;
+    }
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+    .pill-apto { background: #dcfce7; color: #166534; }
+    .pill-refuerzo { background: #fef3c7; color: #92400e; }
+    .pill-noapto { background: #fee2e2; color: #991b1b; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .actions-bar, .history-card, .btn-toggle-group { display: none !important; }
+      .diagnosis-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- CABECERA -->
+    <header class="app-header">
+      <div>
+        <h1>Cuestionario de Diagnóstico y Admisión</h1>
+        <p>Evaluación interactiva para alumnos del Curso de Inteligencia Artificial</p>
+      </div>
+      <div class="badge-top">
+        HERRAMIENTA DEL ENTREVISTADOR
+      </div>
+    </header>
+
+    <!-- DATOS DEL ALUMNO -->
+    <section class="card">
+      <div class="card-title">
+        <span>Datos del Alumno y Entrevista</span>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <label for="studentName">Nombre y Apellidos del Alumno *</label>
+          <input type="text" id="studentName" class="form-control" placeholder="Ej: Carmen Gómez Martínez">
+        </div>
+        <div class="form-group">
+          <label for="studentPhone">Teléfono de Contacto</label>
+          <input type="tel" id="studentPhone" class="form-control" placeholder="Ej: 612 345 678">
+        </div>
+        <div class="form-group">
+          <label for="interviewerName">Nombre del Entrevistador</label>
+          <input type="text" id="interviewerName" class="form-control" placeholder="Ej: Javier">
+        </div>
+        <div class="form-group">
+          <label for="interviewDate">Fecha</label>
+          <input type="date" id="interviewDate" class="form-control">
+        </div>
+      </div>
+    </section>
+
+    <!-- CUADRO DE FILTRO PREVIO (EXCLUYENTE) -->
+    <section class="card" id="card-filtro-previo" style="border: 2px solid #2563eb; background: #f0f7ff;">
+      <div class="card-title" style="color: #1e3a8a; border-bottom: 2px solid #bfdbfe;">
+        <span>Filtro Previo: Requisitos Técnicos de Acceso</span>
+        <span id="filtroBadge" class="status-pill" style="background:#e2e8f0; color:#475569;">Pendiente de responder</span>
+      </div>
+      <p style="font-size: 0.85rem; color: #334155; margin-bottom: 12px;">
+        Condición previa imprescindible: El alumno debe disponer de ordenador en casa y no utilizar exclusivamente el móvil.
+      </p>
+
+      <!-- P1 -->
+      <div class="question-row" id="row-q1" style="background: white; border: 1px solid #cbd5e1; margin-bottom: 8px;">
+        <div class="question-desc">
+          <strong>Ordenador en casa</strong>
+          <span>¿Dispones de un PC portátil o de sobremesa?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(1, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(1, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="question-row" id="row-q2" style="background: white; border: 1px solid #cbd5e1; margin-bottom: 8px;">
+        <div class="question-desc">
+          <strong>Solo móvil</strong>
+          <span>¿Usas solo el móvil y no usas el ordenador?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(2, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(2, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- MENSAJE DE DIAGNÓSTICO DEL FILTRO PREVIO -->
+      <div id="filtroPrevioAlert" style="padding: 12px 16px; border-radius: 8px; font-size: 0.92rem; font-weight: 600; display: none; margin-top: 10px;">
+      </div>
+    </section>
+
+    <!-- PREGUNTAS: SECCIÓN 1 -->
+    <section class="card" id="card-cuestionario">
+      <div class="card-title">
+        <span>1. Equipamiento Técnico Básico</span>
+        <span style="font-size:0.75rem; color:#0284c7; font-weight:700;">Herramientas para el aula</span>
+      </div>
+
+      <!-- P3 -->
+      <div class="question-row" id="row-q3">
+        <div class="question-desc">
+          <strong>3. Ratón físico</strong>
+          <span>¿Dispones de ratón con rueda de desplazamiento?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(3, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(3, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P4 -->
+      <div class="question-row" id="row-q4">
+        <div class="question-desc">
+          <strong>4. Conexión a Internet</strong>
+          <span>¿Tienes conexión Wi-Fi o fibra estable en tu hogar?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(4, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(4, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P5 -->
+      <div class="question-row" id="row-q5">
+        <div class="question-desc">
+          <strong>5. Navegador moderno</strong>
+          <span>¿Tienes instalado Google Chrome o Microsoft Edge actualizado?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(5, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(5, false)">NO</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        <span>2. Cuenta Digital y Acceso</span>
+        <span style="font-size:0.75rem; color:#0284c7; font-weight:700;">Autonomía Básica</span>
+      </div>
+
+      <!-- P6 -->
+      <div class="question-row" id="row-q6">
+        <div class="question-desc">
+          <strong>6. Cuenta de Google (Gmail)</strong>
+          <span>¿Tienes una cuenta de correo activa y conoces tu contraseña?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(6, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(6, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P7 -->
+      <div class="question-row" id="row-q7">
+        <div class="question-desc">
+          <strong>7. Libreta de contraseñas</strong>
+          <span>¿Tienes una libreta física para anotar usuarios y contraseñas y no olvidarlos?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(7, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(7, false)">NO</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        <span>3. Tus Hábitos Digitales Habituales</span>
+        <span style="font-size:0.75rem; color:#059669; font-weight:700;">Soltura en el Uso Diario</span>
+      </div>
+
+      <!-- P8 -->
+      <div class="question-row" id="row-q8">
+        <div class="question-desc">
+          <strong>8. Lectura y navegación web</strong>
+          <span>¿Sueles navegar por páginas web para leer periódicos o consultar el tiempo?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(8, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(8, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P9 -->
+      <div class="question-row" id="row-q9">
+        <div class="question-desc">
+          <strong>9. Gestiones y banca online</strong>
+          <span>¿Sueles usar internet para hacer gestiones como por ejemplo en el banco?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(9, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(9, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P10 -->
+      <div class="question-row" id="row-q10">
+        <div class="question-desc">
+          <strong>10. Correo electrónico</strong>
+          <span>¿Utilizas el correo electrónico habitualmente?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(10, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(10, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P11 -->
+      <div class="question-row" id="row-q11">
+        <div class="question-desc">
+          <strong>11. Mensajería (WhatsApp)</strong>
+          <span>¿Utilizas aplicaciones de mensajería como WhatsApp?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(11, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(11, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P12 -->
+      <div class="question-row" id="row-q12">
+        <div class="question-desc">
+          <strong>12. Búsquedas en Google</strong>
+          <span>¿Has buscado alguna vez cosas en Google?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(12, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(12, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P13 -->
+      <div class="question-row" id="row-q13">
+        <div class="question-desc">
+          <strong>13. Vídeos en YouTube</strong>
+          <span>¿Has visto vídeos en YouTube?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(13, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(13, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P14 -->
+      <div class="question-row" id="row-q14">
+        <div class="question-desc">
+          <strong>14. Clics, arrastrar y escritura</strong>
+          <span>¿Sabes hacer clic, doble clic, arrastrar y escribir textos sencillos con el teclado?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(14, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(14, false)">NO</button>
+        </div>
+      </div>
+
+      <!-- P15 -->
+      <div class="question-row" id="row-q15">
+        <div class="question-desc">
+          <strong>15. Descargas con Chrome</strong>
+          <span>¿Sabes hacer descargas en Chrome?</span>
+        </div>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle" onclick="setAnswer(15, true)">SÍ</button>
+          <button class="btn-toggle" onclick="setAnswer(15, false)">NO</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL DE DIAGNÓSTICO EN TIEMPO REAL -->
+    <section class="diagnosis-card">
+      <div class="diag-header">
+        <span class="diag-title">Diagnóstico del Alumno</span>
+        <span id="diagnosticBadge" class="diag-badge badge-esperando">Esperando respuestas</span>
+      </div>
+
+      <div class="diag-details">
+        <div class="diag-detail-box">
+          <div>1. Ordenador en casa: <strong id="valP1">-</strong></div>
+          <div>2. Solo usa móvil: <strong id="valP2">-</strong></div>
+        </div>
+        <div class="diag-detail-box">
+          <div>Checks afirmativos (Preguntas 3 a 15): <strong id="valRemainingChecks">0 / 13</strong></div>
+          <div>Total SÍ globales: <strong id="valTotalChecks">0 / 15</strong></div>
+        </div>
+      </div>
+
+      <div class="diag-reasons">
+        <strong>Dictamen pedagógico:</strong>
+        <div id="diagnosticExplanation">Por favor, responde a las preguntas para obtener el diagnóstico automático.</div>
+      </div>
+    </section>
+
+    <!-- BARRA DE ACCIONES -->
+    <div class="actions-bar">
+      <button class="btn btn-success" onclick="saveStudent()">
+        💾 Guardar Evaluación de Alumno
+      </button>
+      <button class="btn btn-primary" onclick="exportToCSV()">
+        📥 Exportar Todos a Excel / CSV
+      </button>
+      <button class="btn btn-secondary" onclick="resetForm()">
+        🔄 Limpiar / Nuevo Alumno
+      </button>
+      <button class="btn btn-secondary" onclick="window.print()">
+        🖨️ Imprimir Ficha
+      </button>
+    </div>
+
+    <!-- HISTORIAL DE ALUMNOS REGISTRADOS -->
+    <section class="history-card">
+      <div class="card-title">
+        <span>Historial de Alumnos Evaluados en este Dispositivo</span>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.78rem;" onclick="clearAllData()">Borrar Todo</button>
+      </div>
+      <div class="table-container">
+        <table id="studentsTable">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Alumno</th>
+              <th>Teléfono</th>
+              <th>Evaluador</th>
+              <th>PC</th>
+              <th>Solo Móvil</th>
+              <th>Score (3-15)</th>
+              <th>Diagnóstico</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTbody">
+            <tr>
+              <td colspan="9" style="text-align: center; color: var(--text-muted);">No hay alumnos guardados todavía.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Respuestas: array de 15 elementos (índices 1 a 15, índice 0 sin uso)
+    const answers = new Array(16).fill(null);
+
+    // Inicializar fecha de hoy
+    document.getElementById('interviewDate').valueAsDate = new Date();
+
+    function setAnswer(questionIndex, isYes) {
+      answers[questionIndex] = isYes;
+      
+      const row = document.getElementById(`row-q${questionIndex}`);
+      const buttons = row.querySelectorAll('.btn-toggle');
+      
+      buttons[0].className = 'btn-toggle' + (isYes ? ' active-yes' : '');
+      buttons[1].className = 'btn-toggle' + (!isYes ? ' active-no' : '');
+
+      calculateDiagnostic();
+    }
+
+    function calculateDiagnostic() {
+      const p1 = answers[1]; // Tiene PC (Debe ser TRUE)
+      const p2 = answers[2]; // Solo móvil (Debe ser FALSE)
+
+      document.getElementById('valP1').innerHTML = p1 === null ? '-' : (p1 ? '<span style="color:#4ade80">SÍ (Correcto)</span>' : '<span style="color:#f87171">NO (Sin PC)</span>');
+      document.getElementById('valP2').innerHTML = p2 === null ? '-' : (!p2 ? '<span style="color:#4ade80">NO (Correcto)</span>' : '<span style="color:#f87171">SÍ (Solo Móvil)</span>');
+
+      // GESTIÓN VISUAL DEL CUADRO PREVIO (P1 y P2)
+      const fAlert = document.getElementById('filtroPrevioAlert');
+      const fBadge = document.getElementById('filtroBadge');
+      const cardPrevio = document.getElementById('card-filtro-previo');
+
+      if (p1 === null && p2 === null) {
+        fAlert.style.display = 'none';
+        fBadge.className = 'status-pill';
+        fBadge.style.background = '#e2e8f0';
+        fBadge.style.color = '#475569';
+        fBadge.innerText = 'Pendiente de responder';
+        cardPrevio.style.borderColor = '#2563eb';
+        cardPrevio.style.background = '#f0f7ff';
+      } else if (p1 === false) {
+        fAlert.style.display = 'block';
+        fAlert.style.background = '#fef2f2';
+        fAlert.style.border = '1.5px solid #f87171';
+        fAlert.style.color = '#991b1b';
+        fAlert.innerHTML = '❌ <strong>NO APTO INICIAL:</strong> El alumno no dispone de ordenador en casa. No es posible realizar el curso (no es necesario continuar la entrevista).';
+        fBadge.className = 'status-pill pill-noapto';
+        fBadge.innerText = '🔴 NO APTO';
+        cardPrevio.style.borderColor = '#dc2626';
+        cardPrevio.style.background = '#fef2f2';
+      } else if (p2 === true) {
+        fAlert.style.display = 'block';
+        fAlert.style.background = '#fef2f2';
+        fAlert.style.border = '1.5px solid #f87171';
+        fAlert.style.color = '#991b1b';
+        fAlert.innerHTML = '❌ <strong>NO APTO INICIAL:</strong> El alumno solo utiliza el teléfono móvil y no usa el ordenador. El curso requiere PC; no es necesario continuar la entrevista.';
+        fBadge.className = 'status-pill pill-noapto';
+        fBadge.innerText = '🔴 NO APTO';
+        cardPrevio.style.borderColor = '#dc2626';
+        cardPrevio.style.background = '#fef2f2';
+      } else if (p1 === true && p2 === false) {
+        fAlert.style.display = 'block';
+        fAlert.style.background = '#f0fdf4';
+        fAlert.style.border = '1.5px solid #4ade80';
+        fAlert.style.color = '#166534';
+        fAlert.innerHTML = '✅ <strong>REQUISITOS PREVIOS SUPERADOS:</strong> El alumno dispone de ordenador. <em>Continuar con la entrevista a continuación (Puntos 1, 2 y 3).</em>';
+        fBadge.className = 'status-pill pill-apto';
+        fBadge.innerText = '🟢 REQUISITOS SUPERADOS (CONTINUAR)';
+        cardPrevio.style.borderColor = '#16a34a';
+        cardPrevio.style.background = '#f0fdf4';
+      } else {
+        fAlert.style.display = 'none';
+        fBadge.className = 'status-pill';
+        fBadge.style.background = '#e2e8f0';
+        fBadge.style.color = '#475569';
+        fBadge.innerText = 'Completar ambas preguntas';
+        cardPrevio.style.borderColor = '#2563eb';
+        cardPrevio.style.background = '#f0f7ff';
+      }
+
+      // Conteo de preguntas 3 a 15
+      let remainingChecks = 0;
+      let answeredRemaining = 0;
+      let totalYes = 0;
+      for (let i = 1; i <= 15; i++) {
+        if (answers[i] === true) totalYes++;
+        if (i >= 3) {
+          if (answers[i] !== null) answeredRemaining++;
+          if (answers[i] === true) remainingChecks++;
+        }
+      }
+
+      document.getElementById('valRemainingChecks').innerText = `${remainingChecks} / 13`;
+      document.getElementById('valTotalChecks').innerText = `${totalYes} / 15`;
+
+      const badge = document.getElementById('diagnosticBadge');
+      const explanation = document.getElementById('diagnosticExplanation');
+
+      // REGLAS EXCLUYENTES
+      if (p1 === false) {
+        badge.className = 'diag-badge badge-noapto';
+        badge.innerText = '🔴 NO APTO';
+        explanation.innerHTML = '<strong>Requisito no cumplido:</strong> El alumno no dispone de ordenador en casa. Es imprescindible disponer de PC o portátil para realizar los ejercicios prácticos del curso.';
+        return 'NO APTO';
+      }
+
+      if (p2 === true) {
+        badge.className = 'diag-badge badge-noapto';
+        badge.innerText = '🔴 NO APTO';
+        explanation.innerHTML = '<strong>Requisito no cumplido:</strong> El alumno solo utiliza el teléfono móvil y no usa ordenador. El curso no puede realizarse únicamente desde el móvil; requiere ordenador.';
+        return 'NO APTO';
+      }
+
+      // Si aún no ha respondido las preguntas 1 o 2
+      if (p1 === null || p2 === null) {
+        badge.className = 'diag-badge badge-esperando';
+        badge.innerText = 'Esperando Filtro Previo';
+        explanation.innerText = 'Por favor, responde en el cuadro previo si dispone de PC en casa y si utiliza o no exclusivamente el móvil.';
+        return 'PENDIENTE';
+      }
+
+      // SI P1=SÍ y P2=NO, HA SUPERADO LOS REQUISITOS BÁSICOS
+      // Si ya acumula 10 o más checks afirmativos:
+      if (remainingChecks >= 10) {
+        badge.className = 'diag-badge badge-apto';
+        badge.innerText = '🟢 APTO DIRECTO';
+        explanation.innerHTML = `<strong>Nivel Óptimo (${remainingChecks}/13 checks afirmativos):</strong> Dispone de autonomía digital suficiente para seguir el ritmo habitual del curso con normalidad.`;
+        return 'APTO DIRECTO';
+      }
+
+      // Si aún quedan preguntas por responder:
+      if (answeredRemaining < 13) {
+        badge.className = 'diag-badge badge-evaluando';
+        badge.innerText = `📋 EN EVALUACIÓN (${answeredRemaining}/13)`;
+        explanation.innerHTML = `Requisitos previos superados. Continúa respondiendo las preguntas de hábitos y competencias (Puntos 1, 2 y 3). Checks afirmativos acumulados: <strong>${remainingChecks}</strong>.`;
+        return 'EN EVALUACIÓN';
+      }
+
+      // Todas las preguntas (3 a 15) han sido respondidas:
+      if (remainingChecks >= 7) {
+        badge.className = 'diag-badge badge-refuerzo';
+        badge.innerText = '🟡 APTO CON REFUERZO';
+        explanation.innerHTML = `<strong>Nivel Intermedio (${remainingChecks}/13 checks afirmativos):</strong> El alumno cumple los requisitos básicos. Se recomienda apoyo o sesión previa de nivelación (ratón, descargas o contraseñas).`;
+        return 'APTO CON REFUERZO';
+      } else {
+        badge.className = 'diag-badge badge-noapto';
+        badge.innerText = '🔴 NO APTO';
+        explanation.innerHTML = `<strong>Nivel Insuficiente (${remainingChecks}/13 checks afirmativos):</strong> Se aconseja realizar primero un curso de alfabetización informática básica.`;
+        return 'NO APTO';
+      }
+    }
+
+    // GESTIÓN DE ALUMNOS (LocalStorage + CSV)
+    const STORAGE_KEY = 'curso_ia_diagnostico_alumnos';
+
+    function getSavedStudents() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    }
+
+    function saveStudent() {
+      const name = document.getElementById('studentName').value.trim();
+      if (!name) {
+        alert('Por favor, escribe el Nombre y Apellidos del alumno.');
+        document.getElementById('studentName').focus();
+        return;
+      }
+
+      const diagnostic = calculateDiagnostic();
+      if (diagnostic === 'PENDIENTE') {
+        alert('Por favor, responde al menos a las preguntas excluyentes (1 y 2).');
+        return;
+      }
+
+      let remainingChecks = 0;
+      for (let i = 3; i <= 15; i++) {
+        if (answers[i] === true) remainingChecks++;
+      }
+
+      const studentRecord = {
+        id: Date.now(),
+        date: document.getElementById('interviewDate').value,
+        name: name,
+        phone: document.getElementById('studentPhone').value.trim(),
+        interviewer: document.getElementById('interviewerName').value.trim(),
+        p1_pc: answers[1] ? 'SÍ' : (answers[1] === false ? 'NO' : '-'),
+        p2_solomovil: answers[2] ? 'SÍ' : (answers[2] === false ? 'NO' : '-'),
+        score: `${remainingChecks}/13`,
+        diagnostic: diagnostic,
+        answers: [...answers]
+      };
+
+      const students = getSavedStudents();
+      students.unshift(studentRecord);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+
+      renderStudentsTable();
+      alert(`✅ Alumno "${name}" guardado correctamente con diagnóstico: ${diagnostic}`);
+    }
+
+    function renderStudentsTable() {
+      const students = getSavedStudents();
+      const tbody = document.getElementById('studentsTbody');
+
+      if (students.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; color:var(--text-muted);">No hay alumnos guardados todavía.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = students.map(s => {
+        let pillClass = 'pill-noapto';
+        if (s.diagnostic.includes('APTO DIRECTO')) pillClass = 'pill-apto';
+        else if (s.diagnostic.includes('REFUERZO')) pillClass = 'pill-refuerzo';
+
+        return `
+          <tr>
+            <td>${s.date || '-'}</td>
+            <td><strong>${s.name}</strong></td>
+            <td>${s.phone || '-'}</td>
+            <td>${s.interviewer || '-'}</td>
+            <td>${s.p1_pc}</td>
+            <td>${s.p2_solomovil}</td>
+            <td><strong>${s.score}</strong></td>
+            <td><span class="status-pill ${pillClass}">${s.diagnostic}</span></td>
+            <td>
+              <button onclick="deleteStudent(${s.id})" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold;">🗑️</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function deleteStudent(id) {
+      if (!confirm('¿Seguro que deseas eliminar este registro?')) return;
+      let students = getSavedStudents();
+      students = students.filter(s => s.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+      renderStudentsTable();
+    }
+
+    function clearAllData() {
+      if (!confirm('¿Deseas borrar todo el historial de alumnos guardados en este dispositivo?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      renderStudentsTable();
+    }
+
+    function exportToCSV() {
+      const students = getSavedStudents();
+      if (students.length === 0) {
+        alert('No hay alumnos registrados para exportar.');
+        return;
+      }
+
+      let csv = '\uFEFF'; // BOM para que Excel abra UTF-8 correctamente con tildes
+      csv += 'Fecha;Nombre Alumno;Telefono;Entrevistador;P1_PC;P2_SoloMovil;Puntos_Restantes;Diagnostico\n';
+
+      students.forEach(s => {
+        const cleanName = (s.name || '').replace(/;/g, ' ');
+        const cleanInterviewer = (s.interviewer || '').replace(/;/g, ' ');
+        csv += `${s.date};${cleanName};${s.phone};${cleanInterviewer};${s.p1_pc};${s.p2_solomovil};${s.score};${s.diagnostic}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `Diagnostico_Alumnos_Curso_IA_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function resetForm() {
+      answers.fill(null);
+      document.querySelectorAll('.btn-toggle').forEach(btn => {
+        btn.className = 'btn-toggle';
+      });
+      document.getElementById('studentName').value = '';
+      document.getElementById('studentPhone').value = '';
+      calculateDiagnostic();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Inicializar tabla al cargar
+    renderStudentsTable();
+  </script>
+
+</body>
+</html>
