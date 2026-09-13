@@ -26,9 +26,9 @@ BASE_URL = "https://javiercursocorreo-gif.github.io/Curso-Robotica-IA-Comun/"
 ITEMS = [
     {
         "subfolder": "0. INTRODUCCION GENERAL",
-        "filename": "1.INTRODUCCION_GENERAL.pdf",
+        "filename": "0.INTRODUCCION_GENERAL.pdf",
         "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
-        "titulo": "1. Presentación Inaugural: Introducción General (Robótica e IA) (PDF)",
+        "titulo": "0. Presentación Inaugural: Introducción General (Robótica e IA) (PDF)",
         "descripcion": "Diapositivas de la sesión inaugural conjunta: bienvenida, el propósito de la tecnología para personas senior y aprendizaje en grupo sin exámenes."
     },
     {
@@ -40,17 +40,16 @@ ITEMS = [
     },
     {
         "subfolder": "2. INTRODUCCION A LA IA",
-        "filename": "1.INTRODUCCION_A_LA_IA.pdf",
+        "filename": "2.INTRODUCCION_A_LA_IA.pdf",
         "tema": "2. Introducción a la Inteligencia Artificial",
-        "titulo": "1. Presentación Inaugural: Introducción a la IA (PDF)",
+        "titulo": "2. Presentación Inaugural: Introducción a la IA (PDF)",
         "descripcion": "Diapositivas de introducción a la Inteligencia Artificial: perder el miedo a la IA, qué es y qué no es, y primeros pasos prácticos con Gemini."
     }
 ]
 
 def generate_csv():
     csv_paths = [
-        os.path.join(OUTPUT_DIR, "0.PANEL_PRESENTACION_INAUGURAL.csv"),
-        os.path.join(ROOT_DIR, "0.PANEL_PRESENTACION_INAUGURAL.csv")
+        os.path.join(OUTPUT_DIR, "0.PANEL_PRESENTACION_INAUGURAL.csv")
     ]
     
     rows = []
