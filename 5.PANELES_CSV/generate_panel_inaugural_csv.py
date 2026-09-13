@@ -25,6 +25,14 @@ BASE_URL = "https://javiercursocorreo-gif.github.io/Curso-Robotica-IA-Comun/"
 # Definición de materiales a exportar
 ITEMS = [
     {
+        "subfolder": "0.PRESENTACIONES_PARA_LA_CLASE",
+        "filename": "INDICE_DEL_CURSO.html",
+        "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
+        "titulo": "Índice Interactivo del Curso: Robótica e Inteligencia Artificial (HTML)",
+        "descripcion": "Mapa mental interactivo para explorar visualmente todos los bloques de robótica y clases de IA del curso.",
+        "is_root_subfolder": True
+    },
+    {
         "subfolder": "0. INTRODUCCION GENERAL",
         "filename": "0.INTRODUCCION_GENERAL.pdf",
         "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
@@ -54,7 +62,10 @@ def generate_csv():
     
     rows = []
     for item in ITEMS:
-        file_path = os.path.join(INAUGURAL_DIR, item["subfolder"], item["filename"])
+        if item.get("is_root_subfolder"):
+            file_path = os.path.join(ROOT_DIR, item["subfolder"], item["filename"])
+        else:
+            file_path = os.path.join(INAUGURAL_DIR, item["subfolder"], item["filename"])
         if not os.path.exists(file_path):
             print(f"⚠️ Archivo no encontrado: {file_path}")
             continue
