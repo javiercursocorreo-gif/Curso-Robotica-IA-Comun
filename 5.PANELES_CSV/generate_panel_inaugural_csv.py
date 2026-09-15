@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 generate_panel_inaugural_csv.py
-Genera el archivo CSV para Google Classroom con el Índice Interactivo (HTML)
-y la Presentación Inaugural Conjunta (PDF) en CURSO-ROBOTICA-IA-COMUN.
+Genera los archivos CSV independientes para Google Classroom:
+1. 0.PANEL_PRESENTACION_INAUGURAL.csv -> Clase 'ROB+IA. Introducción' (PDF Presentación Conjunta)
+2. 1.PANEL_IA_INDICE.csv             -> Clase 'IA.ÍNDICE' (HTML Mapa Mental Interactivo)
 """
 
 import os
@@ -22,31 +23,39 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 BASE_URL = "https://javiercursocorreo-gif.github.io/Curso-Robotica-IA-Comun/"
 
-# Definición de materiales para la clase 'ROB+IA. Introducción'
-ITEMS = [
-    {
-        "folder": "INDICE_DEL_CURSO",
-        "filename": "INDICE_DEL_CURSO.html",
-        "tema": "ROB+IA. Introducción",
-        "titulo": "Índice Interactivo del Curso: Robótica e Inteligencia Artificial (HTML)",
-        "descripcion": "Mapa mental interactivo para explorar visualmente todos los bloques de robótica y clases de IA del curso."
-    },
-    {
-        "folder": "0.PRESENTACION_PARA_LA_PRIMERA_CLASE",
-        "filename": "0.INTRODUCCION CONJUNTA.pdf",
-        "tema": "ROB+IA. Introducción",
-        "titulo": "Presentación Inaugural Conjunta: Introducción General, Robótica e IA (PDF)",
-        "descripcion": "Diapositivas completas de la sesión inaugural conjunta: bienvenida, introducción a la robótica y primeros pasos en inteligencia artificial."
-    }
-]
-
-def generate_csv():
-    csv_paths = [
-        os.path.join(OUTPUT_DIR, "0.PANEL_PRESENTACION_INAUGURAL.csv")
+# 1. Panel para la clase: 'ROB+IA. Introducción'
+PANEL_INAUGURAL = {
+    "csv_filename": "0.PANEL_PRESENTACION_INAUGURAL.csv",
+    "items": [
+        {
+            "folder": "0.PRESENTACION_PARA_LA_PRIMERA_CLASE",
+            "filename": "0.INTRODUCCION CONJUNTA.pdf",
+            "tema": "ROB+IA. Introducción",
+            "titulo": "Presentación Inaugural Conjunta: Introducción General, Robótica e IA (PDF)",
+            "descripcion": "Diapositivas completas de la sesión inaugural conjunta: bienvenida, introducción a la robótica y primeros pasos en inteligencia artificial."
+        }
     ]
-    
+}
+
+# 2. Panel para la clase: 'IA.ÍNDICE'
+PANEL_INDICE = {
+    "csv_filename": "1.PANEL_IA_INDICE.csv",
+    "items": [
+        {
+            "folder": "INDICE_DEL_CURSO",
+            "filename": "INDICE_DEL_CURSO.html",
+            "tema": "IA.ÍNDICE",
+            "titulo": "Índice Interactivo del Curso: Robótica e Inteligencia Artificial (HTML)",
+            "descripcion": "Mapa mental interactivo para explorar visualmente todos los bloques de robótica y clases de IA del curso."
+        }
+    ]
+}
+
+def export_panel(panel_def):
+    csv_file = os.path.join(OUTPUT_DIR, panel_def["csv_filename"])
     rows = []
-    for item in ITEMS:
+    
+    for item in panel_def["items"]:
         file_path = os.path.join(ROOT_DIR, item["folder"], item["filename"])
         if not os.path.exists(file_path):
             print(f"⚠️ Archivo no encontrado: {file_path}")
@@ -66,12 +75,15 @@ def generate_csv():
     
     header = ['ID_CURSO', 'TEMA_CLASSROOM', 'TITULO_MATERIAL', 'DESCRIPCION_MATERIAL', 'URL_GITHUB']
     
-    for csv_file in csv_paths:
-        with open(csv_file, 'w', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerow(header)
-            writer.writerows(rows)
-        print(f"✅ CSV generado con éxito en: {csv_file}")
+    with open(csv_file, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(rows)
+    print(f"✅ CSV generado con éxito en: {csv_file}")
+
+def generate_csvs():
+    export_panel(PANEL_INAUGURAL)
+    export_panel(PANEL_INDICE)
 
 if __name__ == "__main__":
-    generate_csv()
+    generate_csvs()

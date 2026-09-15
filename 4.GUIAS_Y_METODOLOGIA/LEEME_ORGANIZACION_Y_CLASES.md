@@ -23,7 +23,7 @@ Para presentar el material en clase o ver el mapa interactivo:
 | **`2.ACCESO_CLASES_ROBOTICA`** | Acceso directo a todos los bloques y clases de Robótica (`CURSO-ROBOTICA-V2`). |
 | **`3.ACCESO_CLASES_IA`** | Acceso directo a todas las clases y materiales de IA (`CURSO-IA/CLASES`). |
 | **`4.GUIAS_Y_METODOLOGIA/`** | Guías docentes, prompts de Gemini, flujos de NLM y este documento organizativo. |
-| **`5.PANELES_CSV/`** | Archivos CSV estructurados para la subida a Google Classroom y script de generación. |
+| **`5.PANELES_CSV/`** | Archivos CSV estructurados para Google Classroom (`0.PANEL_PRESENTACION_INAUGURAL.csv` para clase *ROB+IA. Introducción* y `1.PANEL_IA_INDICE.csv` para clase *IA.ÍNDICE*). |
 | **`6.CUESTIONARIO_REQUISITOS_Y_CONOCIMIENTOS/`** | Cuestionario diagnóstico de admisión de alumnos (app interactiva y PDFs). |
 
 ---
