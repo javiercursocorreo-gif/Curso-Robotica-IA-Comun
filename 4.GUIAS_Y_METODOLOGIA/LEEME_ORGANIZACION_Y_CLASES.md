@@ -6,9 +6,10 @@ Bienvenido a la carpeta central del curso. Aquí se centralizan los recursos com
 
 ## 🚀 Acceso Rápido al Material de Clase
 Para presentar el material en clase o ver el mapa interactivo:
-- **Entra en:** `0.PRESENTACIONES_PARA_LA_CLASE/`
-  - Haz doble clic en `INDICE_DEL_CURSO.html` para el mapa mental interactivo.
-  - O abre directamente los PowerPoint (`.pptx`) de Introducción General, Robótica o IA.
+- **Índice Interactivo transversal:** `INDICE_DEL_CURSO/INDICE_DEL_CURSO.html` (o `index.html` en la raíz).
+- **Presentación unificada de la primera clase:** `0.PRESENTACION_PARA_LA_PRIMERA_CLASE/`
+  - `0.INTRODUCCION CONJUNTA.pptx` (para proyectar en clase con Keynote/PowerPoint).
+  - `0.INTRODUCCION CONJUNTA.pdf` (versión lista para Classroom).
 
 ---
 
@@ -16,8 +17,9 @@ Para presentar el material en clase o ver el mapa interactivo:
 
 | Carpeta / Enlace | Función y Contenido |
 | :--- | :--- |
-| **`0.PRESENTACIONES_PARA_LA_CLASE/`** | **Para proyectar en clase**: `INDICE_DEL_CURSO.html` y todos los PowerPoint (`.pptx`). |
-| **`1.PRESENTACION_INAUGURAL_CONJUNTA/`** | Material de apoyo: Textos (`.txt`) y documentos listos para GitHub (`.pdf`). |
+| **`INDICE_DEL_CURSO/`** | **Mapa mental interactivo transversal**: `INDICE_DEL_CURSO.html`. |
+| **`0.PRESENTACION_PARA_LA_PRIMERA_CLASE/`** | **Para proyectar en la sesión 1**: `0.INTRODUCCION CONJUNTA.pptx` y `.pdf`. |
+| **`1.PRESENTACION_INAUGURAL_CONJUNTA/`** | Material de apoyo: Textos (`.txt`) y documentos temáticos listos para GitHub (`.pdf`). |
 | **`2.ACCESO_CLASES_ROBOTICA`** | Acceso directo a todos los bloques y clases de Robótica (`CURSO-ROBOTICA-V2`). |
 | **`3.ACCESO_CLASES_IA`** | Acceso directo a todas las clases y materiales de IA (`CURSO-IA/CLASES`). |
 | **`4.GUIAS_Y_METODOLOGIA/`** | Guías docentes, prompts de Gemini, flujos de NLM y este documento organizativo. |

@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 generate_panel_inaugural_csv.py
-Genera el archivo CSV para Google Classroom con los PDFs de la carpeta
-1.PRESENTACION_INAUGURAL_CONJUNTA en CURSO-ROBOTICA-IA-COMUN.
+Genera el archivo CSV para Google Classroom con el Índice Interactivo (HTML)
+y la Presentación Inaugural Conjunta (PDF) en CURSO-ROBOTICA-IA-COMUN.
 """
 
 import os
@@ -16,42 +16,27 @@ if os.path.basename(script_dir) in ("5.PANELES_CSV", "PANELES_CSV"):
     ROOT_DIR = os.path.dirname(script_dir)
 else:
     ROOT_DIR = script_dir
-INAUGURAL_DIR = os.path.join(ROOT_DIR, "1.PRESENTACION_INAUGURAL_CONJUNTA")
+
 OUTPUT_DIR = os.path.join(ROOT_DIR, "5.PANELES_CSV")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 BASE_URL = "https://javiercursocorreo-gif.github.io/Curso-Robotica-IA-Comun/"
 
-# Definición de materiales a exportar
+# Definición de materiales para la clase 'ROB+IA. Introducción'
 ITEMS = [
     {
-        "subfolder": "0.PRESENTACIONES_PARA_LA_CLASE",
+        "folder": "INDICE_DEL_CURSO",
         "filename": "INDICE_DEL_CURSO.html",
-        "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
+        "tema": "ROB+IA. Introducción",
         "titulo": "Índice Interactivo del Curso: Robótica e Inteligencia Artificial (HTML)",
-        "descripcion": "Mapa mental interactivo para explorar visualmente todos los bloques de robótica y clases de IA del curso.",
-        "is_root_subfolder": True
+        "descripcion": "Mapa mental interactivo para explorar visualmente todos los bloques de robótica y clases de IA del curso."
     },
     {
-        "subfolder": "0. INTRODUCCION GENERAL",
-        "filename": "0.INTRODUCCION_GENERAL.pdf",
-        "tema": "0. Introducción General (Bienvenida y Diagnóstico)",
-        "titulo": "0. Presentación Inaugural: Introducción General (Robótica e IA) (PDF)",
-        "descripcion": "Diapositivas de la sesión inaugural conjunta: bienvenida, el propósito de la tecnología para personas senior y aprendizaje en grupo sin exámenes."
-    },
-    {
-        "subfolder": "1. INTRODUCCION A LA ROBOTICA",
-        "filename": "1.INTRODUCCION_A_LA_ROBOTICA.pdf",
-        "tema": "1. Introducción a la Robótica",
-        "titulo": "1. Presentación Inaugural: Introducción a la Robótica (PDF)",
-        "descripcion": "Diapositivas de introducción a la robótica: qué es un robot, automatización cotidiana y proyectos que construiremos a lo largo del curso."
-    },
-    {
-        "subfolder": "2. INTRODUCCION A LA IA",
-        "filename": "2.INTRODUCCION_A_LA_IA.pdf",
-        "tema": "2. Introducción a la Inteligencia Artificial",
-        "titulo": "2. Presentación Inaugural: Introducción a la IA (PDF)",
-        "descripcion": "Diapositivas de introducción a la Inteligencia Artificial: perder el miedo a la IA, qué es y qué no es, y primeros pasos prácticos con Gemini."
+        "folder": "0.PRESENTACION_PARA_LA_PRIMERA_CLASE",
+        "filename": "0.INTRODUCCION CONJUNTA.pdf",
+        "tema": "ROB+IA. Introducción",
+        "titulo": "Presentación Inaugural Conjunta: Introducción General, Robótica e IA (PDF)",
+        "descripcion": "Diapositivas completas de la sesión inaugural conjunta: bienvenida, introducción a la robótica y primeros pasos en inteligencia artificial."
     }
 ]
 
@@ -62,10 +47,7 @@ def generate_csv():
     
     rows = []
     for item in ITEMS:
-        if item.get("is_root_subfolder"):
-            file_path = os.path.join(ROOT_DIR, item["subfolder"], item["filename"])
-        else:
-            file_path = os.path.join(INAUGURAL_DIR, item["subfolder"], item["filename"])
+        file_path = os.path.join(ROOT_DIR, item["folder"], item["filename"])
         if not os.path.exists(file_path):
             print(f"⚠️ Archivo no encontrado: {file_path}")
             continue

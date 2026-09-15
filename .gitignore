@@ -2,5 +2,9 @@
 ~$*
 Thumbs.db
 
+# Ignorar archivos pesados de presentación en el repositorio público
+*.pptx
+*.ppt
+
 2.ACCESO_CLASES_ROBOTICA
 3.ACCESO_CLASES_IA
