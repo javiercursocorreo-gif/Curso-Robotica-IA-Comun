@@ -17,13 +17,13 @@ Para presentar el material en clase o ver el mapa interactivo:
 
 | Carpeta / Enlace | Función y Contenido |
 | :--- | :--- |
-| **`INDICE_DEL_CURSO/`** | **Mapa mental interactivo transversal**: `INDICE_DEL_CURSO.html`. |
+| **`INDICE_GENERAL_PROYECTO.html`** | **Mapa mental interactivo transversal**: Cuadro de mando de ambos cursos en la raíz. |
 | **`0.PRESENTACION_PARA_LA_PRIMERA_CLASE/`** | **Para proyectar en la sesión 1**: `0.INTRODUCCION CONJUNTA.pptx` y `.pdf`. |
-| **`1.PRESENTACION_INAUGURAL_CONJUNTA/`** | Material de apoyo: Textos (`.txt`) y documentos temáticos listos para GitHub (`.pdf`). |
+| **`1.PRESENTACIONES_PARCIALES/`** | Material de apoyo: Presentaciones parciales (`0. INTRODUCCION GENERAL`, `1. INTRODUCCION A LA ROBOTICA`, `2. INTRODUCCION A LA IA`). |
 | **`2.ACCESO_CLASES_ROBOTICA`** | Acceso directo a todos los bloques y clases de Robótica (`CURSO-ROBOTICA-V2`). |
 | **`3.ACCESO_CLASES_IA`** | Acceso directo a todas las clases y materiales de IA (`CURSO-IA/CLASES`). |
 | **`4.GUIAS_Y_METODOLOGIA/`** | Guías docentes, prompts de Gemini, flujos de NLM y este documento organizativo. |
-| **`5.PANELES_CSV/`** | Archivos CSV estructurados para Google Classroom (`0.PANEL_PRESENTACION_INAUGURAL.csv` para clase *ROB+IA. Introducción* y `1.PANEL_IA_INDICE.csv` para clase *IA.ÍNDICE*). |
+| **`5.PANELES_CSV/`** | Archivos CSV estructurados para Google Classroom (`0.PANEL_PRESENTACION_INAUGURAL.csv` para clase *ROB+IA. Introducción*). |
 | **`6.CUESTIONARIO_REQUISITOS_Y_CONOCIMIENTOS/`** | Cuestionario diagnóstico de admisión de alumnos (app interactiva y PDFs). |
 
 ---

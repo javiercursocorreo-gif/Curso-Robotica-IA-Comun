@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice del Curso • Robótica & Inteligencia Artificial</title>
+    <style>
+        :root {
+            --bg-base: #06090e;
+            --bg-surface: #0b1320;
+            --bg-card: rgba(15, 23, 42, 0.94);
+            --border-card: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --text-muted: #64748b;
+            
+            --robotics-primary: #38bdf8;
+            --robotics-glow: rgba(56, 189, 248, 0.35);
+            --ia-primary: #c084fc;
+            --ia-glow: rgba(192, 132, 252, 0.35);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body, html {
+            width: 100%; height: 100%; overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-base); color: var(--text-main);
+            user-select: none;
+        }
+
+        /* Vistas / Screens */
+        .screen-view {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: none; opacity: 0;
+            transition: opacity 0.25s ease;
+            overflow: hidden;
+        }
+        .screen-view.active {
+            display: block; opacity: 1;
+        }
+
+        /* =========================================================
+           VISTA 1: PORTAL DE ENTRADA (HUB PRINCIPAL)
+           ========================================================= */
+        #view-portal {
+            background: radial-gradient(circle at 50% 25%, #0c1c38 0%, #070d18 60%, #04060a 100%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        #view-portal.active {
+            display: flex;
+        }
+
+        .portal-header {
+            text-align: center; max-width: 850px; margin-bottom: 45px;
+            animation: fadeInDown 0.4s ease;
+        }
+        .portal-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 18px; border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #38bdf8; font-size: 0.85rem; font-weight: 800; letter-spacing: 2.5px;
+            text-transform: uppercase; margin-bottom: 18px;
+        }
+        .portal-title {
+            font-size: 2.7rem; font-weight: 900; letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 14px;
+        }
+        .portal-sub {
+            font-size: 1.15rem; color: var(--text-sub); line-height: 1.6;
+        }
+
+        .portal-cards-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+            max-width: 1080px; width: 100%;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 38px 32px;
+            backdrop-filter: blur(16px);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s ease;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+        }
+        .course-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: transparent; transition: background 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Tarjeta Robótica */
+        .card-robotics { border-color: rgba(56, 189, 248, 0.25); }
+        .card-robotics::before { background: linear-gradient(90deg, #38bdf8, #0284c7); }
+        .card-robotics:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 20px 48px rgba(56, 189, 248, 0.22), 0 0 24px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Tarjeta IA */
+        .card-ia { border-color: rgba(192, 132, 252, 0.25); }
+        .card-ia::before { background: linear-gradient(90deg, #c084fc, #8b5cf6); }
+        .card-ia:hover {
+            border-color: #c084fc;
+            box-shadow: 0 20px 48px rgba(192, 132, 252, 0.22), 0 0 24px rgba(192, 132, 252, 0.15);
+        }
+
+        .card-icon {
+            font-size: 3.4rem; margin-bottom: 18px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+        }
+        .card-tag {
+            font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 10px; display: inline-block;
+        }
+        .card-robotics .card-tag { color: #38bdf8; }
+        .card-ia .card-tag { color: #c084fc; }
+
+        .card-heading {
+            font-size: 1.85rem; font-weight: 800; margin-bottom: 14px; color: #fff;
+        }
+        .card-desc {
+            font-size: 1.02rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 24px; flex-grow: 1;
+        }
+
+        .card-features {
+            list-style: none; margin-bottom: 26px; display: flex; flex-direction: column; gap: 10px;
+        }
+        .card-features li {
+            font-size: 0.92rem; color: #94a3b8; display: flex; align-items: center; gap: 10px;
+        }
+        .card-features li span {
+            color: #fff; font-weight: 600;
+        }
+
+        .card-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 22px; border-radius: 12px; font-size: 1rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1px;
+            transition: all 0.25s ease; border: none; cursor: pointer;
+        }
+        .card-robotics .card-btn {
+            background: #0284c7; color: #fff;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+        }
+        .card-robotics:hover .card-btn {
+            background: #38bdf8; color: #06090e;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+        }
+
+        .card-ia .card-btn {
+            background: #7c3aed; color: #fff;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+        }
+        .card-ia:hover .card-btn {
+            background: #c084fc; color: #06090e;
+            box-shadow: 0 6px 20px rgba(192, 132, 252, 0.6);
+        }
+
+        .portal-shortcuts {
+            margin-top: 36px; display: flex; gap: 16px; font-size: 0.85rem; color: var(--text-muted);
+        }
+        .portal-shortcuts kbd {
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+            padding: 2px 7px; border-radius: 5px; font-weight: 700; color: #cbd5e1;
+        }
+
+        /* =========================================================
+           TOP BAR
+           ========================================================= */
+        .top-navbar {
+            position: absolute; top: 0; left: 0; width: 100%; height: 64px;
+            background: rgba(11, 19, 32, 0.94); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(14px); z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px;
+        }
+        .nav-left {
+            display: flex; align-items: center; gap: 16px;
+        }
+        .back-hub-btn {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #f1f5f9; padding: 8px 16px; border-radius: 10px; font-size: 0.88rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .back-hub-btn:hover {
+            background: rgba(255, 255, 255, 0.22); color: #fff;
+            transform: translateX(-2px);
+        }
+        .map-title-wrap {
+            display: flex; flex-direction: column;
+        }
+        .map-title-main {
+            font-size: 1.15rem; font-weight: 800; letter-spacing: 1px; color: #fff;
+        }
+        .map-title-sub {
+            font-size: 0.76rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px;
+        }
+
+        .nav-controls {
+            display: flex; align-items: center; gap: 8px;
+        }
+        .ctrl-tool-btn {
+            background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #cbd5e1; padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 700;
+            cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 6px;
+        }
+        .ctrl-tool-btn:hover {
+            background: rgba(255, 255, 255, 0.18); color: #fff;
+        }
+
+        /* =========================================================
+           CONTENEDOR FIJO AUTO-FIT PANORÁMICO (2400 x 1100 px)
+           ========================================================= */
+        .mindmap-viewport {
+            position: absolute; top: 64px; left: 0; right: 0; bottom: 0;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, #0a1322 0%, #06090e 75%, #030508 100%);
+        }
+
+        /* SIN transiciones en el transform para que el cálculo SVG sea 100% instantáneo y libre de descolgados */
+        .mindmap-canvas {
+            position: absolute;
+            width: 2400px; height: 1100px;
+            transform-origin: center center;
+            transition: none;
+        }
+
+        .tree-svg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 5;
+        }
+
+        /* Core Central Node */
+        .core-node {
+            position: absolute; z-index: 30;
+            width: 240px; height: 160px;
+            border-radius: 24px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 16px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(14px);
+            cursor: default;
+            transform: translate(-50%, -50%);
+        }
+
+        .core-node-robotics {
+            background: radial-gradient(circle, rgba(14, 116, 144, 0.5) 0%, rgba(15, 23, 42, 0.96) 75%);
+            border: 2px solid #38bdf8;
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.4), 0 16px 40px rgba(0, 0, 0, 0.7);
+        }
+        .core-node-ia {
+            background: radial-gradient(circle, rgba(126, 34, 206, 0.5) 0%, rgba(15, 23, 42, 0.96) 75%);
+            border: 2px solid #c084fc;
+            box-shadow: 0 0 40px rgba(192, 132, 252, 0.4), 0 16px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .core-icon { font-size: 2.5rem; margin-bottom: 4px; }
+        .core-title { font-size: 1.25rem; font-weight: 900; letter-spacing: 1px; color: #fff; margin-bottom: 2px; }
+        .core-sub { font-size: 0.75rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        /* Categorías / Bloques Hubs */
+        .category-hub {
+            position: absolute; z-index: 25;
+            padding: 10px 22px; border-radius: 999px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid var(--cat-color, #38bdf8);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 16px var(--cat-glow, rgba(56,189,248,0.25));
+            color: #fff; font-size: 0.90rem; font-weight: 800; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 8px;
+            backdrop-filter: blur(12px);
+            white-space: nowrap;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .category-hub:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.7), 0 0 24px var(--cat-glow, rgba(56,189,248,0.45));
+        }
+        .category-hub .cat-icon { font-size: 1.2rem; }
+
+        /* Columnas y Filas de Clases */
+        .items-column {
+            position: absolute; z-index: 20;
+            display: flex; flex-direction: column; gap: 8px;
+        }
+        .items-row {
+            position: absolute; z-index: 20;
+            display: flex; flex-direction: row; gap: 14px;
+            transform: translateX(-50%);
+        }
+
+        /* Nodos de Clase (Hojas) */
+        .class-leaf {
+            background: rgba(15, 23, 42, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-left: 4px solid var(--item-color, #38bdf8);
+            border-radius: 9px;
+            padding: 9px 15px;
+            color: #f1f5f9;
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            width: 320px;
+            flex-shrink: 0;
+        }
+        .class-leaf:hover {
+            background: rgba(30, 41, 59, 0.98);
+            border-color: var(--item-color, #38bdf8);
+            border-left-width: 6px;
+            transform: translateX(4px) scale(1.02);
+            box-shadow: 0 0 16px var(--item-glow, rgba(56,189,248,0.3)), 0 6px 18px rgba(0,0,0,0.6);
+            color: #ffffff;
+        }
+        .leaf-left {
+            display: flex; align-items: center; gap: 8px; overflow: hidden;
+        }
+        .leaf-num {
+            font-size: 0.74rem; font-weight: 800; color: var(--item-color, #38bdf8);
+            background: rgba(0, 0, 0, 0.45); padding: 2px 6px; border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .leaf-title {
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .leaf-icon {
+            font-size: 0.85rem; opacity: 0.6; transition: opacity 0.2s;
+        }
+        .class-leaf:hover .leaf-icon { opacity: 1; }
+
+        /* Modal Detalle de Clase Simplificado y Limpio */
+        .modal-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 12, 0.82); backdrop-filter: blur(8px);
+            z-index: 200; display: none; align-items: center; justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-card {
+            background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px; width: 540px; max-width: 90%;
+            padding: 32px; box-shadow: 0 24px 60px rgba(0,0,0,0.85);
+            position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 18px; right: 18px;
+            background: rgba(255, 255, 255, 0.08); border: none; color: #94a3b8;
+            width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.2); color: #fff; }
+        .modal-tag {
+            font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+            color: #38bdf8; margin-bottom: 8px;
+        }
+        .modal-title { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 14px; }
+        .modal-desc { font-size: 1.05rem; color: #cbd5e1; line-height: 1.65; margin-bottom: 28px; }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================================
+         PANTALLA 1: PORTAL DE ENTRADA (HUB PRINCIPAL)
+         ========================================================= -->
+    <div class="screen-view active" id="view-portal">
+        <div class="portal-header">
+            <div class="portal-badge">⚡ Aula de Tecnología • Curso 2025-2026</div>
+            <h1 class="portal-title">Mapa Mental de Aprendizaje</h1>
+            <p class="portal-sub">Selecciona un curso para explorar su arquitectura didáctica, bloques y clases interactivas en formato de mapa mental.</p>
+        </div>
+
+        <div class="portal-cards-grid">
+            <!-- Tarjeta 1: Curso de Robótica -->
+            <div class="course-card card-robotics" onclick="openMindmap('robotics')">
+                <div class="card-icon">🤖</div>
+                <div class="card-tag">Ingeniería & Mecánica Aplicada</div>
+                <h2 class="card-heading">Curso de Robótica Práctica</h2>
+                <p class="card-desc">Desde los fundamentos de un solo motor hasta androides bípedos y exploración espacial. Experimenta con física simulada en 3D en tiempo real.</p>
+                <ul class="card-features">
+                    <li><span>• 8 Bloques Temáticos:</span> Del Bloque 0 al Bloque 7 (Exploración Espacial)</li>
+                    <li><span>• 45 Clases y Máquinas:</span> Mecánica, sensores, cinemática, naves y rovers</li>
+                    <li><span>• Simuladores 3D Web:</span> Experimenta directamente en el navegador</li>
+                </ul>
+                <button class="card-btn">Abrir Mapa de Robótica ➔</button>
+            </div>
+
+            <!-- Tarjeta 2: Curso de IA -->
+            <div class="course-card card-ia" onclick="openMindmap('ia')">
+                <div class="card-icon">🧠</div>
+                <div class="card-tag">Inteligencia Artificial para Mayores</div>
+                <h2 class="card-heading">Curso de Inteligencia Artificial</h2>
+                <p class="card-desc">Aprende a dialogar con la IA con naturalidad, crear cuentos ilustrados para tus nietos, escribir tus memorias familiares y potenciar tu día a día.</p>
+                <ul class="card-features">
+                    <li><span>• Introducción a la IA:</span> Conceptos sencillos sin tecnicismos</li>
+                    <li><span>• 7 Clases Oficiales:</span> Google Classroom, Gemini, NotebookLM, Biografía</li>
+                    <li><span>• Sesiones Prácticas:</span> Restauración de fotos familiares y proyectos reales</li>
+                </ul>
+                <button class="card-btn">Abrir Mapa de IA ➔</button>
+            </div>
+        </div>
+
+        <div class="portal-shortcuts">
+            <span>Atajos de teclado: <kbd>1</kbd> Robótica • <kbd>2</kbd> Inteligencia Artificial • <kbd>ESC</kbd> Volver</span>
+        </div>
+    </div>
+
+
+    <!-- =========================================================
+         PANTALLA 2: MAPA MENTAL DE ROBÓTICA
+         Estructura Séquencial y Simétrica:
+         - Superior: Bloque 0
+         - Izquierda: Bloques 1, 2, 3, 4
+         - Derecha: Bloques 5, 6, 7
+         ========================================================= -->
+    <div class="screen-view" id="view-robotics">
+        <header class="top-navbar">
+            <div class="nav-left">
+                <button class="back-hub-btn" onclick="openPortal()">◀ Volver al Portal</button>
+                <div class="map-title-wrap">
+                    <div class="map-title-main">Curso de Robótica Práctica</div>
+                    <div class="map-title-sub">8 Bloques Temáticos (0 al 7) & 45 Clases • Vista Fija Panorámica</div>
+                </div>
+            </div>
+            <div class="nav-controls">
+                <button class="ctrl-tool-btn" onclick="fitCanvas('robotics')">⊙ Ajustar Pantalla</button>
+                <button class="ctrl-tool-btn" onclick="manualZoom('robotics', 0.08)">＋ Zoom</button>
+                <button class="ctrl-tool-btn" onclick="manualZoom('robotics', -0.08)">－ Zoom</button>
+            </div>
+        </header>
+
+        <div class="mindmap-viewport" id="viewport-robotics">
+            <div class="mindmap-canvas" id="canvas-robotics">
+                <svg class="tree-svg" id="svg-robotics"></svg>
+
+                <!-- Núcleo Central Robótica -->
+                <div class="core-node core-node-robotics" id="core-robotics" style="left: 1200px; top: 550px;">
+                    <div class="core-icon">🤖</div>
+                    <div class="core-title">Robótica Práctica</div>
+                    <div class="core-sub">8 Bloques • 45 Clases</div>
+                </div>
+
+                <!-- BLOQUE 0: Introducción a la Robótica (Superior) -->
+                <div class="category-hub" id="hub-rob-0" style="left: 1200px; top: 220px; --cat-color: #38bdf8; --cat-glow: rgba(56,189,248,0.3);">
+                    <span class="cat-icon">🔰</span>
+                    <span>BLOQUE 0: INTRODUCCIÓN A LA ROBÓTICA</span>
+                </div>
+                <div class="items-row" id="col-rob-0" style="left: 1200px; top: 90px;">
+                    <div class="class-leaf" style="width: 280px; --item-color: #38bdf8;" onclick="showModal('Bloque 0: Introducción', '0.1 Presentación Inaugural Conjunta', 'Desmontando mitos sobre la tecnología: ¿Qué es y qué no es un robot? Metodología práctica de aprendizaje.')">
+                        <div class="leaf-left"><span class="leaf-num">#0.1</span><span class="leaf-title">Presentación Inaugural</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="width: 280px; --item-color: #38bdf8;" onclick="showModal('Bloque 0: Introducción', '0.2 La Tríada de la Robótica', 'Los tres pilares esenciales: Sentir (Sensores) ➔ Pensar (Controlador) ➔ Actuar (Motores).')">
+                        <div class="leaf-left"><span class="leaf-num">#0.2</span><span class="leaf-title">La Tríada Robótica</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="width: 280px; --item-color: #38bdf8;" onclick="showModal('Bloque 0: Introducción', '0.3 El Laboratorio Virtual 3D', 'Aprender experimentando desde el navegador web sin riesgo de roturas ni peligro físico.')">
+                        <div class="leaf-left"><span class="leaf-num">#0.3</span><span class="leaf-title">Laboratorio Virtual 3D</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- LATERAL IZQUIERDO: BLOQUES 1, 2, 3 Y 4 (En orden numérico correlativo) -->
+
+                <!-- BLOQUE 1: Máquinas de un solo motor -->
+                <div class="category-hub" id="hub-rob-1" style="left: 640px; top: 170px; --cat-color: #60a5fa; --cat-glow: rgba(96,165,250,0.3);">
+                    <span class="cat-icon">⚙️</span>
+                    <span>BLOQUE 1: UN MOTOR</span>
+                </div>
+                <div class="items-column" id="col-rob-1" style="left: 70px; top: 90px;">
+                    <div class="class-leaf" style="--item-color: #60a5fa;" onclick="showModal('Bloque 1: Un Motor', '1.1 Puerta de Supermercado', 'Transmisión por correa dentada, poleas y sensores de fin de carrera.')">
+                        <div class="leaf-left"><span class="leaf-num">#1.1</span><span class="leaf-title">Puerta de Supermercado</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #60a5fa;" onclick="showModal('Bloque 1: Un Motor', '1.2 Tambor de Lavadora', 'Inversión de giro del motor, ciclo de lavado y centrifugado por fuerza centrífuga.')">
+                        <div class="leaf-left"><span class="leaf-num">#1.2</span><span class="leaf-title">Tambor de Lavadora</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #60a5fa;" onclick="showModal('Bloque 1: Un Motor', '1.3 Ascensor de Tracción', 'Tracción por cable, polea motriz y sistema de seguridad con contrapeso.')">
+                        <div class="leaf-left"><span class="leaf-num">#1.3</span><span class="leaf-title">Ascensor de Tracción</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #60a5fa;" onclick="showModal('Bloque 1: Un Motor', '1.4 Semáforos y Barreras', 'Automatización secuencial y control de paso vehicular.')">
+                        <div class="leaf-left"><span class="leaf-num">#1.4</span><span class="leaf-title">Semáforos y Barreras</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 2: Sensores y Decisiones -->
+                <div class="category-hub" id="hub-rob-2" style="left: 600px; top: 420px; --cat-color: #34d399; --cat-glow: rgba(52,211,153,0.3);">
+                    <span class="cat-icon">📡</span>
+                    <span>BLOQUE 2: SENSORES Y DECISIONES</span>
+                </div>
+                <div class="items-column" id="col-rob-2" style="left: 70px; top: 330px;">
+                    <div class="class-leaf" style="--item-color: #34d399;" onclick="showModal('Bloque 2: Sensores', '2.1 Silla de Ruedas Eléctrica', 'Tracción diferencial de dos motores y control analógico por palanca joystick.')">
+                        <div class="leaf-left"><span class="leaf-num">#2.1</span><span class="leaf-title">Silla de Ruedas Eléctrica</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #34d399;" onclick="showModal('Bloque 2: Sensores', '2.2 Robot Aspirador Roomba', 'Bucle continuo de navegación, sensores de impacto y detección de desniveles.')">
+                        <div class="leaf-left"><span class="leaf-num">#2.2</span><span class="leaf-title">Robot Aspirador Roomba</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #34d399;" onclick="showModal('Bloque 2: Sensores', '2.3 Sensor de Aparcamiento', 'Medición de distancias con pulsos ultrasónicos y condiciones lógicas IF-ELSE.')">
+                        <div class="leaf-left"><span class="leaf-num">#2.3</span><span class="leaf-title">Sensor de Aparcamiento</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #34d399;" onclick="showModal('Bloque 2: Sensores', '2.4 Robot Ozobot (Color)', 'El color y las trayectorias impresas como lenguaje de comandos ópticos.')">
+                        <div class="leaf-left"><span class="leaf-num">#2.4</span><span class="leaf-title">Robot Ozobot (Color)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #34d399;" onclick="showModal('Bloque 2: Sensores', '2.5 Cámara de Seguridad', 'Detección de presencia, seguimiento de objetivos y variables de memoria.')">
+                        <div class="leaf-left"><span class="leaf-num">#2.5</span><span class="leaf-title">Cámara de Seguridad</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 3: Movimiento Avanzado -->
+                <div class="category-hub" id="hub-rob-3" style="left: 640px; top: 680px; --cat-color: #fbbf24; --cat-glow: rgba(251,191,36,0.3);">
+                    <span class="cat-icon">🚀</span>
+                    <span>BLOQUE 3: MOVIMIENTO AVANZADO</span>
+                </div>
+                <div class="items-column" id="col-rob-3" style="left: 70px; top: 590px;">
+                    <div class="class-leaf" style="--item-color: #fbbf24;" onclick="showModal('Bloque 3: Movimiento', '3.1 Robot Repartidor Autónomo', 'Memorización de rutas en plano y entrega de paquetes en interiores.')">
+                        <div class="leaf-left"><span class="leaf-num">#3.1</span><span class="leaf-title">Robot Repartidor Autónomo</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fbbf24;" onclick="showModal('Bloque 3: Movimiento', '3.2 Coche Inteligente ELEGOO', 'Evasión de obstáculos mediante visión por cámara y telemetría.')">
+                        <div class="leaf-left"><span class="leaf-num">#3.2</span><span class="leaf-title">Coche Inteligente ELEGOO</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fbbf24;" onclick="showModal('Bloque 3: Movimiento', '3.3 Avión con Servomotores', 'Control de posición angular exacta para timones y alerones de vuelo.')">
+                        <div class="leaf-left"><span class="leaf-num">#3.3</span><span class="leaf-title">Avión con Servomotores</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fbbf24;" onclick="showModal('Bloque 3: Movimiento', '3.4 Dron Cuadricóptero', 'Dinámica de vuelo tridimensional: cabeceo, alabeo y guiñada.')">
+                        <div class="leaf-left"><span class="leaf-num">#3.4</span><span class="leaf-title">Dron Cuadricóptero</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fbbf24;" onclick="showModal('Bloque 3: Movimiento', '3.5 Penguin-BOT (Marcha)', 'Locomoción bípeda simplificada y balanceo rítmico mediante servomotores.')">
+                        <div class="leaf-left"><span class="leaf-num">#3.5</span><span class="leaf-title">Penguin-BOT (Marcha)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 4: Brazo Robótico -->
+                <div class="category-hub" id="hub-rob-4" style="left: 640px; top: 930px; --cat-color: #fb923c; --cat-glow: rgba(251,146,60,0.3);">
+                    <span class="cat-icon">🦾</span>
+                    <span>BLOQUE 4: BRAZO ROBÓTICO</span>
+                </div>
+                <div class="items-column" id="col-rob-4" style="left: 70px; top: 850px;">
+                    <div class="class-leaf" style="--item-color: #fb923c;" onclick="showModal('Bloque 4: Brazo', '4.1 Base Giratoria (Eje 1)', 'Eje azimutal, coordenadas polares y grados de libertad.')">
+                        <div class="leaf-left"><span class="leaf-num">#4.1</span><span class="leaf-title">Base Giratoria (Eje 1)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fb923c;" onclick="showModal('Bloque 4: Brazo', '4.2 Hombro Articulado', 'Compensación de gravedad y esfuerzo combinado multi-eje.')">
+                        <div class="leaf-left"><span class="leaf-num">#4.2</span><span class="leaf-title">Hombro Articulado</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fb923c;" onclick="showModal('Bloque 4: Brazo', '4.3 Codo Mecánico', 'Secuencias encadenadas y alcance del espacio de trabajo.')">
+                        <div class="leaf-left"><span class="leaf-num">#4.3</span><span class="leaf-title">Codo Mecánico</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fb923c;" onclick="showModal('Bloque 4: Brazo', '4.4 Muñeca Rotativa', 'Orientación tridimensional de la herramienta o pinza.')">
+                        <div class="leaf-left"><span class="leaf-num">#4.4</span><span class="leaf-title">Muñeca Rotativa</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #fb923c;" onclick="showModal('Bloque 4: Brazo', '4.5 Pinza con Sensor', 'Prensión regulada para sujetar objetos delicados sin aplastarlos.')">
+                        <div class="leaf-left"><span class="leaf-num">#4.5</span><span class="leaf-title">Pinza con Sensor</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- LATERAL DERECHO: BLOQUES 5, 6 Y 7 (En orden numérico correlativo) -->
+
+                <!-- BLOQUE 5: Androides y Criaturas -->
+                <div class="category-hub" id="hub-rob-5" style="left: 1780px; top: 240px; --cat-color: #c084fc; --cat-glow: rgba(192,132,252,0.3);">
+                    <span class="cat-icon">🦿</span>
+                    <span>BLOQUE 5: ANDROIDES Y CRIATURAS</span>
+                </div>
+                <div class="items-column" id="col-rob-5" style="left: 2010px; top: 140px;">
+                    <div class="class-leaf" style="--item-color: #c084fc;" onclick="showModal('Bloque 5: Androides', '5.1 Perro Robot Unitree Go2', 'Locomoción cuadrúpeda con patas inteligentes adaptativas.')">
+                        <div class="leaf-left"><span class="leaf-num">#5.1</span><span class="leaf-title">Perro Robot Unitree Go2</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #c084fc;" onclick="showModal('Bloque 5: Androides', '5.2 Robot Bípedo Humanoide', 'El milagro del equilibrio dinámico y el control del centro de masas.')">
+                        <div class="leaf-left"><span class="leaf-num">#5.2</span><span class="leaf-title">Robot Bípedo Humanoide</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #c084fc;" onclick="showModal('Bloque 5: Androides', '5.3 Androide Antropomórfico', 'Cinemática inversa y animación de marchas realistas en 3D.')">
+                        <div class="leaf-left"><span class="leaf-num">#5.3</span><span class="leaf-title">Androide Antropomórfico</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #c084fc;" onclick="showModal('Bloque 5: Androides', '5.4 Robots en Enjambre', 'Robótica modular, coordinación de enjambres y tareas colectivas.')">
+                        <div class="leaf-left"><span class="leaf-num">#5.4</span><span class="leaf-title">Robots en Enjambre</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #c084fc;" onclick="showModal('Bloque 5: Androides', '5.5 Trío Star Wars (R2, 3PO)', 'Anatomía comparada de robots icónicos: R2-D2, C-3PO y BB-8.')">
+                        <div class="leaf-left"><span class="leaf-num">#5.5</span><span class="leaf-title">Trío Star Wars (R2, 3PO)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 6: Naves Espaciales -->
+                <div class="category-hub" id="hub-rob-6" style="left: 1760px; top: 550px; --cat-color: #f472b6; --cat-glow: rgba(244,114,182,0.3);">
+                    <span class="cat-icon">🛸</span>
+                    <span>BLOQUE 6: NAVES ESPACIALES</span>
+                </div>
+                <div class="items-column" id="col-rob-6" style="left: 2010px; top: 430px;">
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Bloque 6: Naves', '6.1 Transporte Autónomo', 'Navegación espacial y aproximación automatizada.')">
+                        <div class="leaf-left"><span class="leaf-num">#6.1</span><span class="leaf-title">Transporte Autónomo</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Bloque 6: Naves', '6.2 Gran Museo Star Wars', 'Exploración interactiva 3D de cazas estelares, destructores y cabinas.')">
+                        <div class="leaf-left"><span class="leaf-num">#6.2</span><span class="leaf-title">Gran Museo Star Wars</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Bloque 6: Naves', '6.3 Star Trek: Puente Enterprise', 'Sistemas de telemetría de crucero galáctico y puestos de control.')">
+                        <div class="leaf-left"><span class="leaf-num">#6.3</span><span class="leaf-title">Star Trek: Puente Enterprise</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Bloque 6: Naves', '6.4 Nave Endurance (Interstellar)', 'Generación de gravedad artificial por rotación centrífuga.')">
+                        <div class="leaf-left"><span class="leaf-num">#6.4</span><span class="leaf-title">Nave Endurance (Interstellar)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Bloque 6: Naves', '6.5 Cohete Falcon 9 (SpaceX)', 'Aterrizaje propulsivo vertical automatizado de la primera etapa.')">
+                        <div class="leaf-left"><span class="leaf-num">#6.5</span><span class="leaf-title">Cohete Falcon 9 (SpaceX)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Bloque 6: Naves', '6.6 Estación Espacial (ISS)', 'Módulos orbitales y operación del brazo articulado Canadarm.')">
+                        <div class="leaf-left"><span class="leaf-num">#6.6</span><span class="leaf-title">Estación Espacial (ISS)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- BLOQUE 7: Exploración Espacial -->
+                <div class="category-hub" id="hub-rob-7" style="left: 1780px; top: 860px; --cat-color: #06b6d4; --cat-glow: rgba(6,182,212,0.35);">
+                    <span class="cat-icon">🪐</span>
+                    <span>BLOQUE 7: EXPLORACIÓN ESPACIAL</span>
+                </div>
+                <div class="items-column" id="col-rob-7" style="left: 2010px; top: 740px;">
+                    <div class="class-leaf" style="--item-color: #06b6d4;" onclick="showModal('Bloque 7: Exploración', '7.1 Rover Marciano', 'Vehículos autónomos de exploración geológica en la superficie de Marte.')">
+                        <div class="leaf-left"><span class="leaf-num">#7.1</span><span class="leaf-title">Rover Marciano</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #06b6d4;" onclick="showModal('Bloque 7: Exploración', '7.3 Base Lunar & Minería', 'Hábitats presurizados y robots de extracción de recursos extraterrestres.')">
+                        <div class="leaf-left"><span class="leaf-num">#7.3</span><span class="leaf-title">Base Lunar & Minería</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #06b6d4;" onclick="showModal('Bloque 7: Exploración', '7.5 Telescopios Espaciales', 'Observatorios orbitales James Webb y Hubble: captura de luz profunda.')">
+                        <div class="leaf-left"><span class="leaf-num">#7.5</span><span class="leaf-title">Telescopios Espaciales</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #06b6d4;" onclick="showModal('Bloque 7: Exploración', '7.7 Sondas Voyager & Heliopausa', 'Vehículos interestelares cruzando la frontera del sistema solar.')">
+                        <div class="leaf-left"><span class="leaf-num">#7.7</span><span class="leaf-title">Sondas Voyager (Heliopausa)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #06b6d4;" onclick="showModal('Bloque 7: Exploración', '7.10 Misión Apolo & Alunizaje', 'Ingeniería histórica de navegación, módulo lunar y carrera espacial.')">
+                        <div class="leaf-left"><span class="leaf-num">#7.10</span><span class="leaf-title">Misión Apolo & Carrera Espacial</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="--item-color: #06b6d4;" onclick="showModal('Bloque 7: Exploración', '7.11 Paseo Espacial EVA', 'Trajes espaciales autónomos y soporte vital en el vacío cósmico.')">
+                        <div class="leaf-left"><span class="leaf-num">#7.11</span><span class="leaf-title">Paseo Espacial EVA</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================
+         PANTALLA 3: MAPA MENTAL DE INTELIGENCIA ARTIFICIAL
+         Orden Oficial: Google Classroom en el Puesto 1
+         ========================================================= -->
+    <div class="screen-view" id="view-ia">
+        <header class="top-navbar">
+            <div class="nav-left">
+                <button class="back-hub-btn" onclick="openPortal()">◀ Volver al Portal</button>
+                <div class="map-title-wrap">
+                    <div class="map-title-main">Curso de Inteligencia Artificial</div>
+                    <div class="map-title-sub">Introducción + 7 Clases Oficiales + Sesiones Prácticas</div>
+                </div>
+            </div>
+            <div class="nav-controls">
+                <button class="ctrl-tool-btn" onclick="fitCanvas('ia')">⊙ Ajustar Pantalla</button>
+                <button class="ctrl-tool-btn" onclick="manualZoom('ia', 0.08)">＋ Zoom</button>
+                <button class="ctrl-tool-btn" onclick="manualZoom('ia', -0.08)">－ Zoom</button>
+            </div>
+        </header>
+
+        <div class="mindmap-viewport" id="viewport-ia">
+            <div class="mindmap-canvas" id="canvas-ia">
+                <svg class="tree-svg" id="svg-ia"></svg>
+
+                <!-- Núcleo Central IA -->
+                <div class="core-node core-node-ia" id="core-ia" style="left: 1200px; top: 550px;">
+                    <div class="core-icon">🧠</div>
+                    <div class="core-title">Inteligencia Artificial</div>
+                    <div class="core-sub">Cursos para Mayores</div>
+                </div>
+
+                <!-- RAMA SUPERIOR: INTRODUCCIÓN A LA IA -->
+                <div class="category-hub" id="hub-ia-intro" style="left: 1200px; top: 220px; --cat-color: #c084fc; --cat-glow: rgba(192,132,252,0.35);">
+                    <span class="cat-icon">🌟</span>
+                    <span>INTRODUCCIÓN A LA IA</span>
+                </div>
+                <div class="items-row" id="col-ia-intro" style="left: 1200px; top: 100px;">
+                    <div class="class-leaf" style="width: 320px; --item-color: #c084fc;" onclick="showModal('Fundamentos', 'Desmontando Mitos sobre la IA', 'La IA no es ciencia ficción ni piensa como una persona: es un asistente incansable que ha leído millones de textos.')">
+                        <div class="leaf-left"><span class="leaf-num">✦</span><span class="leaf-title">Desmontando Mitos y Miedos</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                    <div class="class-leaf" style="width: 320px; --item-color: #c084fc;" onclick="showModal('Fundamentos', 'El Prompt Cotidiano', 'Escribirle a la IA es como mandar un mensaje de WhatsApp: cuanto más claro y concreto pides algo, mejor te responde.')">
+                        <div class="leaf-left"><span class="leaf-num">✦</span><span class="leaf-title">El Prompt como un WhatsApp</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- RAMAS LATERAL IZQUIERDO: CLASES 1 A 4 -->
+
+                <!-- CLASE 1: GOOGLE CLASSROOM (PUESTO 1) -->
+                <div class="category-hub" id="hub-ia-1" style="left: 640px; top: 240px; --cat-color: #a3e635; --cat-glow: rgba(163,230,53,0.3);">
+                    <span class="cat-icon">🏫</span>
+                    <span>1. GOOGLE CLASSROOM</span>
+                </div>
+                <div class="items-column" id="col-ia-1" style="left: 100px; top: 215px;">
+                    <div class="class-leaf" style="--item-color: #a3e635;" onclick="showModal('Clase 1', 'Google Classroom: Gestión del Aula Virtual', 'Organización y acceso al aula virtual: estructura de temas, consulta de materiales y descarga de fichas de clase.')">
+                        <div class="leaf-left"><span class="leaf-num">#1</span><span class="leaf-title">Publicación en Aula Virtual</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- CLASE 2: INTRODUCCIÓN A GEMINI -->
+                <div class="category-hub" id="hub-ia-2" style="left: 620px; top: 440px; --cat-color: #60a5fa; --cat-glow: rgba(96,165,250,0.3);">
+                    <span class="cat-icon">💎</span>
+                    <span>2. INTRODUCCIÓN A GEMINI</span>
+                </div>
+                <div class="items-column" id="col-ia-2" style="left: 80px; top: 415px;">
+                    <div class="class-leaf" style="--item-color: #60a5fa;" onclick="showModal('Clase 2', 'Introducción a Gemini', 'La herramienta de referencia en el curso: interfaz, preguntas de salud preventiva, recetas y ayuda cotidiana.')">
+                        <div class="leaf-left"><span class="leaf-num">#2</span><span class="leaf-title">Diálogos y Asistente Diario</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- CLASE 3: INTRODUCCIÓN A NOTEBOOKLM -->
+                <div class="category-hub" id="hub-ia-3" style="left: 620px; top: 640px; --cat-color: #38bdf8; --cat-glow: rgba(56,189,248,0.3);">
+                    <span class="cat-icon">📚</span>
+                    <span>3. INTRODUCCIÓN A NOTEBOOKLM</span>
+                </div>
+                <div class="items-column" id="col-ia-3" style="left: 80px; top: 615px;">
+                    <div class="class-leaf" style="--item-color: #38bdf8;" onclick="showModal('Clase 3', 'Introducción a NotebookLM', 'Tu biblioteca personal inteligente: cómo subir documentos familiares o recuerdos para resumir, hacer preguntas y generar esquemas.')">
+                        <div class="leaf-left"><span class="leaf-num">#3</span><span class="leaf-title">Cuaderno de Estudio y Notas</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- CLASE 4: CÓMO HACER UN CUENTO -->
+                <div class="category-hub" id="hub-ia-4" style="left: 640px; top: 840px; --cat-color: #34d399; --cat-glow: rgba(52,211,153,0.3);">
+                    <span class="cat-icon">📖</span>
+                    <span>4. CÓMO HACER UN CUENTO</span>
+                </div>
+                <div class="items-column" id="col-ia-4" style="left: 100px; top: 815px;">
+                    <div class="class-leaf" style="--item-color: #34d399;" onclick="showModal('Clase 4', 'Cómo Hacer un Cuento con NotebookLM', 'Metodología en 3 pasos para crear historias inolvidables con NotebookLM y Gemini: el héroe, el guion por escenas y las ilustraciones para los nietos.')">
+                        <div class="leaf-left"><span class="leaf-num">#4</span><span class="leaf-title">Cuentos para los Nietos</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- RAMAS LATERAL DERECHO: CLASES 5 A 7 + SESIONES PRÁCTICAS -->
+
+                <!-- CLASE 5: MI BIOGRAFÍA -->
+                <div class="category-hub" id="hub-ia-5" style="left: 1760px; top: 240px; --cat-color: #fbbf24; --cat-glow: rgba(251,191,36,0.3);">
+                    <span class="cat-icon">✍️</span>
+                    <span>5. MI BIOGRAFÍA</span>
+                </div>
+                <div class="items-column" id="col-ia-5" style="left: 1980px; top: 215px;">
+                    <div class="class-leaf" style="--item-color: #fbbf24;" onclick="showModal('Clase 5', 'Mi Biografía: Escribe tus Memorias', 'Escribe tus memorias familiares con ayuda de la IA: asistente interactivo para redactar vivencias, anécdotas y tu legado personal.')">
+                        <div class="leaf-left"><span class="leaf-num">#5</span><span class="leaf-title">Memorias y Legado Personal</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- CLASE 6: EL ABUELO TUTOR -->
+                <div class="category-hub" id="hub-ia-6" style="left: 1780px; top: 440px; --cat-color: #fb923c; --cat-glow: rgba(251,146,60,0.3);">
+                    <span class="cat-icon">🎓</span>
+                    <span>6. EL ABUELO TUTOR</span>
+                </div>
+                <div class="items-column" id="col-ia-6" style="left: 2000px; top: 415px;">
+                    <div class="class-leaf" style="--item-color: #fb923c;" onclick="showModal('Clase 6', 'El Abuelo Tutor: Matemáticas e Historia', 'Tu rol de mentor escolar: cómo explicar ciencias y matemáticas razonadas paso a paso y guiar las sesiones de estudio con NotebookLM.')">
+                        <div class="leaf-left"><span class="leaf-num">#6</span><span class="leaf-title">Educanietos IA (Mates & Ciencias)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- CLASE 7: MAPA DE GESTIÓN DEL PROYECTO -->
+                <div class="category-hub" id="hub-ia-7" style="left: 1780px; top: 640px; --cat-color: #f472b6; --cat-glow: rgba(244,114,182,0.3);">
+                    <span class="cat-icon">🗺️</span>
+                    <span>7. MAPA DE GESTIÓN DEL PROYECTO</span>
+                </div>
+                <div class="items-column" id="col-ia-7" style="left: 2000px; top: 615px;">
+                    <div class="class-leaf" style="--item-color: #f472b6;" onclick="showModal('Clase 7', 'Mapa de Gestión del Proyecto con IA', 'Cómo creamos y publicamos este curso en equipo: el profesor, Antigravity en el PC, sincronización en GitHub y distribución automática en Google Classroom.')">
+                        <div class="leaf-left"><span class="leaf-num">#7</span><span class="leaf-title">Flujo Cyborg (Profesor + IA)</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+                <!-- SESIONES PRÁCTICAS -->
+                <div class="category-hub" id="hub-ia-practicas" style="left: 1760px; top: 840px; --cat-color: #eab308; --cat-glow: rgba(234,179,8,0.4);">
+                    <span class="cat-icon">🛠️</span>
+                    <span>★ SESIONES PRÁCTICAS</span>
+                </div>
+                <div class="items-column" id="col-ia-practicas" style="left: 1980px; top: 815px;">
+                    <div class="class-leaf" style="--item-color: #eab308;" onclick="showModal('Sesiones Prácticas', 'Talleres Aplicados en el Aula', 'Talleres prácticos aplicados: restauración y coloreado de fotos familiares antiguas, encuadernación de cuentos y redacción de memorias.')">
+                        <div class="leaf-left"><span class="leaf-num">★</span><span class="leaf-title">Talleres de Fotos & Proyectos</span></div><span class="leaf-icon">ℹ️</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =========================================================
+         MODAL DETALLE DE CLASE (LIMPIO Y DIRECTO)
+         ========================================================= -->
+    <div class="modal-overlay" id="modal-info" onclick="closeModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-tag" id="modal-tag">BLOQUE O CLASE</div>
+            <h3 class="modal-title" id="modal-title">Título de la Sesión</h3>
+            <p class="modal-desc" id="modal-desc">Descripción detallada del contenido de la sesión...</p>
+            <button class="card-btn" style="width: 100%; background: #38bdf8; color: #06090e;" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+
+    <script>
+        let currentScreen = "portal";
+        const currentScales = { robotics: 1, ia: 1 };
+
+        // Navegación entre Pantallas
+        function openPortal() {
+            document.querySelectorAll(".screen-view").forEach(el => el.classList.remove("active"));
+            document.getElementById("view-portal").classList.add("active");
+            currentScreen = "portal";
+        }
+
+        function openMindmap(type) {
+            document.querySelectorAll(".screen-view").forEach(el => el.classList.remove("active"));
+            const screen = document.getElementById("view-" + type);
+            if (screen) {
+                screen.classList.add("active");
+                currentScreen = type;
+                // Renderizado inmediato y sincronizado
+                fitCanvas(type);
+                requestAnimationFrame(() => {
+                    drawConnections(type);
+                });
+            }
+        }
+
+        // Ajuste Fijo Panorámico Automático a la Pantalla
+        function fitCanvas(type) {
+            const viewport = document.getElementById("viewport-" + type);
+            const canvas = document.getElementById("canvas-" + type);
+            if (!viewport || !canvas) return;
+
+            const vW = viewport.clientWidth;
+            const vH = viewport.clientHeight;
+            
+            // Relación de escala para que 2400x1100 encaje perfecto en el monitor
+            const natW = 2400;
+            const natH = 1100;
+
+            const scaleW = (vW - 40) / natW;
+            const scaleH = (vH - 30) / natH;
+            const baseScale = Math.min(scaleW, scaleH, 1.05);
+
+            currentScales[type] = Math.max(0.32, baseScale);
+            canvas.style.transform = `scale(${currentScales[type]})`;
+        }
+
+        function manualZoom(type, delta) {
+            currentScales[type] = Math.max(0.28, Math.min(1.4, currentScales[type] + delta));
+            const canvas = document.getElementById("canvas-" + type);
+            if (canvas) {
+                canvas.style.transform = `scale(${currentScales[type]})`;
+                drawConnections(type);
+            }
+        }
+
+        // Cálculo exacto de coordenadas dentro del canvas desacoplado de la escala de pantalla
+        function getCenter(el, canvas) {
+            const cRect = canvas.getBoundingClientRect();
+            const r = el.getBoundingClientRect();
+            const scale = currentScales[currentScreen] || 1;
+            return {
+                x: (r.left + r.width / 2 - cRect.left) / scale,
+                y: (r.top + r.height / 2 - cRect.top) / scale,
+                left: (r.left - cRect.left) / scale,
+                right: (r.right - cRect.left) / scale,
+                top: (r.top - cRect.top) / scale,
+                bottom: (r.bottom - cRect.top) / scale
+            };
+        }
+
+        function drawConnections(type) {
+            const svg = document.getElementById("svg-" + type);
+            const canvas = document.getElementById("canvas-" + type);
+            const core = document.getElementById("core-" + type);
+            if (!svg || !canvas || !core) return;
+
+            svg.innerHTML = "";
+            const corePos = getCenter(core, canvas);
+
+            // Mapeo ordenado de conexiones
+            let mappings = [];
+            if (type === "robotics") {
+                mappings = [
+                    { hub: "hub-rob-0", col: "col-rob-0", color: "#38bdf8", side: "top" },
+                    { hub: "hub-rob-1", col: "col-rob-1", color: "#60a5fa", side: "left" },
+                    { hub: "hub-rob-2", col: "col-rob-2", color: "#34d399", side: "left" },
+                    { hub: "hub-rob-3", col: "col-rob-3", color: "#fbbf24", side: "left" },
+                    { hub: "hub-rob-4", col: "col-rob-4", color: "#fb923c", side: "left" },
+                    { hub: "hub-rob-5", col: "col-rob-5", color: "#c084fc", side: "right" },
+                    { hub: "hub-rob-6", col: "col-rob-6", color: "#f472b6", side: "right" },
+                    { hub: "hub-rob-7", col: "col-rob-7", color: "#06b6d4", side: "right" }
+                ];
+            } else if (type === "ia") {
+                mappings = [
+                    { hub: "hub-ia-intro", col: "col-ia-intro", color: "#c084fc", side: "top" },
+                    { hub: "hub-ia-1", col: "col-ia-1", color: "#a3e635", side: "left" },
+                    { hub: "hub-ia-2", col: "col-ia-2", color: "#60a5fa", side: "left" },
+                    { hub: "hub-ia-3", col: "col-ia-3", color: "#38bdf8", side: "left" },
+                    { hub: "hub-ia-4", col: "col-ia-4", color: "#34d399", side: "left" },
+                    { hub: "hub-ia-5", col: "col-ia-5", color: "#fbbf24", side: "right" },
+                    { hub: "hub-ia-6", col: "col-ia-6", color: "#fb923c", side: "right" },
+                    { hub: "hub-ia-7", col: "col-ia-7", color: "#f472b6", side: "right" },
+                    { hub: "hub-ia-practicas", col: "col-ia-practicas", color: "#eab308", side: "right" }
+                ];
+            }
+
+            mappings.forEach(m => {
+                const hubEl = document.getElementById(m.hub);
+                if (!hubEl) return;
+                const hubPos = getCenter(hubEl, canvas);
+
+                // Curva Bézier del Núcleo Central al Hub
+                const pathCore = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                let cp1x, cp1y, cp2x, cp2y;
+
+                if (m.side === "top") {
+                    cp1x = corePos.x;
+                    cp1y = corePos.y + (hubPos.y - corePos.y) * 0.45;
+                    cp2x = hubPos.x;
+                    cp2y = corePos.y + (hubPos.y - corePos.y) * 0.55;
+                } else {
+                    cp1x = corePos.x + (hubPos.x - corePos.x) * 0.45;
+                    cp1y = corePos.y;
+                    cp2x = corePos.x + (hubPos.x - corePos.x) * 0.55;
+                    cp2y = hubPos.y;
+                }
+
+                const dCore = `M ${corePos.x} ${corePos.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${hubPos.x} ${hubPos.y}`;
+                
+                pathCore.setAttribute("d", dCore);
+                pathCore.setAttribute("stroke", m.color);
+                pathCore.setAttribute("stroke-width", "3.5");
+                pathCore.setAttribute("fill", "none");
+                pathCore.setAttribute("stroke-linecap", "round");
+                pathCore.setAttribute("opacity", "0.85");
+                pathCore.style.filter = `drop-shadow(0 0 6px ${m.color}99)`;
+                svg.appendChild(pathCore);
+
+                // Ramas desde el Hub a las Clases
+                const colEl = document.getElementById(m.col);
+                if (!colEl) return;
+                const items = colEl.querySelectorAll(".class-leaf");
+
+                items.forEach(item => {
+                    const itemPos = getCenter(item, canvas);
+                    let startPoint, endPoint;
+
+                    if (m.side === "left") {
+                        startPoint = { x: hubPos.left, y: hubPos.y };
+                        endPoint = { x: itemPos.right, y: itemPos.y };
+                    } else if (m.side === "right") {
+                        startPoint = { x: hubPos.right, y: hubPos.y };
+                        endPoint = { x: itemPos.left, y: itemPos.y };
+                    } else { // top
+                        startPoint = { x: hubPos.x, y: hubPos.top };
+                        endPoint = { x: itemPos.x, y: itemPos.bottom };
+                    }
+
+                    const pathItem = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    const midX = (startPoint.x + endPoint.x) / 2;
+                    const dItem = `M ${startPoint.x} ${startPoint.y} C ${midX} ${startPoint.y}, ${midX} ${endPoint.y}, ${endPoint.x} ${endPoint.y}`;
+
+                    pathItem.setAttribute("d", dItem);
+                    pathItem.setAttribute("stroke", m.color);
+                    pathItem.setAttribute("stroke-width", "1.8");
+                    pathItem.setAttribute("fill", "none");
+                    pathItem.setAttribute("stroke-dasharray", "4,3");
+                    pathItem.setAttribute("opacity", "0.65");
+                    svg.appendChild(pathItem);
+                });
+            });
+        }
+
+        // Modales de información
+        function showModal(tag, title, desc) {
+            document.getElementById("modal-tag").innerText = tag;
+            document.getElementById("modal-title").innerText = title;
+            document.getElementById("modal-desc").innerText = desc;
+            document.getElementById("modal-info").classList.add("active");
+        }
+
+        function closeModal(e) {
+            document.getElementById("modal-info").classList.remove("active");
+        }
+
+        // Atajos de teclado
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" || e.key === "Backspace") {
+                if (document.getElementById("modal-info").classList.contains("active")) {
+                    closeModal();
+                } else {
+                    openPortal();
+                }
+            } else if (e.key === "1") {
+                openMindmap("robotics");
+            } else if (e.key === "2") {
+                openMindmap("ia");
+            } else if (e.key === "0") {
+                if (currentScreen !== "portal") {
+                    fitCanvas(currentScreen);
+                    drawConnections(currentScreen);
+                }
+            }
+        });
+
+        // Redimensión adaptativa instantánea
+        window.addEventListener("resize", () => {
+            if (currentScreen !== "portal") {
+                fitCanvas(currentScreen);
+                drawConnections(currentScreen);
+            }
+        });
+
+        // Navegación directa por hash en URL (#robotica o #ia)
+        function checkHash() {
+            const hash = window.location.hash.toLowerCase();
+            if (hash === "#robotica" || hash === "#robotics") {
+                openMindmap("robotics");
+            } else if (hash === "#ia" || hash === "#ai") {
+                openMindmap("ia");
+            } else if (hash === "#general" || hash === "#portal" || hash === "#inicio") {
+                openPortal();
+            }
+        }
+
+        window.addEventListener("DOMContentLoaded", checkHash);
+        window.addEventListener("hashchange", checkHash);
+        window.addEventListener("load", checkHash);
+    </script>
+</body>
+</html>
