@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Organización del Curso • Robótica & Inteligencia Artificial</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent-rob: #0284c7;
+            --accent-ia: #7c3aed;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.65;
+            padding: 32px 20px;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f1f5f9;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .intro-box {
+            background: rgba(2, 132, 199, 0.12);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            font-size: 1.05rem;
+            color: #e2e8f0;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin: 32px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+        }
+
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .quick-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+        }
+
+        .quick-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .quick-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 32px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.4);
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .folder-badge {
+            display: inline-block;
+            font-family: "SF Mono", Monaco, Menlo, Consolas, monospace;
+            font-weight: 700;
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.86rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0 32px 0;
+        }
+
+        .timeline-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .item-num {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.8rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .item-content h4 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .item-content p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .ia-theme .item-num {
+            background: var(--accent-ia);
+        }
+
+        /* Estilos de Impresión / PDF */
+        @media print {
+            body { background: #ffffff; color: #0f172a; padding: 0; font-size: 12pt; }
+            .container { box-shadow: none; border: none; padding: 0; max-width: 100%; background: #ffffff; }
+            .action-btns { display: none; }
+            h1 { color: #0f172a; }
+            h2 { color: #0284c7; border-color: #cbd5e1; }
+            .intro-box { background: #f0f9ff; color: #0369a1; border-color: #0284c7; }
+            table { background: #ffffff; border-color: #e2e8f0; }
+            th { background: #f8fafc; color: #475569; border-color: #cbd5e1; }
+            td { border-color: #e2e8f0; color: #1e293b; }
+            .folder-badge { background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; }
+            .quick-card { background: #f8fafc; border-color: #e2e8f0; }
+            .quick-card h3 { color: #0f172a; }
+            .quick-card p { color: #475569; }
+            .timeline-item { background: #f8fafc; border-color: #e2e8f0; }
+            .item-content h4 { color: #0f172a; }
+            .item-content p { color: #475569; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-bar">
+        <h1>🧭 Guía de Organización: Robótica & IA</h1>
+        <div class="action-btns">
+            <button class="btn" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+            <a class="btn" href="../INDICE_DEL_CURSO/INDICE_DEL_CURSO.html" style="background: var(--primary); border-color: var(--primary);">🌐 Abrir Índice Interactivo</a>
+        </div>
+    </div>
+
+    <div class="intro-box">
+        <strong>Bienvenido a la carpeta central del curso.</strong> Aquí se centralizan los recursos comunes, el mapa mental interactivo transversal y los accesos rápidos a todos los bloques formativos para facilitar la preparación y la impartición en el aula.
+    </div>
+
+    <h2>🚀 Acceso Rápido al Material de Clase</h2>
+    <div class="quick-access-grid">
+        <div class="quick-card">
+            <span class="tag">MAPA MENTAL INTERACTIVO</span>
+            <h3>Índice del Curso (HTML)</h3>
+            <p>Ubicación: <code>INDICE_DEL_CURSO/INDICE_DEL_CURSO.html</code><br>
+            Abre el portal web con todos los bloques, animaciones 3D y enlaces directos a las prácticas.</p>
+        </div>
+        <div class="quick-card">
+            <span class="tag" style="background: rgba(124, 58, 237, 0.2); color: #c084fc;">SESIÓN 1 (INAUGURAL)</span>
+            <h3>Presentación Primera Clase</h3>
+            <p>Ubicación: <code>0.PRESENTACION_PARA_LA_PRIMERA_CLASE/</code><br>
+            • <code>0.INTRODUCCION CONJUNTA.pptx</code> (Keynote / PowerPoint)<br>
+            • <code>0.INTRODUCCION CONJUNTA.pdf</code> (Para Classroom)</p>
+        </div>
+    </div>
+
+    <h2>📂 Estructura de la Carpeta Central (<code>CURSO-ROBOTICA-IA-COMUN</code>)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 32%;">Carpeta / Enlace</th>
+                <th>Función y Contenido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="folder-badge">INDICE_DEL_CURSO/</span></td>
+                <td><strong>Mapa mental interactivo transversal</strong>: Contiene <code>INDICE_DEL_CURSO.html</code> para explorar visualmente todo el programa de robótica e inteligencia artificial.</td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">0.PRESENTACION_PARA_LA_PRIMERA_CLASE/</span></td>
+                <td><strong>Presentación unificada de la primera clase</strong>: Contiene la presentación conjunta <code>0.INTRODUCCION CONJUNTA.pptx</code> y su versión <code>0.INTRODUCCION CONJUNTA.pdf</code>.</td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">1.PRESENTACION_INAUGURAL_CONJUNTA/</span></td>
+                <td><strong>Materiales de apoyo temáticos</strong>: Textos explicativos (<code>.txt</code>) y documentos PDF desglosados de teoría inaugural.</td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">2.ACCESO_CLASES_ROBOTICA</span></td>
+                <td>Acceso directo a todos los bloques, prácticas y montajes de Robótica (<code>CURSO-ROBOTICA-V2</code>).</td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">3.ACCESO_CLASES_IA</span></td>
+                <td>Acceso directo a todas las clases, sesiones y fichas prácticas de IA (<code>CURSO-IA/CLASES</code>).</td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">4.GUIAS_Y_METODOLOGIA/</span></td>
+                <td>Guías docentes, flujos de trabajo, prompts de Gemini y esta guía organizativa.</td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">5.PANELES_CSV/</span></td>
+                <td>
+                    Archivos CSV para publicación automatizada en Google Classroom:<br>
+                    • <code>0.PANEL_PRESENTACION_INAUGURAL.csv</code> $\rightarrow$ Clase <em>ROB+IA. Introducción</em><br>
+                    • <code>1.PANEL_IA_INDICE.csv</code> $\rightarrow$ Clase <em>IA.ÍNDICE</em>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="folder-badge">6.CUESTIONARIO_REQUISITOS_Y_CONOCIMIENTOS/</span></td>
+                <td>Cuestionario diagnóstico de admisión para nuevos alumnos (app interactiva y formularios en PDF).</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>🤖 Itinerario: Curso de Robótica Práctica</h2>
+    <p style="color: var(--text-muted); margin-bottom: 14px;">La formación de robótica se estructura en <strong>8 Bloques temáticos</strong>:</p>
+    <ul class="timeline-list">
+        <li class="timeline-item">
+            <span class="item-num">0</span>
+            <div class="item-content">
+                <h4>Bloque 0: Introducción a la Robótica</h4>
+                <p>Componentes básicos (Hub, motores, sensores), entorno de programación visual y buenas prácticas de montaje.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">1</span>
+            <div class="item-content">
+                <h4>Bloque 1: Un Motor</h4>
+                <p>Mecanismos básicos, palancas, trenes de engranajes y transmisión de movimiento uniaxil.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">2</span>
+            <div class="item-content">
+                <h4>Bloque 2: Sensores y Decisiones</h4>
+                <p>Sensor ultrasónico de distancia, sensor de color/luz y programación con condicionales lógicos.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">3</span>
+            <div class="item-content">
+                <h4>Bloque 3: Movimiento Avanzado</h4>
+                <p>Dirección diferencial sobre dos ruedas, bucles de sincronización y cinemática de trayectorias.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">4</span>
+            <div class="item-content">
+                <h4>Bloque 4: Brazo Robótico</h4>
+                <p>Grados de libertad, articulaciones eslabonadas, pinzas mecánicas y manipuladores industriales.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">5</span>
+            <div class="item-content">
+                <h4>Bloque 5: Androides y Criaturas</h4>
+                <p>Bípedos, cuadrúpedos, animatrónica básica y cinemática con esqueleto 3D (Mixamo).</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">6</span>
+            <div class="item-content">
+                <h4>Bloque 6: Naves Espaciales</h4>
+                <p>Módulos aeroespaciales, cazas de Star Wars y visita virtual al Gran Museo interactivo 3D.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">7</span>
+            <div class="item-content">
+                <h4>Bloque 7: Exploración Espacial</h4>
+                <p>Rovers de Marte, brazos tomamuestras y misiones de navegación planetaria autónoma.</p>
+            </div>
+        </li>
+    </ul>
+
+    <h2>🧠 Itinerario: Curso de Inteligencia Artificial</h2>
+    <p style="color: var(--text-muted); margin-bottom: 14px;">El programa de Inteligencia Artificial sigue esta secuencia recomendada:</p>
+    <ul class="timeline-list ia-theme">
+        <li class="timeline-item">
+            <span class="item-num">0</span>
+            <div class="item-content">
+                <h4>Introducción a la IA (Sesión Inaugural)</h4>
+                <p>¿Qué es la IA generativa, para qué sirve en la vida cotidiana y cómo perder el miedo?</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">1</span>
+            <div class="item-content">
+                <h4>Clase 1: Google Classroom</h4>
+                <p>Configuración de cuentas, aula virtual, recepción de materiales y entrega de ejercicios.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">2</span>
+            <div class="item-content">
+                <h4>Clase 2: Introducción a Gemini</h4>
+                <p>El asistente personal: prompting conversacional, preguntas útiles y redacción de textos.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">3</span>
+            <div class="item-content">
+                <h4>Clase 3: Introducción a NotebookLM</h4>
+                <p>Fuentes fiables, carga de apuntes o documentos personales y resúmenes estructurados.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">4</span>
+            <div class="item-content">
+                <h4>Clase 4: Creación de un Cuento con IA</h4>
+                <p>Escritura creativa guiada, ambientación, personajes y narrativa ilustrada con imágenes.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">5</span>
+            <div class="item-content">
+                <h4>Clase 5: Mi Biografía y Memorias</h4>
+                <p>Recuperación de recuerdos familiares y redacción de anécdotas de vida con apoyo de la IA.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">6</span>
+            <div class="item-content">
+                <h4>Clase 6: El Abuelo Tutor</h4>
+                <p>Apoyo en explicaciones pedagógicas de historia, matemáticas y ciencias para nietos o familia.</p>
+            </div>
+        </li>
+        <li class="timeline-item">
+            <span class="item-num">7</span>
+            <div class="item-content">
+                <h4>Clase 7: Mapa de Gestión de Proyectos con IA</h4>
+                <p>Planificación de proyectos reales combinando texto, tablas, imágenes y herramientas digitales.</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
