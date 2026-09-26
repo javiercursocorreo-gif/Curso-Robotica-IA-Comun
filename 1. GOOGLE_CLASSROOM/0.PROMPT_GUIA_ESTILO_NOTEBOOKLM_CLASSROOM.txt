@@ -1,0 +1,84 @@
+# ==============================================================================
+# PROMPT DE DIRECCIÓN DE ARTE Y ESTILO VISUAL PARA NOTEBOOKLM
+# PRESENTACIÓN OFICIAL: "GUÍA VISUAL DE GOOGLE CLASSROOM PARA EL ALUMNO"
+# ==============================================================================
+# Instrucciones: Copia íntegramente este texto y pégalo en la ventana de 
+# personalización / prompt de generación de presentación (diapositivas) en NotebookLM.
+# ==============================================================================
+
+ORDEN DE DIRECCIÓN DE ARTE (OBLIGATORIA Y ESTRICTA):
+
+Transforma el contenido didáctico en una presentación visual de 10 a 12 diapositivas de alta resolución, diseñada para que el alumnado adulto y sénior comprenda y navegue con total soltura por Google Classroom. 
+
+La presentación debe EMULAR FIELMENTE LA PANTALLA REAL de Google Classroom en un navegador web moderno (Google Chrome en ordenador de escritorio o portátil).
+
+--------------------------------------------------------------------------------
+1. ATMÓSFERA GENERAL Y ESTILO ESTÉTICO
+--------------------------------------------------------------------------------
+* Estilo: Sobrio, fotorrealista, corporativo y pedagógico (estilo presentación oficial de Google Workspace for Education / Google Keynote).
+* Entorno: Pantallas digitales nítidas, diáfanas y realistas.
+* Tono: Claro, amigable, estructurado y muy accesible para personas mayores (cero saturación visual, textos grandes y botones perfectamente señalizados).
+
+--------------------------------------------------------------------------------
+2. PALETA DE COLOR OFICIAL DE GOOGLE CLASSROOM
+--------------------------------------------------------------------------------
+* Color principal / acentos de marca: Verde esmeralda Google Classroom (#0F9D58 / #137333) y Azul Google (#1A73E8).
+* Fondos de interfaz: Blanco puro (#FFFFFF) y gris neutro muy suave (#F8F9FA / #F1F3F4).
+* Textos: Gris grafito oscuro de alta legibilidad (#202124 y #3C4043) con excelente contraste tipográfico.
+* Elementos de foco: Recuadros nítidos con halo suave verde o azul y flechas minimalistas que indiquen exactamente dónde hacer clic.
+
+--------------------------------------------------------------------------------
+3. ELEMENTOS DE LA PANTALLA REAL QUE DEBEN MOSTRARSE Y DESCRIBIRSE
+--------------------------------------------------------------------------------
+Cada diapositiva debe ilustrar con precisión fotográfica los componentes reales de la interfaz de Classroom que ve el estudiante:
+
+A) LA CABECERA SUPERIOR (Navegación general):
+   - Extremo izquierdo: El botón de las 3 líneas horizontales (Menú principal / "Hamburguesa" ☰).
+   - Logotipo de Google Classroom junto al nombre oficial de la clase: "Curso de Tecnología: Robótica e IA".
+   - Extremo derecho: Icono de cuadrícula de 9 puntos (Google Apps / Waffle) y el círculo con la foto/avatar de la cuenta de Google del alumno.
+
+B) LAS 3 PESTAÑAS PRINCIPALES DEL ALUMNO (En el centro superior):
+   1. Pestaña "TABLÓN" (Novedades):
+      - Muestra el encabezado visual con la ilustración del curso.
+      - El muro central donde el profesor publica avisos de bienvenida, recordatorios y comunicados generales.
+      - Cajetín para que el alumno pueda escribir preguntas o comentarios al profesor.
+   2. Pestaña "TRABAJO DE CLASE" (El Corazón del Curso):
+      - La vista más importante: estructura ordenada por "Temas" (Semanas o Bloques temáticos).
+      - Botón superior "Ver tu trabajo" (resumen del estado de tareas del alumno).
+      - Las tarjetas de materiales educativos desplegables con su icono de marcapáginas/libro (fichas en PDF, simuladores interactivos, vídeos explicativos).
+      - Explicación de cómo hacer clic en "Ver material" para abrir los simuladores y documentos en pantalla completa sin instalar nada.
+   3. Pestaña "PERSONAS":
+      - Sección "Profesores": con el nombre y foto del docente del curso.
+      - Sección "Compañeros de clase": listado de los demás alumnos matriculados.
+
+C) EL MENÚ LATERAL DESPLEGABLE DE LA IZQUIERDA (Al pulsar el icono ☰):
+   - Opción "Clases": vista general con las tarjetas de todas las aulas virtuales en las que participa el alumno.
+   - Opción "Calendario": vista en cuadrícula de fechas importantes.
+   - Opción "Tareas pendientes": lista organizada de actividades por entregar o ya completadas.
+   - Acceso directo con un clic a la clase activa.
+   - Opción "Ajustes": configuración de avisos por correo electrónico para no perderse ninguna lección.
+
+--------------------------------------------------------------------------------
+4. ESTRUCTURA RECOMENDADA DE DIAPOSITIVAS
+--------------------------------------------------------------------------------
+* Diapositiva 1: Portada oficial ("Guía Visual de Google Classroom: Tu Aula Virtual Paso a Paso").
+* Diapositiva 2: ¿Qué es Google Classroom y cómo entrar desde Google Chrome?
+* Diapositiva 3: La Pantalla Principal: Anatomía de la Cabecera y sus Elementos Clave.
+* Diapositiva 4: El Menú Lateral Izquierdo (☰): Clases, Calendario y Tareas Pendientes.
+* Diapositiva 5: Las 3 Pestañas del Alumno: Tablón, Trabajo de Clase y Personas.
+* Diapositiva 6: Pestaña 1 - El "Tablón": Dónde leer los avisos y comunicados del profesor.
+* Diapositiva 7: Pestaña 2 - "Trabajo de Clase": La biblioteca organizada por Temas.
+* Diapositiva 8: Cómo abrir una Lección: Fichas en PDF, Enlaces y Simuladores Interactivos.
+* Diapositiva 9: El Botón "Ver tu trabajo": Cómo comprobar tu progreso personal.
+* Diapositiva 10: Pestaña 3 - "Personas": Tus profesores y compañeros de aula.
+* Diapositiva 11: Cómo configurar las notificaciones para recibirlas en tu correo.
+* Diapositiva 12: Resumen y Consejos Prácticos: Cero complicaciones y acceso con 1 solo clic.
+
+--------------------------------------------------------------------------------
+5. PROHIBICIONES TERMINANTES (CRUCIAL):
+--------------------------------------------------------------------------------
+* PROHIBIDO cualquier estética de dibujo infantil, cómic, caricatura, acuarela o fantasía.
+* PROHIBIDO inventar botones o pestañas que no existan en la interfaz real de Google Classroom (por ejemplo, NO incluir la pestaña "Calificaciones", ya que esa pestaña solo es visible para profesores).
+* PROHIBIDO interfaces oscuras distópicas, robots ficticios o decoraciones sobrecargadas.
+* Mantener la máxima fidelidad visual con el diseño limpio y minimalista de Google Workspace.
+

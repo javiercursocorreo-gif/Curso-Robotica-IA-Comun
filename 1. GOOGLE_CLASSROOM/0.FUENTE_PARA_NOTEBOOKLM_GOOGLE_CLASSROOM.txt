@@ -1,0 +1,108 @@
+# 🏫 GUÍA MAESTRA DE GOOGLE CLASSROOM PARA EL ALUMNO
+## Tu Aula Virtual Paso a Paso: Manual de Navegación Didáctica para Adultos y Mayores
+
+---
+
+### 1. ¿QUÉ ES GOOGLE CLASSROOM Y POR QUÉ LO UTILIZAMOS?
+Google Classroom es el aula virtual oficial de nuestro curso. Funciona como una escuela digital moderna y segura a la que puedes acceder a cualquier hora y desde cualquier lugar utilizando tu navegador web habitual (preferentemente Google Chrome en tu ordenador o tableta).
+
+#### ¿Por qué es la mejor opción para nuestro curso?
+1. **Cero instalaciones:** No necesitas descargar ningún programa extraño, ni descomprimir archivos ZIP, ni comprar licencias. Todo funciona directamente dentro de una pestaña de internet.
+2. **Todo ordenado en un solo lugar:** Cada semana encontrarás las fichas oficiales en PDF, las presentaciones ilustradas, los vídeos dinámicos y las aplicaciones interactivas en 3D organizadas cronológicamente por temas.
+3. **Seguridad y privacidad:** Solo los alumnos matriculados por el profesor tienen acceso a este entorno escolar protegido.
+4. **Acceso permanente:** Si un día no puedes asistir a clase o quieres repasar con calma una explicación el fin de semana, todo el material permanece guardado y disponible para ti.
+
+---
+
+### 2. CÓMO ENTRAR A TU AULA VIRTUAL PASO A PASO
+Para entrar en Google Classroom, sigue estos sencillos pasos:
+
+1. **Abre tu navegador web:** Haz clic en el icono de **Google Chrome** en tu ordenador (Mac o PC) o tableta.
+2. **Comprueba tu cuenta de Google:** Asegúrate de que tienes iniciada la sesión con la misma cuenta de correo de Gmail con la que te inscribiste en el curso (verás tu foto o la inicial de tu nombre en la esquina superior derecha del navegador).
+3. **Dos formas de acceder:**
+   * **Opción A (El botón de los 9 puntos):** En la esquina superior derecha de Google, haz clic en el icono con 9 puntitos en forma de cuadrícula (el menú de aplicaciones de Google o "Waffle"). Baja un poco por la lista y pulsa sobre el icono verde con marco amarillo de **Classroom**.
+   * **Opción B (Escribiendo la dirección):** En la barra de direcciones de arriba, escribe directamente: `classroom.google.com` y pulsa la tecla Enter.
+4. **Entrar a la clase:** Verás una tarjeta rectangular con el nombre del curso (**"Curso de Tecnología: Robótica e Inteligencia Artificial"**). Haz clic sobre el título para entrar al aula.
+
+---
+
+### 3. LA ANATOMÍA DE LA PANTALLA PRINCIPAL
+Una vez dentro del curso, la pantalla se divide en tres zonas fundamentales que siempre debes tener localizadas:
+
+#### A) La Cabecera Superior (Barra de Navegación)
+* **El botón de las 3 líneas horizontales (☰):** Situado en la esquina superior izquierda. Es el **Menú Principal** (conocido popularmente como "menú hamburguesa"). Al pulsar sobre él, se despliega una barra lateral con accesos rápidos.
+* **El título de la clase:** Justo al lado del menú, te recuerda siempre en qué asignatura te encuentras.
+* **Las 3 Pestañas Centrales:** En la parte superior media encontrarás las 3 secciones exclusivas del alumno:
+  1. **Tablón**
+  2. **Trabajo de clase**
+  3. **Personas**
+* **Tu cuenta de usuario:** En la esquina superior derecha, tu avatar en círculo te confirma que estás conectado con tu usuario personal.
+
+---
+
+### 4. EL MENÚ LATERAL IZQUIERDO (☰ EL MENÚ PRINCIPAL)
+Cuando haces clic en las **3 líneas horizontales (☰)** de la esquina superior izquierda, se abre un panel lateral con herramientas de gran utilidad:
+
+1. **🏠 Clases:** Te lleva a la pantalla de inicio donde ves todas las clases o cursos en los que estás matriculado.
+2. **📅 Calendario:** Muestra un calendario mensual donde se marcan automáticamente las fechas importantes, avisos del profesor o actividades programadas.
+3. **📋 Tareas pendientes:** Una herramienta magnífica para no perderte nada. Al pulsar aquí, Classroom te muestra un listado claro dividido en dos columnas:
+   * **Pendientes:** Lo que tienes pendiente de revisar o entregar.
+   * **Completadas:** Todo lo que ya has abierto y entregado con éxito.
+4. **Lista de tus asignaturas:** Si estás apuntado a varios talleres (por ejemplo, Robótica e IA), puedes saltar de uno a otro con un solo clic sin salir de la página.
+5. **⚙️ Ajustes:** Aquí puedes activar o desactivar las notificaciones por correo electrónico. Te recomendamos mantener activadas las notificaciones para que recibas un aviso en tu Gmail cada vez que el profesor publique una lección nueva o te responda a una duda.
+
+---
+
+### 5. LAS TRES PESTAÑAS DEL ALUMNO AL DETALLE
+
+#### PESTAÑA 1: "TABLÓN" (El Muro de Noticias y Avisos)
+Es la primera pantalla que ves al entrar. Funciona de manera idéntica al corcho de anuncios de una escuela tradicional:
+* **Cabecera ilustrada:** En la parte superior verás una imagen panorámica representativa del curso con el nombre del aula y el aula física.
+* **Muro de publicaciones:** El profesor escribe aquí mensajes de bienvenida, resúmenes de lo que haremos en la próxima sesión, avisos urgentes (por ejemplo, cambios de horario o enlaces a videoconferencias) y recordatorios de material.
+* **Comentarios de clase:** Debajo de cada aviso del profesor verás una casilla que dice *"Añadir comentario a la clase..."*. Si tienes alguna duda sobre el aviso, puedes escribirla ahí para que el profesor y tus compañeros puedan ayudarte.
+
+---
+
+#### PESTAÑA 2: "TRABAJO DE CLASE" (El Corazón y Biblioteca del Curso)
+Esta es **la pestaña más importante de todas**, donde pasarás el 90% de tu tiempo. Aquí está organizado todo el conocimiento didáctico del año.
+
+1. **Estructura por "Temas" (Bloques temáticos o Semanas):**
+   * En lugar de tener archivos desordenados, todo está clasificado en grandes títulos en negrita (ej. *Monográfico 1: Gemini*, *Monográfico 2: NotebookLM*, *Bloque 3: Cinemática y Motores*, etc.).
+   * En la columna izquierda de esta pestaña tienes un índice rápido de temas para saltar directamente al bloque que quieras repasar sin tener que hacer mucho scroll.
+
+2. **El botón "Ver tu trabajo":**
+   * Justo debajo de las pestañas verás un botón con el dibujo de una persona que dice **"Ver tu trabajo"**.
+   * Al hacer clic en él, se abre una ficha personal con tu historial completo en el curso: qué actividades has visto, cuáles has completado y las notas o comentarios privados que te haya dejado el profesor.
+
+3. **Cómo reconocer los materiales didácticos:**
+   * Cada lección aparece como una barra con un icono a la izquierda:
+     * **Icono de marcapáginas/libro:** Es un **Material de estudio** (fichas en PDF, presentaciones, vídeos o simuladores interactivos). No requiere entregar nada, solo disfrutarlo y aprender.
+     * **Icono de portapapeles con líneas:** Es una **Tarea** (un ejercicio voluntario o práctica guiada donde puedes adjuntar un texto o responder una pregunta).
+
+4. **Cómo abrir y disfrutar de los materiales (PDFs y Simuladores 3D):**
+   * Haz clic sobre el título de la lección para desplegar su ficha descriptiva.
+   * Verás una breve explicación del profesor sobre qué aprenderemos en esa sesión.
+   * Justo debajo verás los botones o tarjetas rectangulares con los enlaces a los recursos:
+     * **Ficha en PDF:** Al hacer clic, se abre el visor oficial para leer la ficha a gran tamaño, imprimirla o guardarla.
+     * **Simulador Interactivo / App Web:** Al hacer clic, se abre en una nueva pestaña el simulador a toda pantalla. ¡No necesitas instalar nada! Podrás mover el dron 3D, girar el brazo robótico o explorar los fractales arrastrando el ratón con total fluidez.
+   * **Botón "Ver material":** En la esquina inferior izquierda de la tarjeta desplegada, este botón te permite abrir la lección a pantalla completa para concentrarte exclusivamente en ella.
+
+---
+
+#### PESTAÑA 3: "PERSONAS" (Tu Comunidad Escolar)
+Esta pestaña te conecta con las personas que forman parte del aula:
+* **Profesores:** Muestra el nombre y la fotografía del profesor responsable del curso. A la derecha de su nombre encontrarás un pequeño icono con forma de sobre: al pulsar sobre él, se abre tu correo de Gmail con la dirección del profesor ya escrita, listo para que le envíes una consulta privada si lo necesitas.
+* **Compañeros de clase:** Un listado alfabético con los nombres de todos tus compañeros de aula virtual.
+
+---
+
+### 6. RESUMEN DE CONSEJOS PRÁCTICOS PARA EL ALUMNO SÉNIOR
+1. **Guarda el aula en tus "Marcadores o Favoritos":**  
+   Cuando estés dentro de Google Classroom, pulsa sobre la **estrella (⭐)** que aparece en la barra superior de direcciones de Google Chrome. Dale al botón "Hecho". A partir de ese momento, tendrás un botón directo en tu barra superior para entrar a clase con un solo clic cada mañana.
+2. **No temas tocar ni pulsar:**  
+   Google Classroom está diseñado a prueba de errores. Hacer clic en una lección, en un simulador o en una pestaña **no puede romper nada ni borrar nada**. Explora con curiosidad y tranquilidad.
+3. **Aumenta el tamaño de la letra si lo necesitas:**  
+   Si en algún momento las letras te parecen pequeñas, mantén pulsada la tecla **Ctrl** (en Windows) o **Cmd** (en Mac) y pulsa la tecla **+** (más). La pantalla se ampliará al instante para que leas con total comodidad y descanso visual.
+4. **Todo se actualiza automáticamente:**  
+   Si el profesor añade una nueva explicación o mejora una ficha didáctica, no necesitas hacer nada raro: al entrar en Classroom siempre verás la versión más moderna y actualizada disponible.
+
