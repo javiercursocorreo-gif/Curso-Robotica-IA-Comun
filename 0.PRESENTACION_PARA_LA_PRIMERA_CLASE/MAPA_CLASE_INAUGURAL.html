@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase Inaugural • Robótica & Inteligencia Artificial — Cuadro de Mando</title>
+    <style>
+        :root {
+            --bg-base: #070b14;
+            --bg-card: rgba(15, 23, 42, 0.92);
+            --border-glow: rgba(56, 189, 248, 0.45);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --text-muted: #64748b;
+            --robotics-primary: #38bdf8;
+            --robotics-glow: rgba(56, 189, 248, 0.4);
+            --ia-primary: #c084fc;
+            --ia-glow: rgba(192, 132, 252, 0.4);
+            --emerald: #34d399;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: radial-gradient(circle at 50% 25%, #131d3b 0%, #080c18 65%, #030509 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 30px 20px 60px;
+            user-select: none;
+        }
+
+        .container {
+            max-width: 1080px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        .header-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--robotics-primary);
+            border: 1px solid var(--border-glow);
+            border-radius: 9999px;
+            padding: 5px 18px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 30%, #38bdf8 70%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-sub);
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* NODO CENTRAL */
+        .core-node {
+            background: radial-gradient(circle at 40% 30%, #1e293b 0%, #0f172a 80%);
+            border: 2px solid var(--robotics-primary);
+            border-radius: 26px;
+            padding: 24px 38px;
+            text-align: center;
+            box-shadow: 0 0 35px var(--border-glow), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 820px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .core-node:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 0 50px rgba(56, 189, 248, 0.6);
+        }
+        .core-icon {
+            font-size: 2.6rem;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+        .core-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .core-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        /* COLUMNAS DE RECURSOS */
+        .branches-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            width: 100%;
+        }
+        @media (max-width: 820px) {
+            .branches-container { grid-template-columns: 1fr; }
+        }
+
+        .branch-column {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            padding: 26px;
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+        }
+        .branch-column::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: var(--branch-color);
+            border-radius: 22px 22px 0 0;
+            box-shadow: 0 0 14px var(--branch-color);
+        }
+        .branch-column:hover {
+            transform: translateY(-4px);
+            border-color: var(--branch-color);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .branch-badge {
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--branch-color);
+            font-family: ui-monospace, monospace;
+        }
+        .branch-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card-main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .doc-preview-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 16px;
+        }
+        .doc-icon {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+        }
+        .doc-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .doc-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #f8fafc;
+            line-height: 1.3;
+        }
+        .doc-type {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: ui-monospace, monospace;
+            margin-top: 2px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        /* BOTÓN DE ACCIÓN */
+        .btn-open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--btn-g1, #38bdf8) 0%, var(--btn-g2, #0284c7) 100%);
+            color: #030712;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            padding: 15px 22px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            transition: all 0.2s ease;
+        }
+        .branch-column:hover .btn-open {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .bottom-bar {
+            margin-top: 40px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 0.88rem;
+            color: var(--text-sub);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-pill">🚀 Sesión Inaugural Conjunta • Robótica & IA</div>
+            <h1>Bienvenida: Robótica & Inteligencia Artificial</h1>
+            <p class="subtitle">Cuadro de mando oficial para la primera clase: presentación general de bienvenida, objetivos del programa y guía visual de manejo de Google Classroom.</p>
+        </header>
+
+        <div class="core-node">
+            <span class="core-icon">🤖 ⚡ 🧠</span>
+            <div class="core-title">Portal de Acceso • Sesión Inaugural</div>
+            <div class="core-desc">Accede a las dos guías oficiales interactivas en formato PDF para el aula</div>
+        </div>
+
+        <div class="branches-container">
+            <!-- COLUMNA 1: PRESENTACIÓN INAUGURAL -->
+            <div class="branch-column" style="--branch-color: var(--robotics-primary);">
+                <div>
+                    <div class="branch-header">
+                        <span class="branch-badge">DOCUMENTO 1</span>
+                        <h2 class="branch-title">Presentación Inaugural</h2>
+                    </div>
+
+                    <div class="card-main-content">
+                        <div class="doc-preview-box">
+                            <span class="doc-icon">📄</span>
+                            <div class="doc-info">
+                                <span class="doc-name">Introducción Conjunta</span>
+                                <span class="doc-type">FORMATO PDF • DIAPOSITIVAS OFICIALES</span>
+                            </div>
+                        </div>
+                        <p class="card-desc">
+                            Diapositivas completas de la sesión de bienvenida: qué es la robótica moderna, conceptos clave de inteligencia artificial, herramientas del curso y plan de trabajo.
+                        </p>
+                    </div>
+                </div>
+
+                <a href="0.INTRODUCCION%20CONJUNTA.pdf" target="_blank" class="btn-open" style="--btn-g1: #38bdf8; --btn-g2: #0284c7;">
+                    <span>Abrir Presentación Inaugural (PDF)</span>
+                    <span>↗</span>
+                </a>
+            </div>
+
+            <!-- COLUMNA 2: GUÍA DE GOOGLE CLASSROOM -->
+            <div class="branch-column" style="--branch-color: var(--ia-primary);">
+                <div>
+                    <div class="branch-header">
+                        <span class="branch-badge">DOCUMENTO 2</span>
+                        <h2 class="branch-title">Guía de Google Classroom</h2>
+                    </div>
+
+                    <div class="card-main-content">
+                        <div class="doc-preview-box">
+                            <span class="doc-icon">💻</span>
+                            <div class="doc-info">
+                                <span class="doc-name">Manual de Classroom</span>
+                                <span class="doc-type">FORMATO PDF • GUÍA VISUAL PASO A PASO</span>
+                            </div>
+                        </div>
+                        <p class="card-desc">
+                            Manual ilustrado para alumnos: cómo entrar al aula virtual, localizar los menús interactivos de cada clase, abrir materiales y entregar actividades fácilmente.
+                        </p>
+                    </div>
+                </div>
+
+                <a href="../1.GOOGLE_CLASSROOM/Guia_de_Classroom.pdf" target="_blank" class="btn-open" style="--btn-g1: #c084fc; --btn-g2: #9333ea; color: #ffffff;">
+                    <span>Abrir Guía de Classroom (PDF)</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <span>🚀 <strong>Curso de Robótica & IA</strong> • Presentación Inaugural</span>
+            <span>Acceso interactivo unificado para Google Classroom</span>
+        </div>
+    </div>
+
+</body>
+</html>
