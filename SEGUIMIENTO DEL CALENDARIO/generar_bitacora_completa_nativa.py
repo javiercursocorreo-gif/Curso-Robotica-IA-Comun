@@ -27,6 +27,7 @@ content_types = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
   <Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
   <Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+  <Override PartName="/xl/worksheets/sheet3.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
   <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
 </Types>"""
 
@@ -39,7 +40,8 @@ wb_rels = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
   <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>
   <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/>
-  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet3.xml"/>
+  <Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
 </Relationships>"""
 
 workbook_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -47,6 +49,7 @@ workbook_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <sheets>
     <sheet name="Bitacora de Clases" sheetId="1" r:id="rId1"/>
     <sheet name="Calendario de Clases B1-B6" sheetId="2" r:id="rId2"/>
+    <sheet name="Escenario 3 - Ciclo Robótica-IA" sheetId="3" r:id="rId3"/>
   </sheets>
 </workbook>"""
 
@@ -73,7 +76,7 @@ styles_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <font><i/><sz val="10"/><color rgb="FF595959"/><name val="Calibri"/></font>
     <font><b/><sz val="11"/><color rgb="FF9C0006"/><name val="Calibri"/></font>
   </fonts>
-  <fills count="9">
+  <fills count="10">
     <fill><patternFill patternType="none"/></fill>
     <fill><patternFill patternType="gray125"/></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FF1F497D"/></patternFill></fill>
@@ -83,6 +86,7 @@ styles_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <fill><patternFill patternType="solid"><fgColor rgb="FFFCE4D6"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFEDEDF8"/></patternFill></fill>
     <fill><patternFill patternType="solid"><fgColor rgb="FFF2F2F2"/></patternFill></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF4A235A"/></patternFill></fill>
   </fills>
   <borders count="2">
     <border><left/><right/><top/><bottom/><diagonal/></border>
@@ -96,7 +100,7 @@ styles_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <cellStyleXfs count="1">
     <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>
   </cellStyleXfs>
-  <cellXfs count="12">
+  <cellXfs count="13">
     <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
     <xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>
     <xf numFmtId="0" fontId="2" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1"/>
@@ -109,6 +113,7 @@ styles_xml = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <xf numFmtId="0" fontId="0" fillId="6" borderId="1" xfId="0" applyFill="1" applyBorder="1"/>
     <xf numFmtId="0" fontId="0" fillId="7" borderId="1" xfId="0" applyFill="1" applyBorder="1"/>
     <xf numFmtId="0" fontId="4" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1"/>
+    <xf numFmtId="0" fontId="2" fillId="9" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1"/>
   </cellXfs>
 </styleSheet>"""
 
@@ -452,7 +457,160 @@ def build_calendar_rows():
   </sheetData>
 </worksheet>"""
 
+def build_scenario3_rows():
+    rows = []
+    title = "ESCENARIO 3: PREDICCIÓN CON CICLO ALTERNO ROBÓTICA - IA"
+    sub = "Ciclo: Robótica -> IA (1ª mitad) -> Robótica -> Monográfico -> Robótica -> IA (2ª mitad) | Prioridad 100% Robótica"
+    h_style = 12
+    
+    rows.append(f'<row r="1" ht="20">{cell_xml("A1", title, 1)}</row>')
+    rows.append(f'<row r="2" ht="16">{cell_xml("A2", sub, 6)}</row>')
+    
+    # Resumen superior
+    r_box = [
+        ("PARÁMETRO DEL CURSO", "VALOR", "DIAGNÓSTICO AL 30 DE MAYO"),
+        ("Total Sesiones Lectivas Restantes", "49 clases (73.5 h)", "De 05/11/2026 a 27/05/2027"),
+        ("Robótica Programada (Prioridad)", "31 clases (33 totales con octubre)", "Bloques 1 a 6 COMPLETOS al 100% (cero descartes)"),
+        ("IA Programada (Ciclo Regular + Monos)", "18 clases (24 totales con octubre)", "6 Monográficos completos + 6 Sesiones regulares completas"),
+        ("¿LLEGAMOS BIEN O NOS PASAMOS?", "🎯 ENCAJE EXACTO (49 / 49)", "¡CERO DÍAS DE DESVIACIÓN! Encaje perfecto."),
+        ("Techo Robótica al 30 de Mayo", "Bloque 6 (6.7 Estación Espacial ISS)", "Alcanza todos los robots, androides y naves espaciales"),
+        ("Techo IA al 30 de Mayo", "6 Monográficos + Sesión 08 (Pompeya)", "Manejo integral de herramientas IA y talleres prácticos"),
+        ("Estructura del Ciclo (3 sem. / 6 sesiones)", "ROB -> IA_1 -> ROB -> MONO -> ROB -> IA_2", "6 ciclos (36 clases) + 13 clases finales para culminar Robótica")
+    ]
+    for ro, (c1, c2, c3) in enumerate(r_box, start=4):
+        st = h_style if ro == 4 else (7 if "LLEGAMOS" in c1 else 5)
+        st_val = h_style if ro == 4 else (7 if "LLEGAMOS" in c1 else 4)
+        rows.append(f'<row r="{ro}" ht="16">{cell_xml(f"B{ro}", c1, st)}{cell_xml(f"C{ro}", c2, st_val)}{cell_xml(f"D{ro}", c3, st)}</row>')
+        
+    # Cabecera tabla
+    rows.append(f'<row r="13" ht="18">' +
+                cell_xml("A13", "Nº CLASE", h_style) + cell_xml("B13", "FECHA", h_style) + cell_xml("C13", "DÍA", h_style) +
+                cell_xml("D13", "ÁREA", h_style) + cell_xml("E13", "ESTADO", h_style) +
+                cell_xml("F13", "TEMARIO PROYECTADO", h_style) + cell_xml("G13", "HORAS ACUM.", h_style) + cell_xml("H13", "HITO / FASE DEL CICLO", h_style) + '</row>')
+    
+    # 49 clases proyectadas para Escenario 3
+    future_s3 = [
+        # CICLO 1 (Clases 11 a 16)
+        ("Robótica", "ROB: 1.3 Ascensor (Mecanismo y polea)", "Robótica Bloque 1 [Ciclo 1 - Paso 1]"),
+        ("IA", "IA: Sesión 03 (Cuento/Cómic con NLM - Parte 1/2)", "IA Sesión 03 [Ciclo 1 - Paso 2]"),
+        ("Robótica", "ROB: 1.4 Semáforos inteligentes (Lógica y estados)", "Robótica [FIN BLOQUE 1] [Ciclo 1 - Paso 3]"),
+        ("IA (Monográfico)", "IA: Monográfico 2 (Manejo de Gemini Book / NotebookLM)", "IA Monográfico 2 [Ciclo 1 - Paso 4]"),
+        ("Robótica", "ROB: 2.1 Silla de Ruedas Eléctrica (Tracción diferencial)", "Robótica Bloque 2 [Ciclo 1 - Paso 5]"),
+        ("IA", "IA: Sesión 03 (Cuento/Cómic con NLM - Parte 2/2)", "IA [FIN SESIÓN 03] [Ciclo 1 - Paso 6]"),
+
+        # CICLO 2 (Clases 17 a 22)
+        ("Robótica", "ROB: 2.2 Roomba con sensor (Bucle infinito y evasión)", "Robótica Bloque 2 [Ciclo 2 - Paso 1]"),
+        ("IA", "IA: Sesión 04 (Aporte de Valor Senior - Parte 1/2)", "IA Sesión 04 [Ciclo 2 - Paso 2]"),
+        ("Robótica", "ROB: 2.3 Aparcamiento asistido (Condición IF-ELSE)", "Robótica Bloque 2 [Ciclo 2 - Paso 3]"),
+        ("IA (Monográfico)", "IA: Monográfico 3 (Taller Especial Cuento con NLM)", "IA Monográfico 3 [Ciclo 2 - Paso 4]"),
+        ("Robótica", "ROB: 2.4 Ozobot (El color como lenguaje y códigos)", "Robótica Bloque 2 [Ciclo 2 - Paso 5]"),
+        ("IA", "IA: Sesión 04 (Aporte de Valor Senior - Parte 2/2)", "IA [FIN SESIÓN 04] [Ciclo 2 - Paso 6]"),
+
+        # CICLO 3 (Clases 23 a 28)
+        ("Robótica", "ROB: 2.5 Cámara de seguridad (Variable simple y alarma)", "Robótica [FIN BLOQUE 2] [Ciclo 3 - Paso 1]"),
+        ("IA", "IA: Sesión 05 (Creatividad Visual y Generación de Imagen - Parte 1/2)", "IA Sesión 05 [Ciclo 3 - Paso 2]"),
+        ("Robótica", "ROB: 3.1 Robot repartidor (Chasis diferencial y ruta)", "Robótica Bloque 3 [Ciclo 3 - Paso 3]"),
+        ("IA (Monográfico)", "IA: Monográfico 4 (Mi Biografía con IA y Redacción Guiada)", "IA Monográfico 4 [Ciclo 3 - Paso 4]"),
+        ("Robótica", "ROB: 3.2 Coche ELEGOO con cámara (Visión artificial básica)", "Robótica Bloque 3 [Ciclo 3 - Paso 5]"),
+        ("IA", "IA: Sesión 05 (Creatividad Visual y Diseño - Parte 2/2)", "IA [FIN SESIÓN 05] [Ciclo 3 - Paso 6]"),
+
+        # CICLO 4 (Clases 29 a 34)
+        ("Robótica", "ROB: 3.3 Avión con servos (Posición angular exacta)", "Robótica Bloque 3 [Ciclo 4 - Paso 1]"),
+        ("IA", "IA: Sesión 06 (Asistente Personal de Salud y Bienestar - Parte 1/2)", "IA Sesión 06 [Ciclo 4 - Paso 2]"),
+        ("Robótica", "ROB: 3.4 Dron autónomo (Navegación 3D en tres ejes)", "Robótica Bloque 3 [Ciclo 4 - Paso 3]"),
+        ("IA (Monográfico)", "IA: Monográfico 5 (El Abuelo Tutor: Matemáticas e Historia)", "IA Monográfico 5 [Ciclo 4 - Paso 4]"),
+        ("Robótica", "ROB: 3.5 Penguin-BOT (Sincronización cinemática de servos)", "Robótica [FIN BLOQUE 3] [Ciclo 4 - Paso 5]"),
+        ("IA", "IA: Sesión 06 (Asistente de Salud y Vida Diaria - Parte 2/2)", "IA [FIN SESIÓN 06] [Ciclo 4 - Paso 6]"),
+
+        # CICLO 5 (Clases 35 a 40)
+        ("Robótica", "ROB: 4.1 Base giratoria de Brazo Robótico (Parámetro)", "Robótica Bloque 4 [Ciclo 5 - Paso 1]"),
+        ("IA", "IA: Sesión 07 (Domótica y Entorno Inteligente - Parte 1/2)", "IA Sesión 07 [Ciclo 5 - Paso 2]"),
+        ("Robótica", "ROB: 4.2 Hombro robótico (Coordinación de dos motores)", "Robótica Bloque 4 [Ciclo 5 - Paso 3]"),
+        ("IA (Monográfico)", "IA: Monográfico 6 (Mapa y Gestión de Proyectos con IA)", "IA Monográfico 6 [Ciclo 5 - Paso 4]"),
+        ("Robótica", "ROB: 4.3 Codo robótico (Secuencia de tres articulaciones)", "Robótica Bloque 4 [Ciclo 5 - Paso 5]"),
+        ("IA", "IA: Sesión 07 (Domótica y Control por Voz - Parte 2/2)", "IA [FIN SESIÓN 07] [Ciclo 5 - Paso 6]"),
+
+        # CICLO 6 (Clases 41 a 46)
+        ("Robótica", "ROB: 4.4 Muñeca robótica (Variable de orientación espacial)", "Robótica Bloque 4 [Ciclo 6 - Paso 1]"),
+        ("IA", "IA: Sesión 08 (Fotogrametría y Reconstrucción 3D Pompeya - Parte 1/2)", "IA Sesión 08 [Ciclo 6 - Paso 2]"),
+        ("Robótica", "ROB: 4.5 Pinza robótica (Sensor de presión y agarre)", "Robótica Bloque 4 [Ciclo 6 - Paso 3]"),
+        ("IA (Monográfico)", "IA: Monográfico 7 (NASA y Exploración Espacial con IA - 5 Portales 3D)", "IA [FIN MONOGRÁFICOS] [Ciclo 6 - Paso 4]"),
+        ("Robótica", "ROB: 4.6 Mano hidráulica (Fuerza controlada y cinemática)", "Robótica [FIN BLOQUE 4] [Ciclo 6 - Paso 5]"),
+        ("IA", "IA: Sesión 08 (Fotogrametría y Museografía Virtual - Parte 2/2)", "IA [FIN SESIÓN 08] [Ciclo 6 - Paso 6]"),
+
+        # FASE DE CULMINACIÓN DE ROBÓTICA - BLOQUES 5 Y 6 (Clases 47 a 59)
+        ("Robótica", "ROB: 5.1 Perro Unitree Go2 AIR (Navegación cuadrúpeda y LiDAR)", "Robótica Bloque 5 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 5.2 Robot Bípedo (Equilibrio dinámico y comunicación visual)", "Robótica Bloque 5 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 5.3 Androide MIXAMO (Captura de movimiento y cinemática)", "Robótica Bloque 5 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 5.4 Transformer (POO, cambio morfológico y enjambres)", "Robótica Bloque 5 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 5.5 Trío Dinámico Star Wars (R2-D2, BB-8, D-O)", "Robótica Bloque 5 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 5.6 Robot de Combate (Estructura reforzada y estrategia)", "Robótica [FIN BLOQUE 5] [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.1 Transporte Espacial Autónomo (Trayectoria y telemetría)", "Robótica Bloque 6 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.2 Naves Espaciales: Star Wars (Halcón Milenario y X-Wing)", "Robótica Bloque 6 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.3 Naves Espaciales: Star Trek (U.S.S. Enterprise NCC-1701)", "Robótica Bloque 6 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.4 Naves Espaciales: Interstellar (Ranger y acoplamiento)", "Robótica Bloque 6 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.5 SpaceX Falcon 9 (Propulsión y aterrizaje vertical)", "Robótica Bloque 6 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.6 Transbordador Espacial (Reentrada y planeo orbital)", "Robótica Bloque 6 [Prioridad Robótica]"),
+        ("Robótica", "ROB: 6.7 Estación Espacial Internacional ISS (Acoplamiento y Clausura)", "Robótica [FIN BLOQUE 6 Y FIN DE CURSO]")
+    ]
+
+    cur = datetime.date(2026, 10, 1)
+    end = datetime.date(2027, 5, 30)
+    r_num = 14
+    clase_cont = 1
+    h_acum = 0.0
+
+    while cur <= end:
+        if cur.weekday() in (1, 3):  # Martes y Jueves
+            d_name = "Martes" if cur.weekday() == 1 else "Jueves"
+            d_str = cur.strftime("%d/%m/%Y")
+            
+            if cur in holidays_dict:
+                rows.append(f'<row r="{r_num}" ht="16">' +
+                            cell_xml(f"A{r_num}", "-", 11) + cell_xml(f"B{r_num}", d_str, 11) + cell_xml(f"C{r_num}", d_name, 11) +
+                            cell_xml(f"D{r_num}", "Vacaciones", 11) + cell_xml(f"E{r_num}", "No Lectivo", 11) +
+                            cell_xml(f"F{r_num}", f"⛔ {holidays_dict[cur]}", 11) + cell_xml(f"G{r_num}", f"{h_acum:.1f} h", 11) +
+                            cell_xml(f"H{r_num}", "Sin clase programada", 11) + '</row>')
+            else:
+                h_acum += 1.5
+                if clase_cont <= 10:
+                    area_v, tem_v, obs_v = octubre_reales[clase_cont]
+                    est_v = "Impartida"
+                    f_st = 8
+                else:
+                    f_idx = clase_cont - 11
+                    area_v, tem_v, obs_v = future_s3[f_idx]
+                    est_v = "Proyectada"
+                    f_st = 9 if area_v == "Robótica" else 10
+                    
+                rows.append(f'<row r="{r_num}" ht="16">' +
+                            cell_xml(f"A{r_num}", clase_cont, f_st) + cell_xml(f"B{r_num}", d_str, f_st) + cell_xml(f"C{r_num}", d_name, f_st) +
+                            cell_xml(f"D{r_num}", area_v, f_st) + cell_xml(f"E{r_num}", est_v, f_st) +
+                            cell_xml(f"F{r_num}", tem_v, f_st) + cell_xml(f"G{r_num}", f"{h_acum:.1f} h", f_st) +
+                            cell_xml(f"H{r_num}", obs_v, f_st) + '</row>')
+                clase_cont += 1
+            r_num += 1
+        cur += datetime.timedelta(days=1)
+        
+    return f"""<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <cols>
+    <col min="1" max="1" width="12" customWidth="1"/>
+    <col min="2" max="2" width="15" customWidth="1"/>
+    <col min="3" max="3" width="13" customWidth="1"/>
+    <col min="4" max="4" width="15" customWidth="1"/>
+    <col min="5" max="5" width="16" customWidth="1"/>
+    <col min="6" max="6" width="76" customWidth="1"/>
+    <col min="7" max="7" width="15" customWidth="1"/>
+    <col min="8" max="8" width="50" customWidth="1"/>
+  </cols>
+  <sheetData>
+    {''.join(rows)}
+  </sheetData>
+</worksheet>"""
+
 sheet2_xml = build_calendar_rows()
+sheet3_xml = build_scenario3_rows()
 
 # ------------------------------------------------------------------------------
 # EMPAQUETADO EN ZIP OFICIAL (.XLSX)
@@ -466,15 +624,29 @@ with zipfile.ZipFile(temp_file, "w", compression=zipfile.ZIP_DEFLATED) as zout:
     zout.writestr("xl/styles.xml", styles_xml)
     zout.writestr("xl/worksheets/sheet1.xml", sheet1_xml)
     zout.writestr("xl/worksheets/sheet2.xml", sheet2_xml)
+    zout.writestr("xl/worksheets/sheet3.xml", sheet3_xml)
 
+import subprocess
 import shutil
+
+# Cerrar el libro en Microsoft Excel si estuviese abierto para liberar el bloqueo exclusivo en macOS
+try:
+    subprocess.run([
+        'osascript', '-e',
+        'tell application "Microsoft Excel" to close (workbooks whose name contains "BITACORA_SEGUIMIENTO_CLASES") saving no'
+    ], stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL, check=False)
+except Exception:
+    pass
+
 try:
     if os.path.exists(EXCEL_PATH):
         os.remove(EXCEL_PATH)
 except Exception:
     pass
+
 shutil.copyfile(temp_file, EXCEL_PATH)
 print("--> 'BITACORA_SEGUIMIENTO_CLASES.xlsx' GENERADO CON ÉXITO:")
 print("    Hoja 1: 'Bitacora de Clases' (Registro real + Resumen de Métricas).")
 print("    Hoja 2: 'Calendario de Clases B1-B6' (Itinerario Oficial Planificado con 49 clases restantes).")
+print("    Hoja 3: 'Escenario 3 - Ciclo Robótica-IA' (Predicción con ciclo alterno y prioridad 100% Robótica).")
 print("    100% nativo en biblioteca estándar de Python (sin pip ni dependencias externas).")

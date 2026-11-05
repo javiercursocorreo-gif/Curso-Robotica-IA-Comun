@@ -73,12 +73,39 @@
 
 ## 📊 Estructura Oficial del Libro Excel (`BITACORA_SEGUIMIENTO_CLASES.xlsx`)
 
-El libro contiene exactamente **2 hojas oficiales** (la antigua Hoja 2 de avance secuencial fue eliminada por quedar obsoleta):
+El libro contiene exactamente **3 hojas oficiales**:
 
 | Hoja | Nombre | Contenido y Función |
 | :---: | :--- | :--- |
 | **Hoja 1** | **`Bitacora de Clases`** | Registro real acumulado clase a clase (10 sesiones impartidas, 15.0 h) + panel superior de métricas oficiales al 30 de mayo. |
 | **Hoja 2** | **`Calendario de Clases B1-B6`** | Calendario oficial proyectado día a día (69 fechas: 59 lectivas + 10 no lectivas), con alternancia estricta (19 Robótica + 6 Monográficos IA + 24 Sesiones IA = 49 clases restantes exactas). |
+| **Hoja 3** | **`Escenario 3 - Ciclo Robótica-IA`** | Nuevo escenario de predicción con ciclo recurrente de 6 clases (`ROB -> IA_1 -> ROB -> MONO -> ROB -> IA_2`) priorizando el **100% de Robótica (31 clases restantes, Bloques 1 a 6 completos)** + 18 clases de IA (6 monográficos y 6 sesiones regulares completas). |
+
+---
+
+## 🌟 Análisis del Escenario 3: Ciclo Alterno Robótica - IA + Prioridad 100% Robótica
+
+### 1. La Fórmula del Ciclo de 6 Clases (3 Semanas)
+El ciclo se sincroniza con el horario semanal (Martes y Jueves):
+* **Paso 1 (Martes):** 🤖 Robótica (1 robot completo).
+* **Paso 2 (Jueves):** 🧠 1ª mitad de una Sesión Regular de IA.
+* **Paso 3 (Martes):** 🤖 Robótica (1 robot completo).
+* **Paso 4 (Jueves):** 🧠 Monográfico de IA (hasta agotar los 6 monográficos).
+* **Paso 5 (Martes):** 🤖 Robótica (1 robot completo).
+* **Paso 6 (Jueves):** 🧠 2ª mitad de la Sesión Regular de IA (cierre de la iniciada en Paso 2).
+
+### 2. Repartición Matemática del Calendario Restante (49 clases)
+* **6 Ciclos Completos (Clases 11 a 46 = 36 clases):**
+  * **18 Clases de Robótica:** Se completan los Bloques 1, 2, 3 y 4 al 100% (hasta 4.6 Mano hidráulica).
+  * **6 Monográficos de IA:** Se imparten los 6 Monográficos disponibles (Mono 2 a Mono 7). ¡Monográficos agotados con éxito!
+  * **12 Clases de IA Regular:** Se imparten 6 Sesiones Regulares completas (Sesiones 03, 04, 05, 06, 07 y 08 Pompeya).
+* **Fase Final de Prioridad Robótica (Clases 47 a 59 = 13 clases restantes):**
+  * Habiéndose agotado los monográficos, se prioriza que **se impartan todas las clases de robótica pendientes sin descartar ningún robot**.
+  * En estas 13 clases se completan íntegramente el **Bloque 5 (6 androides)** y el **Bloque 6 (7 naves espaciales)** hasta la **Estación Espacial Internacional ISS (6.7)**.
+* **Balance Total al 27/05/2027:**
+  * **Robótica:** 2 impartidas + 31 proyectadas = **33 clases (100% Bloques 1 al 6)**. Cero descartes.
+  * **IA:** 6 impartidas + 18 proyectadas = **24 clases** (6 monográficos + 6 sesiones regulares completas).
+  * **Total:** 10 impartidas + 49 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (49 / 49)!**
 
 ---
 
