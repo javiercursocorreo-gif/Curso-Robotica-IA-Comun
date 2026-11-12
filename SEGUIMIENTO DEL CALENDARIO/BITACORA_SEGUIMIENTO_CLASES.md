@@ -3,7 +3,7 @@
 **Curso:** Robótica e Inteligencia Artificial  
 **Horario habitual:** Martes y Jueves (1.5 horas por sesión / 90 minutos)  
 **Periodo lectivo:** 01/10/2026 a 30/05/2027 (59 clases lectivas totales = 88.5 h)  
-**Estado actual (al 06/11/2026):** **11 clases impartidas (16.5 h)** | **48 clases restantes (72.0 h)**  
+**Estado actual (al 12/11/2026):** **13 clases impartidas (19.5 h)** | **46 clases restantes (69.0 h)**  
 
 ---
 
@@ -67,42 +67,44 @@
 | **Mono 4** | Mi Biografía con IA | Recuperación de memorias familiares y redacción asistida |
 | **Mono 5** | El Abuelo Tutor (Matemáticas e Historia) | Asistencia educativa intergeneracional con nietos |
 | **Mono 6** | Mapa y Gestión de Proyecto con IA | Planificación visual y control de hitos con IA |
-| **Mono 7** | **NASA y Exploración Espacial con IA** | **Inmensidad web general, extracción de enlaces con IA y visor interactivo 3D** |
+| **Mono 7** | **NASA y Exploración Espacial con IA** | **Inmensidad web general, extracción de enlaces con IA y visor interactivo 3D (2 días de duración)** |
 
 ---
 
 ## 📊 Estructura Oficial del Libro Excel (`BITACORA_SEGUIMIENTO_CLASES.xlsx`)
 
-El libro contiene exactamente **3 hojas oficiales**:
+El libro contiene exactamente **2 hojas oficiales**:
 
 | Hoja | Nombre | Contenido y Función |
 | :---: | :--- | :--- |
-| **Hoja 1** | **`Bitacora de Clases`** | Registro real acumulado clase a clase (10 sesiones impartidas, 15.0 h) + panel superior de métricas oficiales al 30 de mayo. |
-| **Hoja 2** | **`Calendario de Clases B1-B6`** | Calendario oficial proyectado día a día (69 fechas: 59 lectivas + 10 no lectivas), con alternancia estricta (19 Robótica + 6 Monográficos IA + 24 Sesiones IA = 49 clases restantes exactas). |
-| **Hoja 3** | **`Escenario 3 - Ciclo Robótica-IA`** | Nueva pestaña 3 construida con el ciclo de 4 pasos (`ROB -> SESIÓN IA -> ROB -> MONO`), sustituyendo el monográfico por Sesión IA al concluir los 6 monográficos. Ajusta el Monográfico 2 al 19/11 (asistencia completa de alumnos) y el Monográfico 3 al 24/11 como continuación. |
+| **Hoja 1** | **`Bitacora de Clases`** | Registro real acumulado clase a clase (13 sesiones impartidas, 19.5 h) + panel superior de métricas oficiales al 27 de mayo de 2027. |
+| **Hoja 2** | **`Calendario Oficial Robótica-IA`** | Itinerario oficial proyectado día a día (69 fechas: 59 lectivas + 10 no lectivas), con alternancia estricta (21 Robótica + 7 Monográficos IA + 18 Sesiones IA Comodín = 46 clases restantes exactas). Cero robots consecutivos y corte limpio en Navidad para arrancar con Sesión 05 en enero. |
 
 ---
 
-## 🌟 Análisis del Escenario 3: Ciclo Alterno Robótica - IA (Actualizado al 06/11/2026)
+## 🌟 Análisis del Itinerario Oficial: Alternancia Robótica - IA (Actualizado al 12/11/2026)
 
-### 1. La Fórmula del Ciclo de 4 Pasos
-* **Paso 1:** 🤖 **Robótica** (1 robot completo).
-* **Paso 2:** 🧠 **Sesión de IA** (1ª mitad o sesión modular).
-* **Paso 3:** 🤖 **Robótica** (1 robot completo).
-* **Paso 4:** 🧠 **Monográfico de IA** (hasta agotar los 6 monográficos; después, la **Sesión de IA** ocupa este lugar, manteniendo alternancia continua).
+### 1. Principios Pedagógicos Clave
+* **Prioridad Inamovible 1 (Robótica):** 21 clases restantes (con `5.3 MIXAMO` a 2 días y `6.2 Star Wars` a 2 días; y retiradas `2.4`, `2.5`, `3.2`, `4.1`, `4.2`, `4.3` y `4.4`).
+* **Prioridad Inamovible 2 (Monográficos):** 7 clases garantizadas (Monográficos 2 al 6 a 1 día, y `Mono 7 NASA` a 2 días).
+* **Cero Robots Consecutivos:** Hay siempre al menos una clase de IA o Monográfico entre robots para mantener frescura didáctica.
+* **Corte Limpio de Navidad:** Sesión 04 cierra el año el 17/12. A la vuelta de vacaciones (12/01) se arranca en limpio con la **Sesión 05**, haciendo correr todas las sesiones posteriores de IA hasta la Sesión 12.
+* **Sesión 03 sin Cómics:** Purgada de los 4 ítems de cómic (reubicados en Monográficos 2 y 3), estructurada en 15 recursos en 2 días.
 
 ### 2. Cronograma Inmediato de Noviembre 2026
-* **Clase 11 (05/11, Jueves - IMPARTIDA AYER):** ROB 1.3 Ascensor + IA Sesión 02 (Ítems 10 a 13).
-* **Clase 12 (10/11, Martes):** IA Sesión 02 (Radar Anti-Estafas - Finalización).
-* **Clase 13 (12/11, Jueves):** ROB 1.4 Semáforos inteligentes (¡Fin Bloque 1!).
-* **Clase 14 (17/11, Martes):** IA Sesión 03 (Cuento / Cómic con NLM - Parte 1/2).
-* **Clase 15 (19/11, Jueves):** **IA Monográfico 2 (Mundo Digital Senior / Gemini Book / NotebookLM)** *(Ajustado al día 19 por asistencia completa de todos los alumnos)*.
-* **Clase 16 (24/11, Martes):** **IA Monográfico 3 (Taller Especial Cuento con NLM)** *(Continuación inmediata de la técnica de NotebookLM)*.
+* **Clase 11 (05/11, Jueves - IMPARTIDA):** ROB 1.3 Ascensor + IA Sesión 02 (Ítems 10 a 13).
+* **Clase 12 (10/11, Martes - IMPARTIDA):** IA Sesión 02 (Radar Anti-Estafas - Finalización ítems 14 a 19).
+* **Clase 13 (12/11, Jueves - IMPARTIDA HOY):** ROB 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego - ¡Fin Bloque 1!).
+* **Clase 14 (17/11, Martes):** IA Sesión 03 (Pinacoteca, Estilos Visuales & Arte - Día 1/2).
+* **Clase 15 (19/11, Jueves):** **IA Monográfico 2 (Mundo Digital Senior / NotebookLM)** *(Ajustado al día 19 por asistencia completa)*.
+* **Clase 16 (24/11, Martes):** **IA Monográfico 3 (Taller Especial Cuentos y Cómics con NLM)** *(Continuación inmediata de NotebookLM)*.
+* **Clase 17 (26/11, Jueves):** ROB 2.1 Silla de Ruedas Eléctrica (Inicio Bloque 2).
+* **Clase 18 (01/12, Martes):** IA Sesión 03 (Ciencia, Vida Práctica & Radar Geopolítico - Día 2/2).
 
-### 3. Repartición Matemática del Calendario Restante (48 clases)
-* **Robótica:** 3 impartidas (1.1, 1.2, 1.3) + 24 proyectadas = **27 clases totales** (Bloques 1 al 5 completos al 100% + Bloque 6.1 Transporte Espacial).
-* **IA:** 8 impartidas + 24 proyectadas = **32 clases totales** (6 Monográficos completos + Sesiones IA 01 a 11 + Clausura).
-* **Total:** 11 impartidas + 48 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (48 / 48 restantes)!**
+### 3. Repartición Matemática del Calendario Restante (46 clases)
+* **Robótica:** 4 impartidas (1.1, 1.2, 1.3, 1.4) + 21 proyectadas = **25 clases totales** (Bloques 1 al 6 prioritario completo).
+* **IA:** 9 impartidas + 25 proyectadas = **34 clases totales** (7 Monográficos + Sesiones IA 03 a 11 + Sesión 12).
+* **Total:** 13 impartidas + 46 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (46 / 46 restantes)!**
 
 ---
 
@@ -129,4 +131,6 @@ El libro contiene exactamente **3 hojas oficiales**:
 | **8** | 27/10/2026 | Martes | 1.5 h | **Monográfico 2 IA entero** | 12.0 h | Monográfico 2 IA impartido entero |
 | **9** | 29/10/2026 | Jueves | 1.5 h | **ROB.1: 1.2 Lavadora + IA: Sesión 2 (Ítems 09 y 09B)** | 13.5 h | Impartidos ROB.1 (1.2 Lavadora en 1 día) y 2 ítems de IA Sesión 2 |
 | **10** | 03/11/2026 | Martes | 1.5 h | **IA: Sesión 02 (Radar Anti-Estafas - Hasta ítem 09 incluido)** | 15.0 h | Impartida hasta ítem 09 incluido |
-| **11** | 05/11/2026 | Jueves | 1.5 h | **ROB.1: 1.3 Ascensor + IA: Sesión 02 (Ítems 10 a 13)** | 16.5 h | Impartido ROB 1.3 Ascensor y avance de IA Sesión 02 (ítems 10 a 13). Próximo día se finaliza Sesión 02. |
+| **11** | 05/11/2026 | Jueves | 1.5 h | **ROB.1: 1.3 Ascensor + IA: Sesión 02 (Ítems 10 a 13)** | 16.5 h | Impartido ROB 1.3 Ascensor y avance de IA Sesión 02 (ítems 10 a 13) |
+| **12** | 10/11/2026 | Martes | 1.5 h | **IA: Sesión 02 (Radar Anti-Estafas - Finalización ítems 14 a 19)** | 18.0 h | Finalización de Sesión 02 (Radar Anti-Estafas concluido al 100% con éxito) |
+| **13** | 12/11/2026 | Jueves | 1.5 h | **ROB.1: 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego)** | 19.5 h | Impartida Clase 1.4 Semáforos: P3. Bloques y P4. Juego (Programación por bloques y retos interactivos de tráfico autónomo) |
