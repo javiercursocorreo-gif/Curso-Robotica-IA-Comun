@@ -3,7 +3,7 @@
 **Curso:** Robótica e Inteligencia Artificial  
 **Horario habitual:** Martes y Jueves (1.5 horas por sesión / 90 minutos)  
 **Periodo lectivo:** 01/10/2026 a 30/05/2027 (59 clases lectivas totales = 88.5 h)  
-**Estado actual (al 12/11/2026):** **13 clases impartidas (19.5 h)** | **46 clases restantes (69.0 h)**  
+**Estado actual (al 17/11/2026):** **14 clases impartidas (21.0 h)** | **45 clases restantes (67.5 h)**  
 
 ---
 
@@ -77,34 +77,38 @@ El libro contiene exactamente **2 hojas oficiales**:
 
 | Hoja | Nombre | Contenido y Función |
 | :---: | :--- | :--- |
-| **Hoja 1** | **`Bitacora de Clases`** | Registro real acumulado clase a clase (13 sesiones impartidas, 19.5 h) + panel superior de métricas oficiales al 27 de mayo de 2027. |
-| **Hoja 2** | **`Calendario Oficial Robótica-IA`** | Itinerario oficial proyectado día a día (69 fechas: 59 lectivas + 10 no lectivas), con alternancia estricta (21 Robótica + 7 Monográficos IA + 18 Sesiones IA Comodín = 46 clases restantes exactas). Cero robots consecutivos y corte limpio en Navidad para arrancar con Sesión 05 en enero. |
+| **Hoja 1** | **`Bitacora de Clases`** | Registro real acumulado clase a clase (14 sesiones impartidas, 21.0 h) + panel superior de métricas oficiales al 27 de mayo de 2027. |
+| **Hoja 2** | **`Calendario Oficial Robótica-IA`** | Itinerario oficial proyectado día a día (69 fechas: 59 lectivas + 10 no lectivas), con alternancia estricta (19 Robótica + 7 Monográficos IA + 19 Sesiones IA Comodín = 45 clases restantes exactas). Cero robots consecutivos y corte limpio en Navidad para arrancar con Sesión 05 en enero. |
 
 ---
 
-## 🌟 Análisis del Itinerario Oficial: Alternancia Robótica - IA (Actualizado al 12/11/2026)
+## 🌟 Análisis del Itinerario Oficial: Alternancia Robótica - IA (Actualizado al 17/11/2026)
 
 ### 1. Principios Pedagógicos Clave
-* **Prioridad Inamovible 1 (Robótica):** 21 clases restantes (con `5.3 MIXAMO` a 2 días y `6.2 Star Wars` a 2 días; y retiradas `2.4`, `2.5`, `3.2`, `4.1`, `4.2`, `4.3` y `4.4`).
+* **Prioridad Inamovible 1 (Robótica):** 19 clases restantes (con `2.3` fin de Bloque 2, `5.3 MIXAMO` a 2 días y `6.2 Star Wars` a 2 días; y retiradas `2.4`, `2.5`, `3.2`, `4.1`, `4.2`, `4.3` y `4.4`).
 * **Prioridad Inamovible 2 (Monográficos):** 7 clases garantizadas (Monográficos 2 al 6 a 1 día, y `Mono 7 NASA` a 2 días).
 * **Cero Robots Consecutivos:** Hay siempre al menos una clase de IA o Monográfico entre robots para mantener frescura didáctica.
 * **Corte Limpio de Navidad:** Sesión 04 cierra el año el 17/12. A la vuelta de vacaciones (12/01) se arranca en limpio con la **Sesión 05**, haciendo correr todas las sesiones posteriores de IA hasta la Sesión 12.
 * **Sesión 03 sin Cómics:** Purgada de los 4 ítems de cómic (reubicados en Monográficos 2 y 3), estructurada en 15 recursos en 2 días.
 
-### 2. Cronograma Inmediato de Noviembre 2026
-* **Clase 11 (05/11, Jueves - IMPARTIDA):** ROB 1.3 Ascensor + IA Sesión 02 (Ítems 10 a 13).
+### 2. Cronograma Inmediato de Noviembre - Diciembre 2026
 * **Clase 12 (10/11, Martes - IMPARTIDA):** IA Sesión 02 (Radar Anti-Estafas - Finalización ítems 14 a 19).
-* **Clase 13 (12/11, Jueves - IMPARTIDA HOY):** ROB 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego - ¡Fin Bloque 1!).
-* **Clase 14 (17/11, Martes):** IA Sesión 03 (Pinacoteca, Estilos Visuales & Arte - Día 1/2).
+* **Clase 13 (12/11, Jueves - IMPARTIDA):** ROB 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego - ¡Fin Bloque 1!).
+* **Clase 14 (17/11, Martes - IMPARTIDA HOY):** ROB 2.1 Silla de Ruedas Eléctrica + ROB 2.2 Roomba (Impartidas ambas clases enteras en la misma sesión).
 * **Clase 15 (19/11, Jueves):** **IA Monográfico 2 (Mundo Digital Senior / NotebookLM)** *(Ajustado al día 19 por asistencia completa)*.
 * **Clase 16 (24/11, Martes):** **IA Monográfico 3 (Taller Especial Cuentos y Cómics con NLM)** *(Continuación inmediata de NotebookLM)*.
-* **Clase 17 (26/11, Jueves):** ROB 2.1 Silla de Ruedas Eléctrica (Inicio Bloque 2).
+* **Clase 17 (26/11, Jueves):** IA Sesión 03 (Pinacoteca, Estilos Visuales & Arte - Día 1/2).
 * **Clase 18 (01/12, Martes):** IA Sesión 03 (Ciencia, Vida Práctica & Radar Geopolítico - Día 2/2).
+* **Clase 19 (03/12, Jueves):** ROB 2.3 Aparcamiento asistido (Condición IF-ELSE - ¡Fin Bloque 2!).
+* **Martes 08/12:** Festivo Nacional — Inmaculada Concepción.
+* **Clase 20 (10/12, Jueves):** IA Monográfico 4 (Mi Biografía con IA y Redacción Guiada).
+* **Clase 21 (15/12, Martes):** IA Sesión 04 (Aporte de Valor Senior y Prompts Cotidianos - Día 1/2).
+* **Clase 22 (17/12, Jueves):** IA Sesión 04 (Prompts Cotidianos y Resumen de Fin de Año - Día 2/2 - Cierre previo a Navidad).
 
-### 3. Repartición Matemática del Calendario Restante (46 clases)
-* **Robótica:** 4 impartidas (1.1, 1.2, 1.3, 1.4) + 21 proyectadas = **25 clases totales** (Bloques 1 al 6 prioritario completo).
-* **IA:** 9 impartidas + 25 proyectadas = **34 clases totales** (7 Monográficos + Sesiones IA 03 a 11 + Sesión 12).
-* **Total:** 13 impartidas + 46 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (46 / 46 restantes)!**
+### 3. Repartición Matemática del Calendario Restante (45 clases)
+* **Robótica:** 6 impartidas (1.1, 1.2, 1.3, 1.4, 2.1, 2.2) + 19 proyectadas = **25 clases totales** (Bloques 1 al 6 prioritario completo).
+* **IA:** 8 impartidas (+ presentación inaugural y Classroom) + 26 proyectadas = **34 clases totales** (7 Monográficos + Sesiones IA 03 a 11 + Sesión 12).
+* **Total:** 14 impartidas + 45 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (45 / 45 restantes)!**
 
 ---
 
@@ -134,3 +138,4 @@ El libro contiene exactamente **2 hojas oficiales**:
 | **11** | 05/11/2026 | Jueves | 1.5 h | **ROB.1: 1.3 Ascensor + IA: Sesión 02 (Ítems 10 a 13)** | 16.5 h | Impartido ROB 1.3 Ascensor y avance de IA Sesión 02 (ítems 10 a 13) |
 | **12** | 10/11/2026 | Martes | 1.5 h | **IA: Sesión 02 (Radar Anti-Estafas - Finalización ítems 14 a 19)** | 18.0 h | Finalización de Sesión 02 (Radar Anti-Estafas concluido al 100% con éxito) |
 | **13** | 12/11/2026 | Jueves | 1.5 h | **ROB.1: 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego)** | 19.5 h | Impartida Clase 1.4 Semáforos: P3. Bloques y P4. Juego (Programación por bloques y retos interactivos de tráfico autónomo) |
+| **14** | 17/11/2026 | Martes | 1.5 h | **ROB.2: 2.1 Silla de ruedas eléctrica + 2.2 Roomba** | 21.0 h | Impartidas clases 2.1 (Silla de ruedas - tracción diferencial) y 2.2 (Roomba - bucle infinito con sensor y reto de bloques limpio) enteras en la misma sesión |
