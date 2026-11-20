@@ -5,9 +5,9 @@ generar_bitacora_completa_nativa.py
 Genera 'BITACORA_SEGUIMIENTO_CLASES.xlsx' utilizando EXCLUSIVAMENTE
 la biblioteca estándar de Python (sin pip, sin openpyxl, sin dependencias externas).
 Crea 2 hojas oficiales:
-1. 'Bitacora de Clases' (Registro real acumulado hasta Clase 14 [17/11/2026] + Resumen de Métricas).
-2. 'Calendario Oficial Robótica-IA' (Itinerario oficial definitivo de 45 clases restantes:
-   19 Robótica + 7 Monográficos con NASA a 2 días + 19 Sesiones IA Comodín,
+1. 'Bitacora de Clases' (Registro real acumulado hasta Clase 15 [19/11/2026] + Resumen de Métricas).
+2. 'Calendario Oficial Robótica-IA' (Itinerario oficial definitivo de 44 clases restantes:
+   19 Robótica + 7 Monográficos con NASA a 2 días + 18 Sesiones IA Comodín,
    cero clases consecutivas de Robótica y arranque en limpio con Sesión 05 a la vuelta de Navidad).
 """
 
@@ -149,7 +149,8 @@ clases_impartidas_data = [
     (11, "05/11/2026", "Jueves", "1.5 h", "ROB.1: 1.3 Ascensor + IA: Sesión 02 (Ítems 10 a 13)", "Impartido ROB 1.3 Ascensor y avance IA Sesión 02 (10-13)", "Ascensor terminado con éxito", "Mixta"),
     (12, "10/11/2026", "Martes", "1.5 h", "IA: Sesión 02 (Radar Anti-Estafas - Finalización ítems 14 a 19)", "Finalización de Sesión 02", "Radar Anti-Estafas concluido al 100% con éxito", "IA"),
     (13, "12/11/2026", "Jueves", "1.5 h", "ROB.1: 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego)", "Impartida Clase 1.4 Semáforos: P3. Bloques y P4. Juego", "Programación por bloques y retos interactivos de tráfico autónomo", "Robótica"),
-    (14, "17/11/2026", "Martes", "1.5 h", "ROB.2: 2.1 Silla de ruedas eléctrica + 2.2 Roomba", "Impartidas clases 2.1 y 2.2 enteras en la misma sesión", "2.1 Silla de ruedas (tracción diferencial) + 2.2 Roomba (bucle infinito y evasión por sensor)", "Robótica")
+    (14, "17/11/2026", "Martes", "1.5 h", "ROB.2: 2.1 Silla de ruedas eléctrica + 2.2 Roomba", "Impartidas clases 2.1 y 2.2 enteras en la misma sesión", "2.1 Silla de ruedas (tracción diferencial) + 2.2 Roomba (bucle infinito y evasión por sensor)", "Robótica"),
+    (15, "19/11/2026", "Jueves", "1.5 h", "IA: Monográfico 2 (Hasta Punto 5, Botón 2)", "Impartido Monográfico 2 hasta Punto 5, Botón 2", "Manejo de NotebookLM / Gemini Book avanzado hasta Punto 5 (Botón 2)", "IA (Monográfico)")
 ]
 
 # ------------------------------------------------------------------------------
@@ -165,13 +166,13 @@ def build_bitacora_rows():
     rows.append(f'<row r="2" ht="16">{cell_xml("A2", sub, 6)}</row>')
 
     r_box = [
-        ("MÉTRICA DEL CURSO", "VALOR", "ESTADO AL 17/11/2026"),
-        ("Sesiones Impartidas Acumuladas", "14 clases", "Octubre - Noviembre 2026"),
-        ("Horas Lectivas Impartidas", "21.0 h", "Equivalente al 23.7% del curso oficial"),
-        ("Sesiones Lectivas Restantes", "45 clases (67.5 h)", "Hasta el 27 de mayo de 2027"),
+        ("MÉTRICA DEL CURSO", "VALOR", "ESTADO AL 19/11/2026"),
+        ("Sesiones Impartidas Acumuladas", "15 clases", "Octubre - Noviembre 2026"),
+        ("Horas Lectivas Impartidas", "22.5 h", "Equivalente al 25.4% del curso oficial"),
+        ("Sesiones Lectivas Restantes", "44 clases (66.0 h)", "Hasta el 27 de mayo de 2027"),
         ("Total Sesiones Planificadas", "59 clases (88.5 h)", "Cálculo oficial con festivos excluidos"),
         ("Robótica Impartida", "6 robots completos", "1.1 Puerta, 1.2 Lavadora, 1.3 Ascensor, 1.4 Semáforos, 2.1 Silla de Ruedas y 2.2 Roomba"),
-        ("IA Impartida", "Sesión 01 + Sesión 02 (100%) + Mono 2", "Próxima sesión 19/11 arranca Mono 2 completo / Sesión 03")
+        ("IA Impartida", "Sesión 01 + Sesión 02 (100%) + Mono 2 (Punto 5.2)", "Próxima sesión 24/11 fin de Mono 2 + Mono 3 (Cómic NLM)")
     ]
     for ro, (c1, c2, c3) in enumerate(r_box, start=4):
         st = h_style if ro == 4 else 5
@@ -252,10 +253,10 @@ def build_official_calendar_rows():
 
     r_box = [
         ("PARÁMETRO DEL CURSO", "VALOR", "DIAGNÓSTICO AL 30 DE MAYO"),
-        ("Total Sesiones Lectivas Restantes", "45 clases (67.5 h)", "De 19/11/2026 a 27/05/2027"),
+        ("Total Sesiones Lectivas Restantes", "44 clases (66.0 h)", "De 24/11/2026 a 27/05/2027"),
         ("Robótica Programada (Bloques 1 al 6)", "19 clases restantes (25 totales)", "2.3, 3.1, 3.3-3.5, 4.5-4.6, B5 entero (MIXAMO 2 días), B6.1-B6.4 (Star Wars 2 días)"),
-        ("IA Programada (Monográficos + Sesiones)", "26 clases restantes (34 totales)", "7 Monográficos (NASA 2 días) + Sesiones 03 a 11 (2 días) + Sesión 12"),
-        ("¿LLEGAMOS BIEN O NOS PASAMOS?", "🎯 ENCAJE EXACTO (45 / 45)", "¡CERO DÍAS DE DESVIACIÓN! Cierre oficial el 27/05/2027"),
+        ("IA Programada (Monográficos + Sesiones)", "25 clases restantes (34 totales)", "7 Monográficos (NASA 2 días) + Sesiones 03 a 11 (2 días) + Sesión 12"),
+        ("¿LLEGAMOS BIEN O NOS PASAMOS?", "🎯 ENCAJE EXACTO (44 / 44)", "¡CERO DÍAS DE DESVIACIÓN! Cierre oficial el 27/05/2027"),
         ("Consecutividad de Robótica", "0 clases consecutivas", "Siempre IA o Monográfico entre robots (alternancia limpia)"),
         ("Ajuste de Navidad", "Corte limpio en Sesión 04", "Arranque en limpio con Sesión 05 a la vuelta de vacaciones"),
         ("Techo Robótica al 27 de Mayo", "Bloque 6.4 (Interstellar)", "Naves espaciales, Star Trek, Gran Museo Star Wars y Androides"),
@@ -271,16 +272,14 @@ def build_official_calendar_rows():
                 cell_xml("D14", "ÁREA", h_style) + cell_xml("E14", "ESTADO", h_style) +
                 cell_xml("F14", "TEMARIO PROYECTADO", h_style) + cell_xml("G14", "HORAS ACUM.", h_style) + cell_xml("H14", "HITO PEDAGÓGICO", h_style) + '</row>')
 
-    # 45 clases proyectadas oficiales
+    # 44 clases proyectadas oficiales
     future_schedule = [
-        # Clase 15 (19/11/2026, Jue)
-        ("IA (Monográfico)", "IA: Monográfico 2 (Mundo Digital Senior / NotebookLM)", "Día 19 - Asistencia completa"),
         # Clase 16 (24/11/2026, Mar)
-        ("IA (Monográfico)", "IA: Monográfico 3 (Taller Especial Cuentos y Cómics con NLM)", "Continuación Mono 2"),
+        ("IA (Monográfico)", "IA: Fin Monográfico 2 (NotebookLM) + Monográfico 3 (Cómic Ilustrado con IA)", "Conclusión Mono 2 + Taller Mono 3 Cómic"),
         # Clase 17 (26/11/2026, Jue)
-        ("IA", "IA: Sesión 03 (Pinacoteca, Estilos Visuales & Arte - Día 1/2)", "Inicio Sesión 03 [Sin cómics]"),
+        ("IA", "IA: Sesión 03 (Pinacoteca, Cómics [CUENT-003] & Flow - Día 1/2)", "Inicio Sesión 03 (con Cómics)"),
         # Clase 18 (01/12/2026, Mar)
-        ("IA", "IA: Sesión 03 (Ciencia, Vida Práctica & Radar Geopolítica - Día 2/2)", "Fin Sesión 03 (15 recursos)"),
+        ("IA", "IA: Sesión 03 (Ciencia, Vida Práctica & Radar Geopolítica - Día 2/2)", "Fin Sesión 03 (19 recursos)"),
         # Clase 19 (03/12/2026, Jue)
         ("Robótica", "ROB: 2.3 Aparcamiento asistido (Condición IF-ELSE)", "Fin Bloque 2"),
         # Clase 20 (10/12/2026, Jue)
@@ -388,7 +387,7 @@ def build_official_calendar_rows():
                             cell_xml(f"H{r_num}", "Sin clase programada", 11) + '</row>')
             else:
                 h_acum += 1.5
-                if clase_cont <= 14:
+                if clase_cont <= 15:
                     item_real = clases_impartidas_data[clase_cont - 1]
                     area_v = item_real[7]
                     tem_v = item_real[4]
@@ -396,7 +395,7 @@ def build_official_calendar_rows():
                     est_v = "Impartida"
                     f_st = 8
                 else:
-                    f_idx = clase_cont - 15
+                    f_idx = clase_cont - 16
                     area_v, tem_v, obs_v = future_schedule[f_idx]
                     est_v = "Proyectada"
                     if "Monográfico" in area_v:
@@ -478,8 +477,8 @@ except Exception as e:
     subprocess.run(['cp', '-f', temp_file, EXCEL_PATH], check=False)
 
 print("--> 'BITACORA_SEGUIMIENTO_CLASES.xlsx' GENERADO CON ÉXITO:")
-print("    Hoja 1: 'Bitacora de Clases' (Registro real con Clase 14 de hoy 17/11/2026 + Resumen de Métricas).")
-print("    Hoja 2: 'Calendario Oficial Robótica-IA' (Itinerario Oficial Definitivo con 45 clases restantes,")
-print("            19 Robótica, 7 Monográficos con NASA a 2 días, 19 IA Comodín, 0 robots consecutivos")
+print("    Hoja 1: 'Bitacora de Clases' (Registro real con Clase 15 de hoy 19/11/2026 + Resumen de Métricas).")
+print("    Hoja 2: 'Calendario Oficial Robótica-IA' (Itinerario Oficial Definitivo con 44 clases restantes,")
+print("            19 Robótica, 7 Monográficos con NASA a 2 días, 18 IA Comodín, 0 robots consecutivos")
 print("            y arranque en limpio con Sesión 05 a la vuelta de Navidad).")
 print("    100% nativo en biblioteca estándar de Python (sin pip ni dependencias externas).")
