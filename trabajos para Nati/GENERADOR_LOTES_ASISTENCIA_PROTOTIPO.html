@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador por Lotes de Hojas de Asistencia • Centro de Mayores</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    body {
+      background: #f1f5f9;
+      margin: 0;
+      padding: 20px;
+      color: #0f172a;
+    }
+    .no-print {
+      background: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 950px;
+      margin: 0 auto 25px auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+    .no-print h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #0284c7;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    select, button {
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+    button.btn-primary {
+      background: #0284c7;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button.btn-primary:hover {
+      background: #0369a1;
+    }
+    .sheet-page {
+      background: white;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto 30px auto;
+      padding: 20px 25px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      page-break-after: always;
+    }
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+    .sheet-header h1 {
+      font-size: 16px;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .sheet-info-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #f8fafc;
+      padding: 6px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+    table.attendance-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+    table.attendance-table th, table.attendance-table td {
+      border: 1px solid #64748b;
+      text-align: center;
+      padding: 3px 1px;
+    }
+    table.attendance-table th {
+      background: #e2e8f0;
+      font-weight: bold;
+    }
+    .col-num { width: 24px; }
+    .col-name { width: 210px; text-align: left !important; padding-left: 6px !important; }
+    .day-col {
+      width: 18px;
+      font-size: 8.5px;
+      font-weight: 600;
+    }
+    .sub-col-header {
+      font-size: 8px;
+      padding: 1px 0 !important;
+    }
+    .sub-col-s { background: #f0fdf4 !important; color: #166534; }
+    .sub-col-n { background: #fef2f2 !important; color: #991b1b; }
+    .sub-col-j { background: #fefce8 !important; color: #854d0e; }
+    .cell-box {
+      height: 18px;
+      font-size: 9px;
+    }
+    .sheet-footer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #475569;
+    }
+    .signature-area {
+      border-top: 1px dashed #64748b;
+      width: 180px;
+      padding-top: 4px;
+      text-align: center;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .sheet-page {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        page-break-after: always;
+        height: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print">
+    <div>
+      <h2>🖨️ Generador por Lotes • Plantillas Mensuales con Casillas OCR (S / N / J)</h2>
+      <p style="margin: 4px 0 0; font-size: 12px; color: #64748b;">
+        Genera todas las hojas del centro de un solo tirón listas para imprimir en PDF.
+      </p>
+    </div>
+    <div class="controls">
+      <label for="monthSelect" style="font-size: 13px; font-weight: bold;">Mes:</label>
+      <select id="monthSelect">
+        <option value="11-2026" selected>Noviembre 2026</option>
+        <option value="12-2026">Diciembre 2026</option>
+        <option value="01-2027">Enero 2027</option>
+      </select>
+      <button class="btn-primary" onclick="window.print()">Imprimir Todo el Lote (PDF)</button>
+    </div>
+  </div>
+
+  <div id="sheetsContainer">
+    <!-- PÁGINA 1: GIMNASIA -->
+    <div class="sheet-page">
+      <div class="sheet-header">
+        <div>
+          <h1>Centro de Mayores • Control de Asistencia</h1>
+          <small style="color: #64748b;">Diseño optimizado para lectura visual de cruces [S: Sí | N: No | J: Justificada]</small>
+        </div>
+        <div style="font-weight: bold; font-size: 12px;">Curso 2026-2027</div>
+      </div>
+
+      <div class="sheet-info-bar">
+        <div><strong>Actividad:</strong> Gimnasia de Mantenimiento (Grupo A)</div>
+        <div><strong>Profesor/a:</strong> Marta Gómez</div>
+        <div><strong>Horario:</strong> Lunes y Miércoles (10:00 - 11:30)</div>
+        <div><strong>Mes:</strong> Noviembre 2026 (8 sesiones)</div>
+      </div>
+
+      <table class="attendance-table">
+        <thead>
+          <tr>
+            <th class="col-num" rowspan="2">Nº</th>
+            <th class="col-name" rowspan="2">Nombre y Apellidos</th>
+            <!-- 8 sesiones con triple columna S / N / J -->
+            <th colspan="3">02 Nov (L)</th>
+            <th colspan="3">04 Nov (X)</th>
+            <th colspan="3">09 Nov (L)</th>
+            <th colspan="3">11 Nov (X)</th>
+            <th colspan="3">16 Nov (L)</th>
+            <th colspan="3">18 Nov (X)</th>
+            <th colspan="3">23 Nov (L)</th>
+            <th colspan="3">25 Nov (X)</th>
+            <th colspan="3" style="width: 70px;">TOTAL</th>
+            <th rowspan="2" style="width: 90px;">Observaciones</th>
+          </tr>
+          <tr>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="col-name">Álvarez Romero, Carmen</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>2</td><td class="col-name">Benítez Santos, Manuel</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>3</td><td class="col-name">Castillo Moreno, Dolores</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>4</td><td class="col-name">Díaz Herrero, Antonio</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>5</td><td class="col-name">Fernández Gil, Pilar</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>6</td><td class="col-name">García López, Francisco</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>7</td><td class="col-name">López Martínez, Rosario</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>8</td><td class="col-name">Ruiz Navarro, Josefa</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sheet-footer">
+        <div class="signature-area">Firma Profesor/a</div>
+        <div style="font-size: 9px; align-self: center;">Marcar con una 'X' clara en la casilla: <strong>S</strong> (Sí asistió) | <strong>N</strong> (Falta injustificada) | <strong>J</strong> (Falta justificada)</div>
+        <div class="signature-area">Vº Bº Coordinación</div>
+      </div>
+    </div>
+
+    <!-- PÁGINA 2: PILATES (Salto de página automático) -->
+    <div class="sheet-page">
+      <div class="sheet-header">
+        <div>
+          <h1>Centro de Mayores • Control de Asistencia</h1>
+          <small style="color: #64748b;">Diseño optimizado para lectura visual de cruces [S: Sí | N: No | J: Justificada]</small>
+        </div>
+        <div style="font-weight: bold; font-size: 12px;">Curso 2026-2027</div>
+      </div>
+
+      <div class="sheet-info-bar">
+        <div><strong>Actividad:</strong> Pilates Terapéutico</div>
+        <div><strong>Profesor/a:</strong> Carlos Sánchez</div>
+        <div><strong>Horario:</strong> Martes y Jueves (11:30 - 13:00)</div>
+        <div><strong>Mes:</strong> Noviembre 2026 (8 sesiones)</div>
+      </div>
+
+      <table class="attendance-table">
+        <thead>
+          <tr>
+            <th class="col-num" rowspan="2">Nº</th>
+            <th class="col-name" rowspan="2">Nombre y Apellidos</th>
+            <th colspan="3">03 Nov (M)</th>
+            <th colspan="3">05 Nov (J)</th>
+            <th colspan="3">10 Nov (M)</th>
+            <th colspan="3">12 Nov (J)</th>
+            <th colspan="3">17 Nov (M)</th>
+            <th colspan="3">19 Nov (J)</th>
+            <th colspan="3">24 Nov (M)</th>
+            <th colspan="3">26 Nov (J)</th>
+            <th colspan="3" style="width: 70px;">TOTAL</th>
+            <th rowspan="2" style="width: 90px;">Observaciones</th>
+          </tr>
+          <tr>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+            <th class="sub-col-header sub-col-s">S</th><th class="sub-col-header sub-col-n">N</th><th class="sub-col-header sub-col-j">J</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="col-name">Blanco Ramos, Teresa</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>2</td><td class="col-name">Cano Serrano, Fernando</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+          <tr><td>3</td><td class="col-name">Iglesias Vega, Victoria</td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td class="cell-box"></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sheet-footer">
+        <div class="signature-area">Firma Profesor/a</div>
+        <div style="font-size: 9px; align-self: center;">Marcar con una 'X' clara en la casilla: <strong>S</strong> (Sí asistió) | <strong>N</strong> (Falta injustificada) | <strong>J</strong> (Falta justificada)</div>
+        <div class="signature-area">Vº Bº Coordinación</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

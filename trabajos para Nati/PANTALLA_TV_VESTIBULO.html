@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla TV Vestíbulo • Centro de Mayores</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #020617;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 40px;
+    }
+
+    /* BARRA SUPERIOR DE LA TV */
+    .tv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #1e293b;
+      padding-bottom: 16px;
+    }
+    .tv-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .tv-brand-icon {
+      font-size: 2.8rem;
+    }
+    .tv-brand-name {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: #f8fafc;
+    }
+    .tv-brand-sub {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .tv-clock-box {
+      text-align: right;
+    }
+    .tv-clock-time {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #38bdf8;
+      letter-spacing: 2px;
+    }
+    .tv-clock-date {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    /* CONTENEDOR CENTRAL DEL SLIDE */
+    .tv-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+    }
+
+    .slide-card {
+      background: #0f172a;
+      border: 4px solid #38bdf8;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 1300px;
+      height: 100%;
+      max-height: 640px;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(56, 189, 248, 0.25);
+      animation: fadeInSlide 0.6s ease;
+    }
+
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .slide-photo-side {
+      position: relative;
+      background: #020617;
+    }
+    .slide-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .slide-badge-overlay {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 2px solid #38bdf8;
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+    }
+
+    .slide-text-side {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .slide-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+    .slide-meta {
+      background: rgba(56, 189, 248, 0.12);
+      border-left: 5px solid #38bdf8;
+      padding: 12px 18px;
+      border-radius: 0 12px 12px 0;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #bae6fd;
+      margin-bottom: 20px;
+    }
+    .slide-body {
+      font-size: 1.45rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      font-weight: 600;
+      flex-grow: 1;
+    }
+    .slide-footer-callout {
+      border-top: 2px solid #334155;
+      padding-top: 16px;
+      font-size: 1.2rem;
+      color: #94a3b8;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pulse-dot {
+      width: 14px;
+      height: 14px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #22c55e;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    /* BARRA INFERIOR DEL KIOSCO */
+    .tv-footer {
+      border-top: 3px solid #1e293b;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.15rem;
+      color: #94a3b8;
+      font-weight: 700;
+    }
+    .progress-dots {
+      display: flex;
+      gap: 10px;
+    }
+    .p-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #334155;
+      transition: all 0.3s;
+    }
+    .p-dot.active {
+      background: #38bdf8;
+      transform: scale(1.3);
+      box-shadow: 0 0 10px #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA DE LA PANTALLA TV -->
+  <header class="tv-header">
+    <div class="tv-brand">
+      <div class="tv-brand-icon">🏛️</div>
+      <div>
+        <div class="tv-brand-name">Centro de Mayores</div>
+        <div class="tv-brand-sub">Canal Informativo del Vestíbulo • Emisión en Directo</div>
+      </div>
+    </div>
+    <div class="tv-clock-box">
+      <div class="tv-clock-time" id="clockTime">--:--</div>
+      <div class="tv-clock-date" id="clockDate">Cargando fecha...</div>
+    </div>
+  </header>
+
+  <!-- ESCENARIO CENTRAL DEL ANUNCIO -->
+  <main class="tv-stage">
+    <div class="slide-card" id="slideCard">
+      <div class="slide-photo-side">
+        <img src="" alt="" class="slide-photo" id="slideImg">
+        <div class="slide-badge-overlay" id="slideBadge">🚌 EXCURSIONES</div>
+      </div>
+      <div class="slide-text-side">
+        <div>
+          <h1 class="slide-title" id="slideTitle">Cargando...</h1>
+          <div class="slide-meta" id="slideMeta">📅 Fecha y Plazas</div>
+          <div class="slide-body" id="slideBody">Texto...</div>
+        </div>
+        <div class="slide-footer-callout">
+          <div class="pulse-dot"></div>
+          <span>Inscripciones y consultas en la Secretaría del Centro</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA DEL VESTÍBULO -->
+  <footer class="tv-footer">
+    <div>📱 Consulta todas las noticias desde tu móvil en la web oficial del centro</div>
+    <div class="progress-dots" id="dotsContainer"></div>
+    <div>Siguiente aviso en <span id="countdown" style="color: #38bdf8;">8</span>s</div>
+  </footer>
+
+  <script>
+    // DIAPOSITIVAS DESTACADAS PARA LA PANTALLA DE LA TELEVISIÓN
+    const tvSlides = [
+      {
+        badge: "🚌 PRÓXIMA EXCURSIÓN",
+        color: "#0d7a57",
+        title: "Viaje de Día Completo a Toledo Histórico",
+        meta: "📅 Jueves 14 de Mayo • Salida: 08:30 h • Precio: 32 €",
+        body: "Visita guiada por el casco histórico, paseo accesible en llano y comida típica toledana en restaurante concertado. Últimas 8 plazas disponibles en secretaría.",
+        img: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        badge: "🍲 MENÚ DE CAFETERÍA",
+        color: "#9b2c2c",
+        title: "Comida Casera Diaria por 6,50 €",
+        meta: "De Lunes a Viernes de 13:00 a 15:30 h para todos los socios",
+        body: "Primer plato de cuchara (lentejas, cocido, paella o cremas), segundo de carne o pescado fresco, pan recién hecho, bebida y postres caseros elaborados a diario.",
+        img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        badge: "🎨 TALLER TECNOLÓGICO",
+        color: "#5b21b6",
+        title: "Nuevo Taller: Inteligencia Artificial Cotidiana",
+        meta: "📅 Martes y Jueves de 10:30 a 12:00 h • Aula de Informática",
+        body: "Aprende a dialogar con Gemini en el móvil, restaurar y colorear fotos antiguas de tu familia y resolver dudas diarias. No hace falta saber nada de ordenadores.",
+        img: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        badge: "📜 AVISO DE SECRETARÍA",
+        color: "#1e3a8a",
+        title: "Salas Climatizadas y Horario de Atención",
+        meta: "Apertura del centro de 09:00 a 20:30 h continuado",
+        body: "Las salas de lectura y tertulia cuentan con aire acondicionado y prensa diaria a disposición de los socios. Atención del Administrador en secretaría de 10:00 a 13:30 h.",
+        img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
+      }
+    ];
+
+    
+    // Sincronización con el Editor Particular del Backend
+    try {
+      const stored = localStorage.getItem('centro_mayores_tv_slides_v1');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          tvSlides.length = 0;
+          parsed.forEach(s => tvSlides.push(s));
+        }
+      }
+    } catch(e) {}
+
+    let currentSlide = 0;
+    const slideDuration = 8; // segundos por diapositiva
+    let secondsLeft = slideDuration;
+
+    function renderSlide(idx) {
+      const s = tvSlides[idx];
+      const card = document.getElementById('slideCard');
+      
+      // Reiniciar animación
+      card.style.animation = 'none';
+      card.offsetHeight; // forzar reflow
+      card.style.animation = 'fadeInSlide 0.5s ease';
+
+      card.style.borderColor = s.color;
+      document.getElementById('slideBadge').textContent = s.badge;
+      document.getElementById('slideBadge').style.borderColor = s.color;
+      document.getElementById('slideImg').src = s.img;
+      document.getElementById('slideTitle').textContent = s.title;
+      document.getElementById('slideMeta').textContent = s.meta;
+      document.getElementById('slideMeta').style.borderLeftColor = s.color;
+      document.getElementById('slideBody').textContent = s.body;
+
+      // Actualizar puntos de progreso
+      document.querySelectorAll('.p-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+    }
+
+    function initDots() {
+      const container = document.getElementById('dotsContainer');
+      container.innerHTML = '';
+      tvSlides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'p-dot' + (i === 0 ? ' active' : '');
+        container.appendChild(dot);
+      });
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('clockTime').textContent = `${hours}:${minutes}`;
+
+      const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+      document.getElementById('clockDate').textContent = now.toLocaleDateString('es-ES', options);
+    }
+
+    // CICLO DE ROTACIÓN DE LA TV
+    initDots();
+    renderSlide(0);
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    setInterval(() => {
+      secondsLeft--;
+      document.getElementById('countdown').textContent = secondsLeft;
+      if (secondsLeft <= 0) {
+        currentSlide = (currentSlide + 1) % tvSlides.length;
+        renderSlide(currentSlide);
+        secondsLeft = slideDuration;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

@@ -1,84 +1,208 @@
-# ==============================================================================
-# PROMPT DE DIRECCIÓN DE ARTE Y ESTILO VISUAL PARA NOTEBOOKLM
-# PRESENTACIÓN OFICIAL: "GUÍA VISUAL DE GOOGLE CLASSROOM PARA EL ALUMNO"
-# ==============================================================================
-# Instrucciones: Copia íntegramente este texto y pégalo en la ventana de 
-# personalización / prompt de generación de presentación (diapositivas) en NotebookLM.
-# ==============================================================================
+# GUÍA DE PUBLICACIÓN EN GITHUB Y CLASSROOM (Workflow de Trabajo en Equipo)
 
-ORDEN DE DIRECCIÓN DE ARTE (OBLIGATORIA Y ESTRICTA):
+### INTRODUCCIÓN AL SISTEMA:
+Este no es un manual tradicional, es un flujo de trabajo para un equipo de dos: Tú (el Profesor) y Yo (Antigravity, tu asistente IA). Aquí explicamos exactamente quién se encarga de qué paso para que el contenido viaje desde tu Mac hasta Google Classroom sin que tengas que tocar código.
 
-Transforma el contenido didáctico en una presentación visual de 10 a 12 diapositivas de alta resolución, diseñada para que el alumnado adulto y sénior comprenda y navegue con total soltura por Google Classroom. 
+---
 
-La presentación debe EMULAR FIELMENTE LA PANTALLA REAL de Google Classroom en un navegador web moderno (Google Chrome en ordenador de escritorio o portátil).
+### FASE 1: PREPARACIÓN LOCAL EN EL MAC 🧑🏻‍🏫 TAREA TUYA
+1. Escribe tu teoría, genera tus PDFs, graba los vídeos y organiza todo en la carpeta correspondiente de tu Mac.
+2. Nombra los archivos correctamente (ej: `T0.DEBATE.pdf`, `T2.VIDEO.mp4`, etc.).
 
---------------------------------------------------------------------------------
-1. ATMÓSFERA GENERAL Y ESTILO ESTÉTICO
---------------------------------------------------------------------------------
-* Estilo: Sobrio, fotorrealista, corporativo y pedagógico (estilo presentación oficial de Google Workspace for Education / Google Keynote).
-* Entorno: Pantallas digitales nítidas, diáfanas y realistas.
-* Tono: Claro, amigable, estructurado y muy accesible para personas mayores (cero saturación visual, textos grandes y botones perfectamente señalizados).
+---
 
---------------------------------------------------------------------------------
-2. PALETA DE COLOR OFICIAL DE GOOGLE CLASSROOM
---------------------------------------------------------------------------------
-* Color principal / acentos de marca: Verde esmeralda Google Classroom (#0F9D58 / #137333) y Azul Google (#1A73E8).
-* Fondos de interfaz: Blanco puro (#FFFFFF) y gris neutro muy suave (#F8F9FA / #F1F3F4).
-* Textos: Gris grafito oscuro de alta legibilidad (#202124 y #3C4043) con excelente contraste tipográfico.
-* Elementos de foco: Recuadros nítidos con halo suave verde o azul y flechas minimalistas que indiquen exactamente dónde hacer clic.
+### FASE 2: SINCRONIZACIÓN AL SERVIDOR (GITHUB) 🤖 TAREA DE LA IA
+Tú me dices: *"Ya he metido todos los archivos nuevos en la carpeta del Mac, súbelos a GitHub"*.
+Yo (la IA) me encargo de:
+- Añadir los archivos creados o modificados.
+- Hacer el commit y enviarlos a la nube (`git push`) mediante el bloque de comandos correlativo.
+- **Objetivo:** Alojarlos gratis en internet para que Google Classroom pueda enlazarlos sin gastar espacio en tu Google Drive. Si algún día editas un PDF que ya subimos, solo tienes que pedirme que lo vuelva a subir y se actualizará automáticamente para todos tus alumnos sin tocar Classroom.
 
---------------------------------------------------------------------------------
-3. ELEMENTOS DE LA PANTALLA REAL QUE DEBEN MOSTRARSE Y DESCRIBIRSE
---------------------------------------------------------------------------------
-Cada diapositiva debe ilustrar con precisión fotográfica los componentes reales de la interfaz de Classroom que ve el estudiante:
+---
 
-A) LA CABECERA SUPERIOR (Navegación general):
-   - Extremo izquierdo: El botón de las 3 líneas horizontales (Menú principal / "Hamburguesa" ☰).
-   - Logotipo de Google Classroom junto al nombre oficial de la clase: "Curso de Tecnología: Robótica e IA".
-   - Extremo derecho: Icono de cuadrícula de 9 puntos (Google Apps / Waffle) y el círculo con la foto/avatar de la cuenta de Google del alumno.
+### FASE 3: CREACIÓN DEL PANEL UNIFICADO DE ENLACES 🤖 TAREA DE LA IA
+Tú me dices: *"Genera el CSV unificado con los enlaces actualizados"*.
+Yo (la IA) me encargo de:
+- Escanear las carpetas y generar el archivo maestro **`CURSO_IA_UNIFICADO.csv`** (dentro de `PANELES_CSV/`).
+- **Arquitectura de Mapa Único:** En lugar de saturar Classroom con docenas de enlaces sueltos, cada sección cuenta con un **Mapa Interactivo HTML único** (`MAPA_MONOGRAFICOS.html` para todos los monográficos y `MAPA_SESION_XX.html` para cada sesión), que dan acceso dinámico a todos los materiales, talleres interactivos y fichas sin rehacer publicaciones en Classroom.
 
-B) LAS 3 PESTAÑAS PRINCIPALES DEL ALUMNO (En el centro superior):
-   1. Pestaña "TABLÓN" (Novedades):
-      - Muestra el encabezado visual con la ilustración del curso.
-      - El muro central donde el profesor publica avisos de bienvenida, recordatorios y comunicados generales.
-      - Cajetín para que el alumno pueda escribir preguntas o comentarios al profesor.
-   2. Pestaña "TRABAJO DE CLASE" (El Corazón del Curso):
-      - La vista más importante: estructura ordenada por "Temas" (Semanas o Bloques temáticos).
-      - Botón superior "Ver tu trabajo" (resumen del estado de tareas del alumno).
-      - Las tarjetas de materiales educativos desplegables con su icono de marcapáginas/libro (fichas en PDF, simuladores interactivos, vídeos explicativos).
-      - Explicación de cómo hacer clic en "Ver material" para abrir los simuladores y documentos en pantalla completa sin instalar nada.
-   3. Pestaña "PERSONAS":
-      - Sección "Profesores": con el nombre y foto del docente del curso.
-      - Sección "Compañeros de clase": listado de los demás alumnos matriculados.
+---
 
-C) EL MENÚ LATERAL DESPLEGABLE DE LA IZQUIERDA (Al pulsar el icono ☰):
-   - Opción "Clases": vista general con las tarjetas de todas las aulas virtuales en las que participa el alumno.
-   - Opción "Calendario": vista en cuadrícula de fechas importantes.
-   - Opción "Tareas pendientes": lista organizada de actividades por entregar o ya completadas.
-   - Acceso directo con un clic a la clase activa.
-   - Opción "Ajustes": configuración de avisos por correo electrónico para no perderse ninguna lección.
+### FASE 4: PREPARACIÓN DE GOOGLE CLASSROOM 🧑🏻‍🏫 TAREA TUYA
+1. Entra en `classroom.google.com` con tu cuenta de profesor.
+2. Trabajamos con las **Clases Maestras Unificadas Anuales**:
+   - **CLASE DE IA (Curso Completo):** `IA. ---> ID REAL: 890436514251`
+   - **CLASE DE ROBÓTICA (Curso Completo):** `ROBÓTICA. ---> ID REAL: 890435922022`
 
---------------------------------------------------------------------------------
-4. ESTRUCTURA RECOMENDADA DE DIAPOSITIVAS
---------------------------------------------------------------------------------
-* Diapositiva 1: Portada oficial ("Guía Visual de Google Classroom: Tu Aula Virtual Paso a Paso").
-* Diapositiva 2: ¿Qué es Google Classroom y cómo entrar desde Google Chrome?
-* Diapositiva 3: La Pantalla Principal: Anatomía de la Cabecera y sus Elementos Clave.
-* Diapositiva 4: El Menú Lateral Izquierdo (☰): Clases, Calendario y Tareas Pendientes.
-* Diapositiva 5: Las 3 Pestañas del Alumno: Tablón, Trabajo de Clase y Personas.
-* Diapositiva 6: Pestaña 1 - El "Tablón": Dónde leer los avisos y comunicados del profesor.
-* Diapositiva 7: Pestaña 2 - "Trabajo de Clase": La biblioteca organizada por Temas.
-* Diapositiva 8: Cómo abrir una Lección: Fichas en PDF, Enlaces y Simuladores Interactivos.
-* Diapositiva 9: El Botón "Ver tu trabajo": Cómo comprobar tu progreso personal.
-* Diapositiva 10: Pestaña 3 - "Personas": Tus profesores y compañeros de aula.
-* Diapositiva 11: Cómo configurar las notificaciones para recibirlas en tu correo.
-* Diapositiva 12: Resumen y Consejos Prácticos: Cero complicaciones y acceso con 1 solo clic.
+---
 
---------------------------------------------------------------------------------
-5. PROHIBICIONES TERMINANTES (CRUCIAL):
---------------------------------------------------------------------------------
-* PROHIBIDO cualquier estética de dibujo infantil, cómic, caricatura, acuarela o fantasía.
-* PROHIBIDO inventar botones o pestañas que no existan en la interfaz real de Google Classroom (por ejemplo, NO incluir la pestaña "Calificaciones", ya que esa pestaña solo es visible para profesores).
-* PROHIBIDO interfaces oscuras distópicas, robots ficticios o decoraciones sobrecargadas.
-* Mantener la máxima fidelidad visual con el diseño limpio y minimalista de Google Workspace.
+### FASE 5: INGESTA DE DATOS (GOOGLE SHEETS) 🧑🏻‍🏫 TAREA TUYA
+1. Abre tu navegador en **Modo Incógnito / Ventana Privada** (vital para evitar conflictos entre cuentas de Google).
+2. Entra a Google Drive y abre tu hoja permanente: **`0.PANEL_CLASSROOM`**.
+3. Ve a **Archivo > Importar > Subir** y arrastra el archivo maestro:
+   - Para IA: **`CURSO_IA_UNIFICADO.csv`** (ubicado en `PANELES_CSV/`).
+4. Selecciona **Reemplazar hoja de cálculo actual** y pulsa **Importar**.
+5. En la **Columna A (`ID_CURSO`)**, pega el ID real de la clase:
+   - Para el curso de IA: **`890436514251`**
+   - Arrastra el número hacia abajo para que todas las filas tengan el ID.
 
+---
+
+### FASE 6: PUBLICACIÓN AUTOMÁTICA 🧑🏻‍🏫 TAREA TUYA
+1. Dentro de la hoja de Google Sheets, ve a **Extensiones > Apps Script**.
+2. Selecciona la función **`publicarTodoConTemas`** y pulsa **Ejecutar**.
+3. El script creará automáticamente los Temas en Classroom (`MONOGRAFICOS` y `SESIÓN 1` a `SESIÓN 60`) y cargará todos los mapas interactivos en modo **BORRADOR** (DRAFT).
+4. ¡Listo! Ya puedes ir publicándolos a los alumnos según avance el calendario de clases.
+
+---
+
+### 🚨 ANEXO 1: EL BOTÓN DEL PÁNICO (RESET COMPLETO DE CLASE) 🧑🏻‍🏫 TAREA TUYA
+Si la subida ha quedado desfasada o necesitas borrar TODO de Classroom para empezar de cero:
+1. Asegúrate de que el ID de la clase está puesto en la celda **A2** de la hoja (ej: `890436514251`).
+2. Ve a **Extensiones > Apps Script**, selecciona la función **`borrarAbsolutamenteTodo`** y pulsa **Ejecutar**.
+3. Toda la clase (Temas, Materiales y Borradores) quedará borrada en segundos.
+
+---
+
+### 📋 ANEXO 2: LISTADO MAESTRO DE IDs DE TUS CLASES
+
+#### 🟢 CLASES MAESTRAS VIGENTES (MODELO UNIFICADO ANUAL)
+- **IA (Curso Completo Anual):** `---> ID REAL: 890436514251`
+- **ROBÓTICA (Curso Completo Anual):** `---> ID REAL: 890435922022`
+
+#### 📦 HISTORIAL DE CLASES Y LOTES ANTERIORES (ARCHIVADAS)
+- *IA.MONOGRÁFICOS:* `ID REAL: 877999132773`
+- *IA1 (Sesiones 01 a 15):* `ID REAL: 826134766630`
+- *IA2 (Sesiones 16 a 30):* `ID REAL: 877174620039`
+- *IA3 (Sesiones 31 a 45):* `ID REAL: 877172188045`
+- *IA4 (Sesiones 46 a 60):* `ID REAL: 826136245220`
+- *IA.ÍNDICE:* `ID REAL: 877993104492`
+- *ROB+IA. Introducción:* `ID REAL: 876317836453`
+- *Bloque 1: ROB1.Un motor:* `ID REAL: 876316970006`
+- *Bloque 2: ROB2.Sensores-Decisiones:* `ID REAL: 876801831599`
+- *Bloque 3: ROB3.Mov Avanzado:* `ID REAL: 876804534725`
+- *Bloque 4: ROB4.Brazo robótico:* `ID REAL: 876848630130`
+- *Bloque 5: ROB5.Androides:* `ID REAL: 876849927384`
+- *Bloque 6: ROB6.Naves espaciales:* `ID REAL: 876845244997`
+- *Bloque 7: ROB7.Exploracion Espacial:* `ID REAL: 869853775914`
+
+---
+
+### ⚙️ ANEXO 3: EL CÓDIGO MAESTRO DE APPS SCRIPT (Copia de Seguridad)
+```javascript
+// 1. AVERIGUAR IDs
+function dimeMisIDs() {
+  var cursos = Classroom.Courses.list().courses;
+  if (cursos && cursos.length > 0) {
+    for (var i = 0; i < cursos.length; i++) {
+      Logger.log("Curso: " + cursos[i].name + "  --->  ID REAL: " + cursos[i].id);
+    }
+  } else {
+    Logger.log("No tienes cursos en esta cuenta.");
+  }
+}
+
+// 2. PUBLICAR AGRUPADO POR TEMAS (EN BORRADOR)
+function publicarTodoConTemas() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  var temasCacheados = {}; 
+  for (var i = 1; i < data.length; i++) {
+    var fila = data[i];
+    var cursoId = String(fila[0]).trim();
+    var claseNombre = String(fila[1]).trim();
+    var titulo = fila[2];
+    var descripcion = fila[3];
+    var urlGitHub = fila[4];
+    
+    if (!cursoId || cursoId === "") continue; 
+    
+    var topicId = null;
+    if (claseNombre !== "") {
+      var cacheKey = cursoId + "_" + claseNombre;
+      if (temasCacheados[cacheKey]) {
+        topicId = temasCacheados[cacheKey];
+      } else {
+        var existe = false;
+        try {
+          var response = Classroom.Courses.Topics.list(cursoId);
+          var temas = response.topic || [];
+          for (var t = 0; t < temas.length; t++) {
+            if (temas[t].name === claseNombre) {
+              topicId = temas[t].topicId;
+              existe = true;
+              break;
+            }
+          }
+        } catch(e) {}
+        
+        if (!existe) {
+          try {
+            var nuevoTema = Classroom.Courses.Topics.create({name: claseNombre}, cursoId);
+            topicId = nuevoTema.topicId;
+          } catch(e) {}
+        }
+        if (topicId) temasCacheados[cacheKey] = topicId;
+      }
+    }
+    
+    var material = {
+      title: titulo,
+      description: descripcion,
+      materials: [{ link: { url: urlGitHub } }],
+      state: "DRAFT"
+    };
+    
+    if (topicId) material.topicId = topicId;
+    
+    try {
+      Classroom.Courses.CourseWorkMaterials.create(material, cursoId);
+    } catch(e) {}
+  }
+}
+
+// 3. BOTÓN DEL PÁNICO (BORRAR TODO)
+function borrarAbsolutamenteTodo() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var cursoId = String(sheet.getRange("A2").getValue()).trim();
+  
+  if (!cursoId || cursoId === "") {
+    SpreadsheetApp.getUi().alert("Error: Introduce el ID del curso en la celda A2 antes de borrar.");
+    return;
+  }
+  
+  var pageTokenMats = null;
+  do {
+    try {
+      var params = { courseWorkMaterialStates: ["DRAFT", "PUBLISHED"] };
+      if (pageTokenMats) params.pageToken = pageTokenMats;
+      
+      var response = Classroom.Courses.CourseWorkMaterials.list(cursoId, params);
+      var mats = response.courseWorkMaterial || [];
+      for (var i = 0; i < mats.length; i++) {
+        Classroom.Courses.CourseWorkMaterials.remove(cursoId, mats[i].id);
+      }
+      pageTokenMats = response.nextPageToken;
+    } catch(e){
+      break;
+    }
+  } while (pageTokenMats);
+  
+  var pageTokenTemas = null;
+  do {
+    try {
+      var paramsTemas = {};
+      if (pageTokenTemas) paramsTemas.pageToken = pageTokenTemas;
+      
+      var responseTemas = Classroom.Courses.Topics.list(cursoId, paramsTemas);
+      var temas = responseTemas.topic || [];
+      for (var t = 0; t < temas.length; t++) {
+        Classroom.Courses.Topics.remove(cursoId, temas[t].topicId);
+      }
+      pageTokenTemas = responseTemas.nextPageToken;
+    } catch(e){
+      break;
+    }
+  } while (pageTokenTemas);
+}
+```

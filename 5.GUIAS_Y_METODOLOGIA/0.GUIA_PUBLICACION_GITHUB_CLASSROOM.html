@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Guía de Publicación en GitHub y Google Classroom</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; color: #1e293b; padding: 24px; max-width: 860px; margin: 0 auto; }
+h1 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 6px; font-size: 22px; }
+h2 { color: #0284c7; margin-top: 22px; font-size: 15px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+p, li { font-size: 13px; }
+.callout { background: #f0f9ff; border: 1px solid #38bdf8; border-radius: 8px; padding: 12px 16px; margin: 14px 0; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12.5px; }
+th, td { border: 1px solid #cbd5e1; padding: 8px 12px; text-align: left; }
+th { background-color: #f1f5f9; font-weight: bold; }
+.id-ia { color: #b91c1c; font-weight: bold; font-size: 14px; }
+.id-rob { color: #0284c7; font-weight: bold; font-size: 14px; }
+code { font-family: ui-monospace, Menlo, Monaco, Courier, monospace; background: #f1f5f9; padding: 2px 5px; border-radius: 4px; font-size: 12px; border: 1px solid #e2e8f0; }
+</style>
+</head>
+<body>
+
+<h1>GUÍA DE PUBLICACIÓN EN GITHUB Y GOOGLE CLASSROOM</h1>
+<p><em>Workflow Oficial de Trabajo en Equipo • Profesor (Tú) &amp; Asistente IA (Antigravity)</em></p>
+
+<div class="callout">
+<strong>INTRODUCCIÓN AL SISTEMA:</strong><br>
+Este flujo de trabajo está diseñado para un equipo de dos: <strong>Tú (el Profesor)</strong> y <strong>Yo (Antigravity, tu asistente IA)</strong>.
+Permite que todo el contenido viaje desde tu Mac hasta Google Classroom de forma ordenada, sin desfases de caché y sin tocar código.
+</div>
+
+<h2>FASE 1: PREPARACIÓN LOCAL EN EL MAC (TAREA DEL PROFESOR)</h2>
+<ol>
+<li>Escribe tu teoría, genera tus PDFs, graba los vídeos y organiza todo en la carpeta correspondiente de tu Mac.</li>
+<li>Nombra los archivos correctamente (ej: <code>T0.DEBATE.pdf</code>, <code>T2.VIDEO.mp4</code>, etc.).</li>
+</ol>
+
+<h2>FASE 2: SINCRONIZACIÓN AL SERVIDOR (GITHUB) (TAREA DE LA IA)</h2>
+<p>Tú me dices: <em>«Ya he metido todos los archivos nuevos en la carpeta del Mac, súbelos a GitHub»</em>.</p>
+<p>Yo (la IA) me encargo de añadir los archivos, hacer el commit y enviarlos a la nube (<code>git push origin main</code>) para alojarlos en GitHub Pages sin gastar cuota de Google Drive.</p>
+
+<h2>FASE 3: CREACIÓN DEL PANEL UNIFICADO DE ENLACES (TAREA DE LA IA)</h2>
+<p>Tú me dices: <em>«Genera el CSV unificado con los enlaces actualizados»</em>.</p>
+<p>Yo (la IA) me encargo de generar el archivo maestro <strong><code>PANELES_CSV/CURSO_IA_UNIFICADO.csv</code></strong> con los mapas interactivos.</p>
+
+<h2>FASE 4: PREPARACIÓN DE GOOGLE CLASSROOM (TAREA DEL PROFESOR)</h2>
+<p>Entra en <code>classroom.google.com</code> con tu cuenta de profesor. Trabajamos con las <strong>Clases Maestras Unificadas Anuales</strong>:</p>
+
+<table>
+<tr>
+<th>CLASE MAESTRA UNIFICADA</th>
+<th>IDENTIFICADOR REAL (ID CLASSROOM)</th>
+<th>ESTADO</th>
+</tr>
+<tr style="background:#fef2f2;">
+<td><strong>CURSO DE IA (Curso Completo Anual)</strong></td>
+<td class="id-ia">890436514251</td>
+<td style="color:#059669; font-weight:bold;">ACTIVO (VIGENTE)</td>
+</tr>
+<tr style="background:#f0fdf4;">
+<td><strong>CURSO DE ROBÓTICA (Curso Completo Anual)</strong></td>
+<td class="id-rob">890435922022</td>
+<td style="color:#059669; font-weight:bold;">ACTIVO (VIGENTE)</td>
+</tr>
+</table>
+
+<h2>FASE 5: INGESTA DE DATOS (GOOGLE SHEETS) (TAREA DEL PROFESOR)</h2>
+<ol>
+<li>Abre tu navegador en <strong>Modo Incógnito / Ventana Privada</strong> (evita conflictos entre cuentas de Google).</li>
+<li>Entra a Google Drive y abre tu hoja permanente: <strong><code>0.PANEL_CLASSROOM</code></strong>.</li>
+<li>Ve a <strong>Archivo &gt; Importar &gt; Subir</strong> y arrastra: <strong><code>PANELES_CSV/CURSO_IA_UNIFICADO.csv</code></strong>.</li>
+<li>Selecciona <strong>«Reemplazar hoja de cálculo actual»</strong> y pulsa <strong>Importar</strong>.</li>
+<li>En la <strong>Columna A (<code>ID_CURSO</code>)</strong>, introduce el identificador de la clase:
+<br>• Para el curso de IA: <strong>890436514251</strong> (arrastra hacia abajo para rellenar todas las filas).</li>
+</ol>
+
+<h2>FASE 6: PUBLICACIÓN AUTOMÁTICA (TAREA DEL PROFESOR)</h2>
+<ol>
+<li>En la hoja Google Sheets, ve a <strong>Extensiones &gt; Apps Script</strong>.</li>
+<li>Selecciona la función <strong><code>publicarTodoConTemas</code></strong> y pulsa <strong>Ejecutar</strong>.</li>
+<li>El script creará automáticamente los Temas (<code>MONOGRAFICOS</code> y <code>SESIÓN 1</code> a <code>SESIÓN 60</code>) y cargará los materiales en modo <strong>BORRADOR (DRAFT)</strong> para que los publiques a tu ritmo.</li>
+</ol>
+
+<h2>ANEXO: EL BOTÓN DEL PÁNICO (RESET COMPLETO DE CLASE)</h2>
+<p>Si necesitas limpiar por completo la clase de Classroom para empezar de cero:</p>
+<ol>
+<li>Escribe el ID del curso en la celda <strong>A2</strong> de la hoja (ej: <code>890436514251</code>).</li>
+<li>En Apps Script, ejecuta la función <strong><code>borrarAbsolutamenteTodo</code></strong>.</li>
+<li>Toda la clase (temas, materiales y borradores) quedará completamente reseteada en segundos.</li>
+</ol>
+
+</body>
+</html>
+

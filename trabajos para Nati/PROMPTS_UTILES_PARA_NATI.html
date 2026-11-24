@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuleta de Prompts de IA para el Administrador</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: #f8fafc;
+      padding: 30px 20px;
+    }
+    .card {
+      max-width: 850px;
+      margin: 0 auto;
+      background: white;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #cbd5e1;
+    }
+    h1 { color: #0284c7; font-size: 24px; border-bottom: 2px solid #0284c7; padding-bottom: 10px; margin-bottom: 20px; }
+    h2 { color: #0f172a; font-size: 18px; margin-top: 25px; margin-bottom: 8px; }
+    .prompt-box {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      margin: 12px 0 24px 0;
+      border-left: 4px solid #38bdf8;
+    }
+    .badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .btn-print {
+      float: right;
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+    <h1>🤖 Chuleta de Prompts de IA para el Administrador (Uso Rápido)</h1>
+    <p>Guarda estos textos listos para copiar y pegar en <strong>Gemini</strong> (o ChatGPT). el Administrador solo tiene que sustituir los datos entre corchetes <code>[...]</code>.</p>
+
+    <h2>📢 1. Avisos por WhatsApp para Mayores (Claros y Legibles)</h2>
+    <span class="badge">Para cambios de hora, festivos y avisos rápidos</span>
+    <div class="prompt-box">Actúa como la coordinadora de un centro cultural de mayores. Redacta un mensaje para enviar por grupo de WhatsApp a los alumnos de la clase de [NOMBRE DE LA ACTIVIDAD, ej. Gimnasia de mantenimiento].
+Datos a comunicar:
+- Motivo: [ej. El próximo jueves no habrá clase por festivo y se reanuda el martes siguiente]
+- Recordatorio: [ej. Traer toalla pequeña para la próxima sesión]
+
+Condiciones de redacción:
+1. Tono muy afectuoso, respetuoso y positivo.
+2. Frases cortas y párrafos separados (fácil de leer en pantallas de móvil con letra grande).
+3. Uso medido de emoticonos amigables (📅, ⏰, 👟).
+4. Un resumen al final con: DÍA, HORA y QUÉ TRAER.</div>
+
+    <h2>🚌 2. Ficha Informativa de Excursión / Salida Cultural</h2>
+    <span class="badge">Para folletos o avisos de salidas en autobús</span>
+    <div class="prompt-box">Ayúdame a redactar el comunicado informativo para una excursión del centro de mayores.
+Datos de la excursión:
+- Destino: [ej. Visita a Chinchón y almuerzo campestre]
+- Fecha y hora de salida: [ej. Sábado 14 de Noviembre a las 08:30 h en la puerta del centro]
+- Hora aproximada de regreso: [ej. 18:30 h]
+- Dificultad física: [ej. Paseo llano, ritmo tranquilo, apto para todos]
+- Precio por persona: [ej. 24 €, incluye autobús y comida]
+- Fecha límite de inscripción y pago: [ej. 8 de Noviembre en secretaría]
+
+Formato de respuesta:
+- Título atractivo y festivo.
+- Breve descripción del plan (3 líneas atractivas).
+- Puntos clave en viñetas destacadas (Horarios, Qué incluye, Qué calzado/ropa llevar).
+- Teléfono de contacto o recordatorio para apuntarse en secretaría.</div>
+
+    <h2>🎭 3. Cartel y Texto para Fiestas del Centro</h2>
+    <span class="badge">Fiestas de Navidad, Primavera, Castañada, etc.</span>
+    <div class="prompt-box">Redacta el texto de presentación para la [ej. Fiesta de Otoño / Castañada] del centro de mayores.
+- Actividades previstas: [ej. Baile con música en directo, merienda compartida, concurso de repostería]
+- Día y hora: [ej. Viernes 20 a partir de las 17:00 h]
+- Entrada: [ej. Libre para socios; pueden traer un postre casero si quieren participar]
+
+Escribe:
+1. Un lema o eslogan festivo y alegre.
+2. Un texto de invitación cálido en 2 párrafos breves.
+3. El programa horario de la fiesta de forma visual.</div>
+
+    <h2>🧠 4. Pasatiempos y Dinámicas de Memoria</h2>
+    <span class="badge">Para talleres de cultura general o días de lluvia</span>
+    <div class="prompt-box">Genera un juego de preguntas y recuerdos para un grupo de 15 personas mayores:
+- Temática: [ej. Canciones populares, dichos y costumbres de España en los años 60 y 70].
+- Formato:
+  1. 5 refranes clásicos a los que les falta la segunda mitad para que ellos la completen al unísono.
+  2. 5 preguntas tipo concurso sobre programas de radio o televisión mítica (ej. "¿Quién cantaba...?", "¿Cómo se llamaba el programa de...?").
+  3. 3 preguntas abiertas para abrir debate y charla compartida ("¿Cómo era el primer coche o moto que recuerdan en su casa?").</div>
+  </div>
+</body>
+</html>

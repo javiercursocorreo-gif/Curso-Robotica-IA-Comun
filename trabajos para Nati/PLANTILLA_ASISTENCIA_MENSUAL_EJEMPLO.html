@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Modelo de Control de Asistencia Mensual - Centro de Mayores</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 15px;
+      color: #1e293b;
+      background: #f8fafc;
+    }
+    .container {
+      max-width: 100%;
+      background: white;
+      padding: 15px 20px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .title-group h1 {
+      margin: 0;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #0f172a;
+    }
+    .title-group p {
+      margin: 3px 0 0;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      background: #f1f5f9;
+      padding: 8px 12px;
+      border-radius: 4px;
+    }
+    .meta-item strong {
+      color: #334155;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    th, td {
+      border: 1px solid #94a3b8;
+      text-align: center;
+      padding: 4px 2px;
+      height: 24px;
+    }
+    th {
+      background: #e2e8f0;
+      color: #0f172a;
+      font-weight: bold;
+    }
+    th.col-num { width: 28px; }
+    th.col-name { width: 230px; text-align: left; padding-left: 8px; }
+    th.col-obs { width: 140px; }
+    td.col-name { text-align: left; padding-left: 8px; font-weight: 500; }
+    .day-header {
+      font-size: 10px;
+      line-height: 1.1;
+    }
+    .footer-signatures {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #475569;
+    }
+    .sig-box {
+      border-top: 1px dashed #64748b;
+      width: 200px;
+      padding-top: 5px;
+      text-align: center;
+    }
+    .btn-print {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 10px 18px;
+      background: #0284c7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .btn-print:hover {
+      background: #0369a1;
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .container { border: none; padding: 0; }
+      .btn-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+
+  <div class="container">
+    <div class="header">
+      <div class="title-group">
+        <h1>Centro de Mayores • Control Mensual de Asistencia</h1>
+        <p>Registro oficial de participación en actividades y talleres</p>
+      </div>
+      <div style="text-align: right; font-size: 12px; color: #475569;">
+        <strong>Curso:</strong> 2026 - 2027
+      </div>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Actividad:</strong> Gimnasia / Robótica / Costura</div>
+      <div class="meta-item"><strong>Profesor/a:</strong> _______________________</div>
+      <div class="meta-item"><strong>Mes / Año:</strong> Noviembre 2026</div>
+      <div class="meta-item"><strong>Días y Horario:</strong> Mar y Jue (10:00 - 11:30)</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="col-num" rowspan="2">Nº</th>
+          <th class="col-name" rowspan="2">Nombre y Apellidos del Alumno</th>
+          <!-- Sesiones del mes (ejemplo 10 sesiones) -->
+          <th class="day-header" colspan="10">DÍAS DE CLASE DEL MES</th>
+          <th rowspan="2" style="width: 45px;">Total Asist.</th>
+          <th class="col-obs" rowspan="2">Observaciones / Justificaciones</th>
+        </tr>
+        <tr>
+          <!-- Cabeceras de fechas reales -->
+          <th>03<br><small>M</small></th>
+          <th>05<br><small>J</small></th>
+          <th>10<br><small>M</small></th>
+          <th>12<br><small>J</small></th>
+          <th>17<br><small>M</small></th>
+          <th>19<br><small>J</small></th>
+          <th>24<br><small>M</small></th>
+          <th>26<br><small>J</small></th>
+          <th>01<br><small>M</small></th>
+          <th>03<br><small>J</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 15 filas de muestra -->
+        <tr><td>1</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>7</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>8</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>9</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>10</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>11</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>12</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>13</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>14</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>15</td><td class="col-name"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="footer-signatures">
+      <div class="sig-box">Firma del Profesor/a</div>
+      <div style="font-style: italic; align-self: flex-end;">P: Presente | F: Falta | J: Justificada</div>
+      <div class="sig-box">Vº Bº Coordinación (el Administrador)</div>
+    </div>
+  </div>
+
+</body>
+</html>

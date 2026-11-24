@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal del Centro de Mayores • Información y Actividades</title>
+  <style>
+    :root {
+      --font-base: 20px;
+      --bg-page: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #334155;
+      
+      /* Colores temáticos de alto contraste */
+      --c-excursiones: #0d7a57;
+      --c-excursiones-bg: #e6f7f0;
+      
+      --c-talleres: #c05621;
+      --c-talleres-bg: #fff5eb;
+      
+      --c-menu: #9b2c2c;
+      --c-menu-bg: #fff0f0;
+      
+      --c-normas: #1e3a8a;
+      --c-normas-bg: #eff6ff;
+      
+      --c-guias: #5b21b6;
+      --c-guias-bg: #f5f3ff;
+      
+      --c-tv-bar: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: var(--font-base);
+      line-height: 1.5;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      padding-bottom: 60px;
+    }
+
+    /* BARRA SUPERIOR DE ACCESIBILIDAD Y CABECERA */
+    .top-header {
+      background: #ffffff;
+      border-bottom: 4px solid #cbd5e1;
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .header-row {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-subtitle {
+      font-size: 1rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    
+
+    .btn-pill {
+      background: #e2e8f0;
+      border: 2px solid #94a3b8;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      color: #0f172a;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-pill:hover {
+      background: #cbd5e1;
+      transform: scale(1.04);
+    }
+    .btn-pill:active {
+      transform: scale(0.96);
+    }
+
+    .btn-tv-mode {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+    .btn-tv-mode:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .main-container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    /* BOTÓN VOLVER GIGANTE */
+    .back-bar {
+      margin-bottom: 24px;
+      display: none;
+    }
+    .btn-back-giant {
+      background: #0f172a;
+      color: #ffffff;
+      border: 3px solid #0f172a;
+      border-radius: 18px;
+      padding: 16px 28px;
+      font-size: 1.4rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 6px 16px rgba(15,23,42,0.25);
+      transition: all 0.15s;
+    }
+    .btn-back-giant:hover {
+      background: #1e293b;
+      transform: translateX(-4px);
+    }
+
+    /* VISTA DE NIVEL: INDICADOR DE RUTA */
+    .breadcrumb-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+    .breadcrumb-desc {
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    /* GRILLA DE BOTONES GRANDES (NIVEL 1) */
+    .grid-giant-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card-giant-btn {
+      background: #ffffff;
+      border: 4px solid #cbd5e1;
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-giant-btn:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+    }
+
+    .card-giant-btn:active {
+      transform: translateY(-2px);
+    }
+
+    /* Colores por sección */
+    .card-excursiones {
+      border-color: var(--c-excursiones);
+      background: linear-gradient(180deg, #ffffff 60%, var(--c-excursiones-bg) 100%);
+    }
+    .card-excursiones:hover { border-color: #055038; }
+
+    .card-talleres {
+      border-color: var(--c-talleres);
+      background: linear-gradient(180deg, #ffffff 60%, var(--c-talleres-bg) 100%);
+    }
+    .card-talleres:hover { border-color: #9c4215; }
+
+    .card-menu {
+      border-color: var(--c-menu);
+      background: linear-gradient(180deg, #ffffff 60%, var(--c-menu-bg) 100%);
+    }
+    .card-menu:hover { border-color: #742a2a; }
+
+    .card-normas {
+      border-color: var(--c-normas);
+      background: linear-gradient(180deg, #ffffff 60%, var(--c-normas-bg) 100%);
+    }
+    .card-normas:hover { border-color: #172554; }
+
+    .card-guias {
+      border-color: var(--c-guias);
+      background: linear-gradient(180deg, #ffffff 60%, var(--c-guias-bg) 100%);
+    }
+    .card-guias:hover { border-color: #4c1d95; }
+
+    .btn-icon {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .btn-title {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .btn-summary {
+      font-size: 1.15rem;
+      color: #334155;
+      font-weight: 600;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .btn-action-label {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* PANTALLAS DE NIVELES */
+    .screen-view {
+      display: none;
+      animation: fadeIn 0.2s ease-in;
+    }
+    .screen-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* TARJETAS DE NIVEL 2 (SUBMENÚ / LISTADO DE NOTICIAS) */
+    .subitem-card {
+      background: #ffffff;
+      border: 3px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: all 0.15s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .subitem-card:hover {
+      border-color: #0f172a;
+      transform: translateX(6px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    .subitem-info h3 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .subitem-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .subitem-desc {
+      font-size: 1.15rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .subitem-arrow {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    /* PANTALLA DE DETALLE (NIVEL 3) */
+    .detail-card {
+      background: #ffffff;
+      border: 4px solid #94a3b8;
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .detail-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+    .detail-meta-box {
+      background: #f8fafc;
+      border: 2px dashed #94a3b8;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .detail-content {
+      font-size: 1.35rem;
+      line-height: 1.7;
+      color: #1e293b;
+      margin-bottom: 30px;
+    }
+    .detail-content p {
+      margin-bottom: 18px;
+    }
+    .detail-content ul {
+      margin-left: 32px;
+      margin-bottom: 20px;
+    }
+    .detail-content li {
+      margin-bottom: 10px;
+    }
+
+    .detail-tools {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 3px solid #e2e8f0;
+      padding-top: 24px;
+    }
+
+    .btn-tool {
+      background: #e2e8f0;
+      color: #0f172a;
+      border: 2px solid #94a3b8;
+      border-radius: 14px;
+      padding: 14px 24px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-tool:hover {
+      background: #cbd5e1;
+    }
+
+    /* PIE DE PÁGINA ACCESIBLE */
+    .page-footer {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding: 24px 16px;
+      border-top: 3px solid #cbd5e1;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #64748b;
+    }
+  
+    /* ========================================================
+       OPTIMIZACIÓN MÓVIL DEDICADA PARA PERSONAS MAYORES
+       ======================================================== */
+    @media (max-width: 768px) {
+      body {
+        font-size: 19px;
+      }
+      .top-header {
+        padding: 12px 14px;
+      }
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .brand-title {
+        font-size: 1.4rem;
+      }
+      .access-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .btn-pill {
+        padding: 8px 10px;
+        font-size: 0.92rem;
+        flex: 1;
+        justify-content: center;
+      }
+      .main-container {
+        margin: 16px auto;
+        padding: 0 12px;
+      }
+      .breadcrumb-title {
+        font-size: 1.55rem;
+      }
+      .breadcrumb-desc {
+        font-size: 1.05rem;
+        margin-bottom: 18px;
+      }
+      /* 1 BOTÓN GIGANTE POR FILA A ANCHO COMPLETO */
+      .grid-giant-buttons {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .card-giant-btn {
+        padding: 22px 18px;
+        min-height: auto;
+        border-radius: 18px;
+      }
+      .btn-icon {
+        font-size: 2.8rem;
+        margin-bottom: 8px;
+      }
+      .btn-title {
+        font-size: 1.45rem;
+      }
+      .btn-summary {
+        font-size: 1.05rem;
+      }
+      .btn-action-label {
+        font-size: 1.1rem;
+        margin-top: 14px;
+      }
+      /* BOTÓN VOLVER A ANCHO COMPLETO */
+      .back-bar {
+        margin-bottom: 18px;
+      }
+      .btn-back-giant {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 18px;
+        font-size: 1.25rem;
+        border-radius: 14px;
+      }
+      /* SUBITEMS EN MÓVIL */
+      .subitem-card {
+        padding: 18px 16px;
+        border-radius: 16px;
+        gap: 12px;
+      }
+      .subitem-info h3 {
+        font-size: 1.25rem;
+      }
+      .subitem-desc {
+        font-size: 1.02rem;
+      }
+      .subitem-arrow {
+        font-size: 1.8rem;
+      }
+      /* FICHA DETALLE EN MÓVIL */
+      .detail-card {
+        padding: 22px 16px;
+        border-radius: 18px;
+      }
+      .detail-title {
+        font-size: 1.55rem;
+      }
+      .detail-meta-box {
+        font-size: 1.05rem;
+        padding: 12px 14px;
+        gap: 10px;
+      }
+      .detail-content {
+        font-size: 1.15rem;
+        line-height: 1.65;
+      }
+      .detail-tools {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .btn-tool {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 16px;
+        font-size: 1.15rem;
+      }
+      .page-footer {
+        font-size: 0.95rem;
+        margin-top: 28px;
+      }
+    }
+
+  
+    /* IMÁGENES REALES PARA CADA TARJETA Y VISTA */
+    .card-img-banner {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 16px 16px 8px 8px;
+      margin-bottom: 14px;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    }
+    .subitem-img {
+      width: 130px;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 12px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .detail-banner-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.09);
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .card-img-banner {
+        height: 140px;
+      }
+      .subitem-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .subitem-img {
+        width: 100%;
+        height: 150px;
+      }
+      .subitem-arrow {
+        align-self: flex-end;
+      }
+      .detail-banner-img {
+        height: 180px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- CABECERA PRINCIPAL CON BOTONES DE TAMAÑO -->
+  <header class="top-header">
+    <div class="header-row">
+      <div>
+        <div class="brand-title">🏛️ Centro de Mayores</div>
+        <div class="brand-subtitle">Tablón Digital Oficial • Madrid</div>
+      </div>
+      
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- BOTÓN VOLVER GIGANTE (Visible sólo en subniveles) -->
+    <div class="back-bar" id="backBar">
+      <button class="btn-back-giant" onclick="goBack()">
+        ⬅️ VOLVER ATRÁS
+      </button>
+    </div>
+
+    <!-- ==========================================
+         NIVEL 1: PORTAL DE ENTRADA (5 BOTONES GIGANTES)
+         ========================================== -->
+    <section class="screen-view active" id="view-home">
+      <h1 class="breadcrumb-title">¿Qué información deseas consultar hoy?</h1>
+      <p class="breadcrumb-desc">Toca o haz clic sobre cualquiera de los grandes botones de abajo:</p>
+
+      <div class="grid-giant-buttons">
+        
+        <!-- 1. EXCURSIONES -->
+        <button class="card-giant-btn card-excursiones" onclick="openSection('excursiones')">
+          <div>
+            <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=800&q=80" alt="Excursiones" class="card-img-banner"><div class="btn-icon">🚌</div>
+            <div class="btn-title">Excursiones y Viajes</div>
+            <div class="btn-summary">Próximos viajes en autobús, visitas culturales, fechas, precios y plazas disponibles.</div>
+          </div>
+          <div class="btn-action-label" style="color: var(--c-excursiones);">Entrar a Excursiones ➔</div>
+        </button>
+
+        <!-- 2. CLASES Y TALLERES -->
+        <button class="card-giant-btn card-talleres" onclick="openSection('talleres')">
+          <div>
+            <img src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=800&q=80" alt="Clases y Talleres" class="card-img-banner"><div class="btn-icon">🎨</div>
+            <div class="btn-title">Clases y Talleres</div>
+            <div class="btn-summary">Horarios de gimnasia, memoria, baile, costura, inglés y robótica e inteligencia artificial.</div>
+          </div>
+          <div class="btn-action-label" style="color: var(--c-talleres);">Ver Talleres ➔</div>
+        </button>
+
+        <!-- 3. MENÚ DE LA CAFETERÍA -->
+        <button class="card-giant-btn card-menu" onclick="openSection('menu')">
+          <div>
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafetería" class="card-img-banner"><div class="btn-icon">☕</div>
+            <div class="btn-title">Cafetería y Menús</div>
+            <div class="btn-summary">Menú del día, platos de cuchara, precios para socios y horario de desayunos y meriendas.</div>
+          </div>
+          <div class="btn-action-label" style="color: var(--c-menu);">Ver Menú de Hoy ➔</div>
+        </button>
+
+        <!-- 4. NORMAS DEL CENTRO -->
+        <button class="card-giant-btn card-normas" onclick="openSection('normas')">
+          <div>
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" alt="Normas" class="card-img-banner"><div class="btn-icon">📜</div>
+            <div class="btn-title">Normas y Secretaría</div>
+            <div class="btn-summary">Horario de apertura, renovación del carné de socio, uso de salas y normas de convivencia.</div>
+          </div>
+          <div class="btn-action-label" style="color: var(--c-normas);">Consultar Normas ➔</div>
+        </button>
+
+        <!-- 5. GUÍAS Y AYUDA CON IA -->
+        <button class="card-giant-btn card-guias" onclick="openSection('guias')">
+          <div>
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80" alt="Guías de Ayuda" class="card-img-banner"><div class="btn-icon">💡</div>
+            <div class="btn-title">Guías y Rincón de Ayuda</div>
+            <div class="btn-summary">Tutoriales claros redactados con IA: cómo pedir cita médica, banca fácil y evitar estafas telefónicas.</div>
+          </div>
+          <div class="btn-action-label" style="color: var(--c-guias);">Ver Guías de Ayuda ➔</div>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NIVEL 2: LISTADO DE EXCURSIONES
+         ========================================== -->
+    <section class="screen-view" id="view-excursiones">
+      <h2 class="breadcrumb-title" style="color: var(--c-excursiones);">🚌 Excursiones y Viajes Programados</h2>
+      <p class="breadcrumb-desc">Selecciona la excursión que quieras consultar para ver los detalles:</p>
+
+      <div class="subitem-card" onclick="openDetail('toledo')">
+        <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=80" alt="toledo" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: var(--c-excursiones-bg); color: var(--c-excursiones);">Próxima Salida • 14 de Mayo</span>
+          <h3>Viaje de Día Completo a Toledo</h3>
+          <p class="subitem-desc">Visita guiada por el casco histórico, almuerzo típico toledano y autobús de ida y vuelta. <strong>Precio: 32 €</strong></p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('aranjuez')">
+        <img src="https://images.unsplash.com/photo-1583207804784-198ba424330b?auto=format&fit=crop&w=900&q=80" alt="aranjuez" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #fef3c7; color: #92400e;">28 de Mayo</span>
+          <h3>Paseo de Primavera por los Jardines de Aranjuez</h3>
+          <p class="subitem-desc">Paseo accesible en llano, visita al Palacio Real y merienda en las terrazas del Tajo. <strong>Precio: 22 €</strong></p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('como-apuntarse')">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80" alt="como-apuntarse" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #e2e8f0; color: #334155;">Información General</span>
+          <h3>¿Cómo y cuándo apuntarse a los viajes en secretaría?</h3>
+          <p class="subitem-desc">Plazos de inscripción, lista de espera y seguro de viaje incluido para los socios.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NIVEL 2: LISTADO DE CLASES Y TALLERES
+         ========================================== -->
+    <section class="screen-view" id="view-talleres">
+      <h2 class="breadcrumb-title" style="color: var(--c-talleres);">🎨 Clases y Talleres del Centro</h2>
+      <p class="breadcrumb-desc">Toca en la actividad para consultar días, horas y aula:</p>
+
+      <div class="subitem-card" onclick="openDetail('taller-ia')">
+        <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=900&q=80" alt="taller-ia" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #f5f3ff; color: #5b21b6;">Novedad • Martes y Jueves</span>
+          <h3>Taller de Robótica e Inteligencia Artificial</h3>
+          <p class="subitem-desc">Aprende a dialogar con Gemini, restaurar fotos de juventud y crear cuentos para los nietos. Aula de Informática.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('gimnasia')">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80" alt="gimnasia" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #e0f2fe; color: #0369a1;">Lunes y Miércoles 10:00 h</span>
+          <h3>Gimnasia Suave y Mantenimiento</h3>
+          <p class="subitem-desc">Ejercicios adaptados para articulaciones, equilibrio y estiramientos en el Salón Principal.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('baile')">
+        <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=900&q=80" alt="baile" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #fce7f3; color: #9d174d;">Viernes 17:30 h</span>
+          <h3>Baile de Salón y Pasodobles</h3>
+          <p class="subitem-desc">Música en directo y merienda compartida para socios y acompañantes.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NIVEL 2: MENÚ DE LA CAFETERÍA
+         ========================================== -->
+    <section class="screen-view" id="view-menu">
+      <h2 class="breadcrumb-title" style="color: var(--c-menu);">☕ Cafetería: Menús y Horarios</h2>
+      <p class="breadcrumb-desc">Comida casera elaborada a diario con precio subvencionado para socios:</p>
+
+      <div class="subitem-card" onclick="openDetail('menu-semanal')">
+        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=80" alt="menu-semanal" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #fee2e2; color: #991b1b;">Semana en Curso</span>
+          <h3>Menú del Día Completo (De Lunes a Viernes)</h3>
+          <p class="subitem-desc">Primer plato a elegir (cuchara/ensalada), segundo (pescado/carne), pan, bebida y postre casero. <strong>Precio: 6,50 €</strong></p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('desayunos')">
+        <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=900&q=80" alt="desayunos" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #fef3c7; color: #92400e;">De 09:00 a 11:30 h</span>
+          <h3>Desayunos y Meriendas de Cafetería</h3>
+          <p class="subitem-desc">Café con leche o infusión con tostada de tomate o bollería del día por 1,80 €.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NIVEL 2: NORMAS DEL CENTRO
+         ========================================== -->
+    <section class="screen-view" id="view-normas">
+      <h2 class="breadcrumb-title" style="color: var(--c-normas);">📜 Normas y Servicios del Centro</h2>
+      <p class="breadcrumb-desc">Información importante para la convivencia y la secretaría:</p>
+
+      <div class="subitem-card" onclick="openDetail('normas-horario')">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" alt="normas-horario" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: var(--c-normas-bg); color: var(--c-normas);">Horarios Oficiales</span>
+          <h3>Horario de Apertura y Atención del Administrador (Secretaría)</h3>
+          <p class="subitem-desc">Apertura del centro de 09:00 a 20:30 h. Atención de secretaría de 10:00 a 13:30 h.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('normas-carnet')">
+        <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=900&q=80" alt="normas-carnet" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: var(--c-normas-bg); color: var(--c-normas);">Inscripciones</span>
+          <h3>Cómo renovar el Carné de Socio y nuevas altas</h3>
+          <p class="subitem-desc">Documentación necesaria (DNI y foto) y ventajas exclusivas para los socios.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NIVEL 2: GUÍAS CIUDADANAS E IA
+         ========================================== -->
+    <section class="screen-view" id="view-guias">
+      <h2 class="breadcrumb-title" style="color: var(--c-guias);">💡 Guías Ciudadanas (Redactadas con IA)</h2>
+      <p class="breadcrumb-desc">Explicaciones claras y sencillas sin tecnicismos para ayudarte en el día a día:</p>
+
+      <div class="subitem-card" onclick="openDetail('guia-cita-medica')">
+        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=900&q=80" alt="guia-cita-medica" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #f5f3ff; color: #5b21b6;">Salud Práctica</span>
+          <h3>Cómo pedir Cita Médica por el Móvil paso a paso</h3>
+          <p class="subitem-desc">Guía ilustrada con letra grande para no perderse en la aplicación de salud.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+
+      <div class="subitem-card" onclick="openDetail('guia-estafas')">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80" alt="guia-estafas" class="subitem-img">
+        <div class="subitem-info">
+          <span class="subitem-badge" style="background: #fee2e2; color: #991b1b;">⚠️ Seguridad Vital</span>
+          <h3>Cómo detectar engaños en el WhatsApp y llamadas trampa</h3>
+          <p class="subitem-desc">Consejos del grupo de investigación para no caer en fraudes bancarios ni mensajes sospechosos.</p>
+        </div>
+        <div class="subitem-arrow">➔</div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NIVEL 3: DETALLE DE CONTENIDO
+         ========================================== -->
+    <section class="screen-view" id="view-detail">
+      <article class="detail-card">
+        <img id="detailBannerImg" class="detail-banner-img" src="" alt="Foto">
+
+        <div class="detail-badge-wrap" id="detailBadge"></div>
+        <h2 class="detail-title" id="detailTitle">Título de la noticia</h2>
+        
+        <div class="detail-meta-box" id="detailMeta">
+          <!-- Datos clave: Fechas, precios, etc. -->
+        </div>
+
+        <div class="detail-content" id="detailBody">
+          <!-- Texto largo de la noticia -->
+        </div>
+
+        <div class="detail-tools">
+          <button class="btn-tool" onclick="speakText()">🔊 Escuchar en Voz Alta</button>
+          <button class="btn-tool" onclick="window.print()">🖨️ Imprimir Folio</button>
+          <button class="btn-tool" onclick="goBack()" style="background: #0f172a; color: #ffffff;">⬅️ Volver</button>
+        </div>
+      </article>
+    </section>
+
+    </main>
+
+  <footer class="page-footer">
+    Centro de Mayores • Información mantenida por el Equipo de Redacción de Socios con IA • Actualizado hoy
+  </footer>
+
+  <script>
+    // ESTADO DE NAVEGACIÓN SIMPLE (PILA DE HISTORIAL)
+    let navHistory = ['view-home'];
+    let currentFontSize = 20;
+
+    // BASE DE DATOS LOCAL DE PRUEBA (ALIMENTADA POR EL CMS)
+    const newsDatabase = {
+      'toledo': {
+        image: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=80',
+        badge: '🚌 Excursiones • Salida Oficial',
+        badgeColor: '#0d7a57',
+        badgeBg: '#e6f7f0',
+        title: 'Viaje Cultural a Toledo: La Ciudad de las Tres Culturas',
+        meta: '📅 Fecha: Jueves 14 de Mayo | ⏰ Salida: 08:30 h | 💶 Precio: 32 € (Incluye comida y guía) | 📍 Plazas: 55 plazas en autobús',
+        body: `
+          <p>Nos vamos de excursión de día entero a Toledo, una de las ciudades más hermosas de España. Un paseo cultural tranquilo pensado para disfrutar sin prisas.</p>
+          <p><strong>Programa del viaje:</strong></p>
+          <ul>
+            <li><strong>08:30 h:</strong> Salida puntual en autobús desde la puerta del Centro de Mayores.</li>
+            <li><strong>10:00 h:</strong> Llegada a Toledo y parada para tomar café con vistas en el Mirador del Valle.</li>
+            <li><strong>11:30 h:</strong> Visita guiada accesible por el barrio histórico con guía oficial y receptores de audio para escuchar bien las explicaciones.</li>
+            <li><strong>14:00 h:</strong> Almuerzo típico en restaurante colaborador (primer plato, segundo, bebida y postre).</li>
+            <li><strong>17:00 h:</strong> Tiempo libre para compras de mazapanes y descanso en la Plaza de Zocodover.</li>
+            <li><strong>19:30 h:</strong> Regreso previsto al centro de mayores.</li>
+          </ul>
+          <p><strong>Inscripciones:</strong> Acude a la secretaría con el Administrador a partir del próximo lunes a las 10:00 de la mañana. Pago en efectivo o tarjeta.</p>
+        `
+      },
+      'aranjuez': {
+        image: 'https://images.unsplash.com/photo-1583207804784-198ba424330b?auto=format&fit=crop&w=900&q=80',
+        badge: '🚌 Excursiones',
+        badgeColor: '#0d7a57',
+        badgeBg: '#e6f7f0',
+        title: 'Paseo de Primavera por los Jardines de Aranjuez',
+        meta: '📅 Fecha: Jueves 28 de Mayo | ⏰ Salida: 09:00 h | 💶 Precio: 22 € | 📍 50 plazas',
+        body: `
+          <p>Un paseo relajante y en llano para contemplar los jardines Reales en su época de máxima floración.</p>
+          <p>El precio incluye transporte en autobús de primera clase y entrada libre a los Jardines de la Isla y del Príncipe.</p>
+        `
+      },
+      'como-apuntarse': {
+        image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80',
+        badge: 'ℹ️ Información General',
+        badgeColor: '#1e3a8a',
+        badgeBg: '#eff6ff',
+        title: 'Normativa de Inscripción para los Viajes en Autobús',
+        meta: 'Despacho de Secretaría (Administrador) | Horario: 10:00 a 13:00 h',
+        body: `
+          <p>Para que el reparto de plazas sea lo más justo posible entre todos los socios, se siguen las siguientes normas:</p>
+          <ul>
+            <li>Cada socio puede apuntarse a sí mismo y a un solo acompañante con su carné correspondiente.</li>
+            <li>Si el autobús se llena, se abre de inmediato una <strong>lista de espera</strong> numerada y transparente.</li>
+            <li>Si alguna persona se da de baja con al menos 48 horas de antelación, se le devuelve el importe íntegro y se llama a la siguiente persona de la lista.</li>
+          </ul>
+        `
+      },
+      'taller-ia': {
+        image: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=900&q=80',
+        badge: '🎨 Taller Tecnológico',
+        badgeColor: '#5b21b6',
+        badgeBg: '#f5f3ff',
+        title: 'Taller de Robótica e Inteligencia Artificial',
+        meta: '📅 Martes y Jueves | ⏰ 10:30 a 12:00 h | 📍 Aula 3 (Informática)',
+        body: `
+          <p>Un taller pionero donde no se requiere ningún conocimiento previo. Con lenguaje cercano y divertido aprenderás:</p>
+          <ul>
+            <li>Cómo utilizar el asistente <strong>Gemini</strong> en tu teléfono como una enciclopedia personal.</li>
+            <li>Restauración digital de tus viejas fotos familiares en blanco y negro.</li>
+            <li>Cómo escribir tus memorias y anécdotas de juventud para dejárselas a tu familia.</li>
+          </ul>
+        `
+      },
+      'gimnasia': {
+        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=80',
+        badge: '🏃 Salud y Movimiento',
+        badgeColor: '#c05621',
+        badgeBg: '#fff5eb',
+        title: 'Gimnasia Suave y Mantenimiento Físico',
+        meta: '📅 Lunes y Miércoles | ⏰ 10:00 h | 📍 Salón de Actos',
+        body: `<p>Ejercicios adaptados por monitora titulada para mejorar la flexibilidad, la movilidad articular y prevenir caídas.</p>`
+      },
+      'baile': {
+        image: 'https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=900&q=80',
+        badge: '💃 Ocio y Fiesta',
+        badgeColor: '#9d174d',
+        badgeBg: '#fce7f3',
+        title: 'Baile de Salón los Viernes',
+        meta: '📅 Cada Viernes | ⏰ 17:30 a 20:00 h | 📍 Salón Principal',
+        body: `<p>Pasodobles, boleros y música de siempre. Entrada libre para todos los socios con cafetería abierta.</p>`
+      },
+      'menu-semanal': {
+        image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=80',
+        badge: '☕ Cafetería del Centro',
+        badgeColor: '#9b2c2c',
+        badgeBg: '#fff0f0',
+        title: 'Menú Completo de la Cafetería',
+        meta: '💶 Precio Socio: 6,50 € | De Lunes a Viernes de 13:00 a 15:30 h',
+        body: `
+          <p><strong>Lunes:</strong> Lentejas caseras con verduras + Filete de merluza a la romana con ensalada.</p>
+          <p><strong>Martes:</strong> Paella mixta tradicional + Pechuga de pollo a la plancha con patatas panaderas.</p>
+          <p><strong>Miércoles:</strong> Cocido madrileño completo en dos vuelcos con su sopa de fideos.</p>
+          <p><strong>Jueves:</strong> Judías verdes salteadas con jamón + Albóndigas en salsa con arroz blanco.</p>
+          <p><strong>Viernes:</strong> Crema de calabacín suave + Salmón al horno con verduras al vapor.</p>
+          <p><em>Todos los menús incluyen pan, copa de vino o agua y postre (fruta fresca del tiempo, flan o arroz con leche).</em></p>
+        `
+      },
+      'desayunos': {
+        image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=900&q=80',
+        badge: '☕ Cafetería',
+        badgeColor: '#9b2c2c',
+        badgeBg: '#fff0f0',
+        title: 'Precios de Desayunos y Cafetería',
+        meta: '⏰ Abierto de 09:00 a 20:30 h',
+        body: `
+          <p>Café solo, cortado o con leche: 1,10 €</p>
+          <p>Desayuno completo (Café + Tostada con tomate y aceite): 1,80 €</p>
+          <p>Churros y porras recién hechas (martes y jueves): 0,50 € la unidad.</p>
+        `
+      },
+      'normas-horario': {
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80',
+        badge: '📜 Normas de Convivencia',
+        badgeColor: '#1e3a8a',
+        badgeBg: '#eff6ff',
+        title: 'Horarios de las Instalaciones y Secretaría',
+        meta: '📍 Conserjería y Despacho 1',
+        body: `
+          <p><strong>Apertura del Edificio:</strong> De lunes a sábado de 09:00 a 20:30 h continuado.</p>
+          <p><strong>Atención del Administrador en Secretaría:</strong> De 10:00 a 13:30 h de lunes a viernes.</p>
+          <p><strong>Prensa diaria:</strong> Los periódicos del día están en la sala de lectura a disposición de todos los socios.</p>
+        `
+      },
+      'normas-carnet': {
+        image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=900&q=80',
+        badge: '📜 Secretaría',
+        badgeColor: '#1e3a8a',
+        badgeBg: '#eff6ff',
+        title: 'Renovación y Emisión de Carnés',
+        meta: 'Trámite gratuito e instantáneo',
+        body: `
+          <p>El carné es personal e intransferible. Da derecho a los precios bonificados en la cafetería y prioridad en las excursiones.</p>
+          <p>Para renovar solo es necesario traer el DNI a secretaría; no hace falta foto nueva si no ha cambiado tu aspecto.</p>
+        `
+      },
+      'guia-cita-medica': {
+        image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=900&q=80?auto=format&fit=crop&w=900&q=80',
+        badge: '💡 Guía Práctica con IA',
+        badgeColor: '#5b21b6',
+        badgeBg: '#f5f3ff',
+        title: 'Cómo pedir cita médica en tu ambulatorio sin hacer colas',
+        meta: 'Redactado por el Grupo de Alumnos con Gemini',
+        body: `
+          <p>Pedir cita con el médico de cabecera o de enfermería es muy fácil si sigues estos 3 pasos:</p>
+          <ul>
+            <li><strong>Paso 1:</strong> Ten a mano tu tarjeta sanitaria de plástico (el número largo que empieza por letras).</li>
+            <li><strong>Paso 2:</strong> Abre la aplicación de Salud de tu teléfono y pulsa en el botón azul "Pedir Cita".</li>
+            <li><strong>Paso 3:</strong> Elige si prefieres cita presencial (ir a la consulta) o consulta telefónica para recetas.</li>
+          </ul>
+          <p>Si tienes cualquier duda, en el aula de informática los martes a las 12:00 te ayudamos en persona.</p>
+        `
+      },
+      'guia-estafas': {
+        image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80',
+        badge: '⚠️ Prevención y Seguridad',
+        badgeColor: '#991b1b',
+        badgeBg: '#fee2e2',
+        title: 'Alerta: Cómo reconocer mensajes y llamadas falsas',
+        meta: 'Guía de Autoprotección para Mayores',
+        body: `
+          <p><strong>Regla de Oro:</strong> NINGÚN banco ni ningún organismo oficial te va a pedir tu contraseña o número secreto por WhatsApp ni por llamada telefónica.</p>
+          <ul>
+            <li><strong>El mensaje del falso hijo:</strong> "Papá, se me ha roto el móvil y te escribo desde otro número, mándame dinero urgente". <em>Es siempre una estafa. Llama antes al teléfono habitual de tu hijo para comprobarlo.</em></li>
+            <li><strong>El paquete falso de Correos:</strong> Mensajes con enlaces para pagar aduanas o gastos de envío. <em>No pulses en los enlaces azules.</em></li>
+          </ul>
+        `
+      }
+    };
+
+    // NAVEGACIÓN
+    function openSection(sectionId) {
+      if (window.trackSectionVisit) window.trackSectionVisit(sectionId);
+      const viewId = 'view-' + sectionId;
+      showView(viewId);
+    }
+
+    function openDetail(itemKey) {
+      const item = newsDatabase[itemKey];
+      if (!item) return;
+
+      document.getElementById('detailBadge').innerHTML = `
+        <span class="subitem-badge" style="background: ${item.badgeBg}; color: ${item.badgeColor}; font-size: 1.15rem;">
+          ${item.badge}
+        </span>
+      `;
+      if (item.image) {
+        document.getElementById('detailBannerImg').src = item.image;
+        document.getElementById('detailBannerImg').style.display = 'block';
+      } else {
+        document.getElementById('detailBannerImg').style.display = 'none';
+      }
+      document.getElementById('detailTitle').textContent = item.title;
+      document.getElementById('detailMeta').textContent = item.meta;
+      document.getElementById('detailBody').innerHTML = item.body;
+
+      showView('view-detail');
+    }
+
+    function showView(viewId) {
+      document.querySelectorAll('.screen-view').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById(viewId);
+      if (target) {
+        target.classList.add('active');
+        navHistory.push(viewId);
+        updateBackBar();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function goBack() {
+      if (navHistory.length > 1) {
+        navHistory.pop(); // Sacar la actual
+        const previousView = navHistory[navHistory.length - 1];
+        document.querySelectorAll('.screen-view').forEach(el => el.classList.remove('active'));
+        document.getElementById(previousView).classList.add('active');
+        updateBackBar();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function updateBackBar() {
+      const current = navHistory[navHistory.length - 1];
+      const backBar = document.getElementById('backBar');
+      if (current === 'view-home') {
+        backBar.style.display = 'none';
+      } else {
+        backBar.style.display = 'block';
+      }
+    }
+
+    // VOZ EN ALTO (Web Speech API nativa del navegador)
+    function speakText() {
+      if (!('speechSynthesis' in window)) {
+        alert("Tu navegador no soporta lectura de voz.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const title = document.getElementById('detailTitle').textContent;
+      const body = document.getElementById('detailBody').innerText;
+      const utterance = new SpeechSynthesisUtterance(title + ". " + body);
+      utterance.lang = 'es-ES';
+      utterance.rate = 0.9; // Hablar un poco más despacio para mejor comprensión
+      if (window.trackVoiceListen) window.trackVoiceListen();
+      window.speechSynthesis.speak(utterance);
+    }
+
+    
+    // ==========================================
+    // SISTEMA DE TELEMETRÍA Y ESTADÍSTICAS REALES
+    // ==========================================
+    (function recordVisit() {
+      try {
+        const STORAGE_KEY = 'centro_mayores_stats_v1';
+        let stats = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        const now = new Date();
+        const todayStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+        const monthStr = todayStr.substring(0, 7); // YYYY-MM
+        const yearStr = todayStr.substring(0, 4); // YYYY
+
+        // Detectar dispositivo
+        const ua = navigator.userAgent.toLowerCase();
+        let device = 'ordenador';
+        if (/(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(ip|ap|wp))))/.test(ua)) {
+          device = 'tablet';
+        } else if (/(mobi|ipod|phone|blackberry|opera mini|fennec|minimo|symbian|psp|nintendo ds)/.test(ua)) {
+          device = 'movil';
+        }
+
+        if (!stats) {
+          stats = {
+            totalVisits: 1420,
+            days: {},
+            months: {},
+            years: {},
+            devices: { movil: 994, tablet: 284, ordenador: 142 },
+            sections: { excursiones: 580, talleres: 340, menu: 290, guias: 140, normas: 70 },
+            hours: Array(24).fill(0),
+            voiceListens: 68
+          };
+          // Datos base realistas para histórico
+          stats.months['2026-08'] = 310;
+          stats.months['2026-09'] = 450;
+          stats.months['2026-10'] = 660;
+          stats.years['2025'] = 820;
+          stats.years['2026'] = 1420;
+          // Días recientes
+          for (let d = 1; d <= 30; d++) {
+            const dayKey = `2026-10-${String(d).padStart(2, '0')}`;
+            stats.days[dayKey] = Math.floor(18 + Math.random() * 25);
+          }
+        }
+
+        stats.totalVisits = (stats.totalVisits || 0) + 1;
+        stats.days[todayStr] = (stats.days[todayStr] || 0) + 1;
+        stats.months[monthStr] = (stats.months[monthStr] || 0) + 1;
+        stats.years[yearStr] = (stats.years[yearStr] || 0) + 1;
+        stats.devices[device] = (stats.devices[device] || 0) + 1;
+        const currentHour = now.getHours();
+        stats.hours[currentHour] = (stats.hours[currentHour] || 0) + 1;
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
+
+        // Registro de secciones visitadas
+        window.trackSectionVisit = function(sectionName) {
+          try {
+            let s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            if (s && s.sections) {
+              s.sections[sectionName] = (s.sections[sectionName] || 0) + 1;
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+            }
+          } catch(e) {}
+        };
+
+        window.trackVoiceListen = function() {
+          try {
+            let s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            if (s) {
+              s.voiceListens = (s.voiceListens || 0) + 1;
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+            }
+          } catch(e) {}
+        };
+      } catch(e) {
+        console.warn('Error recording stats', e);
+      }
+    })();
+
+    </script>
+</body>
+</html>

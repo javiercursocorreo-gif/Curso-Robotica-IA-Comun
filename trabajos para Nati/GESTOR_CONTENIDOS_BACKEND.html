@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Contenidos • Redacción Centro de Mayores</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg-dark: #0f172a;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --success: #15803d;
+      --warning: #b45309;
+      --danger: #b91c1c;
+      --accent: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f8fafc;
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* BARRA SUPERIOR DE ADMINISTRACIÓN */
+    .admin-navbar {
+      background: var(--bg-dark);
+      color: #ffffff;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .admin-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-title-wrap h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .admin-role-badge {
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* PESTAÑAS DE NAVEGACIÓN SUPERIOR */
+    .main-tab-bar {
+      display: flex;
+      gap: 8px;
+      background: #1e293b;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+    }
+
+    .main-nav-tab {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .main-nav-tab:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .main-nav-tab.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+    }
+
+    .admin-nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-nav-tv {
+      background: #0284c7;
+      border-color: #38bdf8;
+    }
+
+    .btn-nav-tv:hover {
+      background: #0369a1;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .admin-container {
+      max-width: 1240px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    /* SELECCIÓN DE ÁREA DE TRABAJO (WEB) */
+    .teams-strip {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .teams-strip h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .area-btn {
+      background: #f1f5f9;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+
+    .area-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+
+    .area-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0369a1;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+    }
+
+    /* LAYOUT DEL EDITOR WEB */
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .editor-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* TARJETA DE FORMULARIO */
+    .form-card {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .form-header {
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .form-header h2 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .form-header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    .field-help {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .field-input, .field-textarea, .field-select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #0f172a;
+      background: #ffffff;
+      font-family: inherit;
+      transition: border-color 0.15s ease;
+    }
+
+    .field-input:focus, .field-textarea:focus, .field-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .field-textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .grid-two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-two-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ASISTENTE GEMINI */
+    .ai-assist-box {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border: 2px solid #c4b5fd;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .ai-assist-text {
+      font-size: 0.92rem;
+      color: #5b21b6;
+      font-weight: 600;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .btn-ai-sparkle {
+      background: #7c3aed;
+      color: #ffffff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-ai-sparkle:hover {
+      background: #6d28d9;
+      transform: translateY(-1px);
+    }
+
+    /* BOTONES DE ACCIÓN DEL FORMULARIO */
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action-primary {
+      flex: 1;
+      background: var(--success);
+      color: #ffffff;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-action-primary:hover {
+      background: #166534;
+      transform: translateY(-1px);
+    }
+
+    .btn-action-draft {
+      background: #f1f5f9;
+      color: #334155;
+      border: 2px solid #cbd5e1;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action-draft:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+
+    /* COLUMNA DERECHA: VISTA PREVIA Y BANDEJA */
+    .preview-card {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 90px;
+      height: fit-content;
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .preview-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .preview-badge-status {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    /* MOCKUP DE TARJETA WEB */
+    .public-card-mockup {
+      border: 3px solid #0d7a57;
+      border-radius: 14px;
+      padding: 18px;
+      background: #ffffff;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+    }
+
+    .mockup-category {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #0d7a57;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .mockup-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .mockup-meta {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .mockup-body {
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    /* BANDEJA DE REVISIÓN DEL ADMINISTRADOR */
+    .admin-inbox {
+      border-top: 2px solid #e2e8f0;
+      padding-top: 18px;
+    }
+
+    .admin-inbox h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .admin-inbox p {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .draft-item {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-approve-quick {
+      background: #15803d;
+      color: #ffffff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-approve-quick:hover {
+      background: #166534;
+    }
+
+    /* ===================================================
+       VISTA DEDICADA DE TELEVISIÓN
+       =================================================== */
+    #viewTv {
+      display: none;
+      animation: fadeIn 0.25s ease-in;
+    }
+
+    .tv-hero-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 22px 28px;
+      margin-bottom: 24px;
+      border: 2px solid #38bdf8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .tv-hero-banner h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f8fafc;
+    }
+
+    .tv-hero-banner p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      max-width: 750px;
+    }
+
+    .tv-editor-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 960px) {
+      .tv-editor-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SIMULADOR DE TV (16:9 BEZEL) */
+    .tv-screen-bezel {
+      background: #020617;
+      border: 10px solid #0f172a;
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+      position: sticky;
+      top: 90px;
+    }
+
+    .tv-screen-inner {
+      background: #0f172a;
+      border: 2px solid #38bdf8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 380px;
+    }
+
+    .tv-mockup-header {
+      background: #020617;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #1e293b;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .tv-mockup-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      overflow: hidden;
+    }
+
+    .tv-mockup-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tv-mockup-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #ffffff;
+      background: #0b1329;
+    }
+
+    .tv-mockup-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #0284c7;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .tv-mockup-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .tv-mockup-meta {
+      font-size: 0.82rem;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tv-mockup-text {
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    /* LISTA DE DIAPOSITIVAS */
+    .tv-slides-list {
+      margin-top: 24px;
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .tv-slide-row {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tv-slide-row:hover {
+      background: #f1f5f9;
+      border-color: #38bdf8;
+    }
+
+    .tv-slide-row.active {
+      background: #e0f2fe;
+      border-color: #0284c7;
+    }
+
+    .tv-slide-thumb {
+      width: 60px;
+      height: 44px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: #334155;
+    }
+
+    /* ===================================================
+       VISTA DEDICADA DE ESTADÍSTICAS
+       =================================================== */
+    #viewStats {
+      display: none;
+      animation: fadeIn 0.25s ease-in;
+    }
+
+    .stats-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-left: 6px solid #0284c7;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .kpi-icon {
+      font-size: 2.2rem;
+    }
+
+    .kpi-info h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .kpi-val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: #15803d;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .stats-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .stats-row-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stats-card {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .stats-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stats-card-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .device-metric-row {
+      margin-bottom: 16px;
+    }
+
+    .device-metric-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #1e293b;
+    }
+
+    .progress-track {
+      background: #e2e8f0;
+      border-radius: 999px;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .chart-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-chart-toggle {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-chart-toggle.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0369a1;
+    }
+
+    .bar-chart-visual {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 180px;
+      padding-top: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar-stem {
+      width: 100%;
+      max-width: 44px;
+      background: #0284c7;
+      border-radius: 6px 6px 0 0;
+      transition: height 0.3s ease;
+    }
+
+    .bar-lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .bar-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="admin-navbar">
+    <div class="admin-title-wrap">
+      <span style="font-size: 1.8rem;">✍️</span>
+      <div>
+        <h1>Gestor de Contenidos • Centro de Mayores</h1>
+        <div style="font-size: 0.85rem; color: #cbd5e1;">Redacción Digital de Alumnos e Información Oficial</div>
+      </div>
+      <span class="admin-role-badge">Equipo Redacción IA</span>
+    </div>
+
+    <!-- PESTAÑAS PRINCIPALES DEL BACKEND -->
+    <nav class="main-tab-bar" aria-label="Secciones del panel">
+      <button id="btnTabEditor" class="main-nav-tab active" onclick="switchTab('editor')">
+        ✍️ Editor Web Pública
+      </button>
+      <button id="btnTabTv" class="main-nav-tab" onclick="switchTab('tv')">
+        📺 Editor de Pantalla TV
+      </button>
+      <button id="btnTabStats" class="main-nav-tab" onclick="switchTab('stats')">
+        📊 Estadísticas y Visitas
+      </button>
+    </nav>
+
+    <!-- ENLACES DE VISUALIZACIÓN EXTERNA -->
+    <div class="admin-nav-actions">
+      <a href="PANTALLA_TV_VESTIBULO.html" target="_blank" class="btn-nav btn-nav-tv">
+        📺 Ver TV Directo ➔
+      </a>
+      <a href="WEB_PUBLICA_CENTRO_MAYORES.html" target="_blank" class="btn-nav">
+        🌐 Ver Web Pública ➔
+      </a>
+    </div>
+  </header>
+
+  <main class="admin-container">
+
+    <!-- SELECTOR DE ÁREA (SOLO VISIBLE EN EDITOR WEB) -->
+    <section class="teams-strip" id="sectionAreaSelector">
+      <h2>1. Selecciona el Área que estás editando:</h2>
+      <div class="teams-grid">
+        <button class="area-btn active" onclick="selectArea('excursiones', '🚌 Excursiones y Viajes', '#0d7a57', this)">
+          <span>🚌</span> Excursiones
+        </button>
+        <button class="area-btn" onclick="selectArea('talleres', '🎨 Clases y Talleres', '#c05621', this)">
+          <span>🎨</span> Clases y Talleres
+        </button>
+        <button class="area-btn" onclick="selectArea('menu', '☕ Cafetería y Menú', '#9b2c2c', this)">
+          <span>☕</span> Menú Cafetería
+        </button>
+        <button class="area-btn" onclick="selectArea('normas', '📜 Normas de Secretaría', '#1e3a8a', this)">
+          <span>📜</span> Normas de Secretaría
+        </button>
+        <button class="area-btn" onclick="selectArea('guias', '💡 Guías Ciudadanas e IA', '#5b21b6', this)">
+          <span>💡</span> Guías y Salud
+        </button>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         1. VISTA: EDITOR DE LA WEB PÚBLICA
+         ======================================================= -->
+    <div class="editor-layout" id="viewEditor">
+
+      <!-- COLUMNA IZQUIERDA: FORMULARIO WEB -->
+      <section class="form-card">
+        <div class="form-header">
+          <h2 id="formAreaTitle">🚌 Nuevo Aviso de Excursión</h2>
+          <p>Rellena los datos sencillos. El sistema le dará formato automático para la web de los mayores.</p>
+        </div>
+
+        <form id="contentForm" onsubmit="event.preventDefault(); publishItem();">
+          
+          <div class="field-group">
+            <label for="inpTitle">Título del Anuncio o Viaje:</label>
+            <div class="field-help">Escribe un nombre claro y atractivo (Ej: "Viaje de Primavera a Chinchón").</div>
+            <input type="text" id="inpTitle" class="field-input" value="Viaje de Día Completo a Chinchón y Colmenar de Oreja" oninput="updateLivePreview()">
+          </div>
+
+          <div class="grid-two-cols">
+            <div class="field-group">
+              <label for="inpDate">Fecha de Salida o Aplicación:</label>
+              <input type="text" id="inpDate" class="field-input" value="Sábado, 20 de Junio de 2026" oninput="updateLivePreview()">
+            </div>
+            <div class="field-group">
+              <label for="inpPrice">Precio o Plazas:</label>
+              <input type="text" id="inpPrice" class="field-input" value="25 € (Comida incluida) • 55 plazas" oninput="updateLivePreview()">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="inpBody">Descripción del viaje o contenido:</label>
+            <div class="field-help">Puedes escribir una nota rápida y pulsar el botón morado de Gemini para que lo redacte de forma profesional.</div>
+            <textarea id="inpBody" class="field-textarea" oninput="updateLivePreview()">Salida a las 9 de la mañana en autobús desde la puerta del centro. Visita a la plaza mayor de Chinchón y almuerzo típico. Por la tarde visita a una bodega tradicional. Vuelta a las 19h. Apuntarse con el Administrador a partir del lunes.</textarea>
+
+            <!-- ASISTENTE CON GEMINI PARA MEJORAR LA REDACCIÓN -->
+            <div class="ai-assist-box">
+              <div class="ai-assist-text">
+                ✨ <strong>Asistente Gemini:</strong> ¿Quieres enriquecer y ordenar este texto para que los socios mayores lo lean con claridad?
+              </div>
+              <button type="button" class="btn-ai-sparkle" onclick="enhanceWithGemini()">
+                🪄 Pulir con Gemini
+              </button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="inpCategoryTag">Etiqueta Informativa:</label>
+            <input type="text" id="inpCategoryTag" class="field-input" value="Plazas Limitadas • Autobús Climatizado">
+          </div>
+
+          <!-- BOTONES DE ACCIÓN -->
+          <div class="form-actions">
+            <button type="submit" class="btn-action-primary">
+              🚀 Guardar y Publicar en la Web
+            </button>
+            <button type="button" class="btn-action-draft" onclick="saveAsDraft()">
+              💾 Guardar como Borrador para el Administrador
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- COLUMNA DERECHA: VISTA PREVIA WEB Y BANDEJA DEL ADMINISTRADOR -->
+      <aside class="preview-card">
+        <div class="preview-header">
+          <h3>👁️ Vista Previa en Tiempo Real</h3>
+          <span class="preview-badge-status" id="previewStatus">Borrador Web</span>
+        </div>
+
+        <div class="public-card-mockup" id="mockupCard">
+          <div class="mockup-category" id="mockupCat">🚌 Excursiones y Viajes</div>
+          <div class="mockup-title" id="mockupTitle">Viaje de Día Completo a Chinchón y Colmenar de Oreja</div>
+          <div class="mockup-meta" id="mockupMeta">Sábado, 20 de Junio de 2026 • 25 € (Comida incluida) • 55 plazas</div>
+          <div class="mockup-body" id="mockupBody">Salida a las 9 de la mañana en autobús desde la puerta del centro. Visita a la plaza mayor de Chinchón y almuerzo típico. Por la tarde visita a una bodega tradicional. Vuelta a las 19h. Apuntarse con el Administrador a partir del lunes.</div>
+        </div>
+
+        <!-- BANDEJA DE APROBACIÓN PARA EL ADMINISTRADOR -->
+        <div class="admin-inbox">
+          <h4>👩‍💼 Bandeja de Revisión del Administrador</h4>
+          <p>El Administrador puede revisar los textos enviados por los alumnos y aprobarlos con un solo clic:</p>
+
+          <div class="draft-item">
+            <div>
+              <strong>Menú del Viernes Especial: Paella Tradicional</strong><br>
+              <small style="color: #64748b;">Enviado por: Alumno Antonio (Equipo Cafetería)</small>
+            </div>
+            <button class="btn-approve-quick" onclick="approveDraft(this, 'Menú del Viernes Especial')">✓ Aprobar</button>
+          </div>
+
+          <div class="draft-item">
+            <div>
+              <strong>Guía: Cómo renovar la tarjeta sanitaria</strong><br>
+              <small style="color: #64748b;">Enviado por: Alumna Carmen (Equipo IA)</small>
+            </div>
+            <button class="btn-approve-quick" onclick="approveDraft(this, 'Guía Sanitaria')">✓ Aprobar</button>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- =======================================================
+         2. VISTA: EDITOR DE LA PANTALLA DE TELEVISIÓN (SEPARADO)
+         ======================================================= -->
+    <div id="viewTv">
+
+      <div class="tv-hero-banner">
+        <div>
+          <h2>📺 Editor de Diapositivas para la Televisión del Vestíbulo</h2>
+          <p>
+            Gestiona los anuncios gigantes que rotan de forma continua y automática en la pantalla de la entrada del centro (sin ratón ni teclado para los mayores).
+          </p>
+        </div>
+        <div>
+          <a href="PANTALLA_TV_VESTIBULO.html" target="_blank" class="btn-nav btn-nav-tv" style="padding: 10px 18px; font-size: 0.95rem;">
+            ▶️ Ver Emisión en Pantalla Completa ➔
+          </a>
+        </div>
+      </div>
+
+      <div class="tv-editor-layout">
+
+        <!-- COLUMNA IZQUIERDA: FORMULARIO DE DIAPOSITIVA TV -->
+        <div class="form-card">
+          <div class="form-header">
+            <h2 id="tvSlideFormTitle">➕ Añadir / Modificar Diapositiva de TV</h2>
+            <p>Los textos de la televisión deben ser cortos y las fotos muy apetitosas y luminosas para verse a 3-5 metros.</p>
+          </div>
+
+          <form id="tvSlideForm" onsubmit="event.preventDefault(); saveTvSlide();">
+            <input type="hidden" id="tvSlideIndex" value="-1">
+
+            <div class="field-group">
+              <label for="tvInpBadge">Etiqueta Superior (Tema de la diapositiva):</label>
+              <select id="tvInpBadge" class="field-select" onchange="updateTvMockup()">
+                <option value="🚌 PRÓXIMA EXCURSIÓN">🚌 PRÓXIMA EXCURSIÓN</option>
+                <option value="🍲 MENÚ DE CAFETERÍA">🍲 MENÚ DE CAFETERÍA</option>
+                <option value="🎨 TALLER TECNOLÓGICO">🎨 TALLER TECNOLÓGICO</option>
+                <option value="🧘‍♀️ GIMNASIA Y PILATES">🧘‍♀️ GIMNASIA Y PILATES</option>
+                <option value="📜 AVISO DE SECRETARÍA">📜 AVISO DE SECRETARÍA</option>
+                <option value="💡 AYUDA Y SALUD">💡 AYUDA Y SALUD</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="tvInpTitle">Título Gigante de la Pantalla:</label>
+              <input type="text" id="tvInpTitle" class="field-input" value="Viaje de Día Completo a Toledo Histórico" oninput="updateTvMockup()">
+            </div>
+
+            <div class="field-group">
+              <label for="tvInpMeta">Fecha, Hora y Plazas (Subtítulo destacado):</label>
+              <input type="text" id="tvInpMeta" class="field-input" value="📅 Jueves 14 de Mayo • Salida: 08:30 h • Precio: 32 €" oninput="updateTvMockup()">
+            </div>
+
+            <div class="field-group">
+              <label for="tvInpBody">Texto Resumido (Letra grande de aviso):</label>
+              <textarea id="tvInpBody" class="field-textarea" style="min-height: 90px;" oninput="updateTvMockup()">Visita guiada por el casco histórico, paseo accesible en llano y comida típica toledana en restaurante concertado. Últimas 8 plazas disponibles en secretaría.</textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="tvInpImgSelect">Fotografía de Alta Calidad para la TV:</label>
+              <select id="tvInpImgSelect" class="field-select" style="margin-bottom: 8px;" onchange="setTvImgFromSelect()">
+                <option value="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1000&q=80">Toledo Histórico (Excursión cultural)</option>
+                <option value="https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=1000&q=80">Cocido y Plato de Cuchara Tradicional Casero (Cafetería)</option>
+                <option value="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1000&q=80">Paella Tradicional Española (Cafetería)</option>
+                <option value="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=1000&q=80">Señora Mayor aprendiendo con Móvil / Tablet (Taller IA)</option>
+                <option value="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1000&q=80">Señora Mayor en Estiramientos y Pilates (Gimnasia)</option>
+                <option value="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80">Sala Climatizada y Lectura de Prensa (Secretaría)</option>
+              </select>
+              <input type="text" id="tvInpImg" class="field-input" value="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1000&q=80" oninput="updateTvMockup()">
+            </div>
+
+            <div class="field-group">
+              <label for="tvInpDuration">Tiempo de rotación en pantalla:</label>
+              <select id="tvInpDuration" class="field-select">
+                <option value="6">6 segundos (rápido)</option>
+                <option value="8" selected>8 segundos (ideal para lectura cómoda)</option>
+                <option value="12">12 segundos (muy pausado)</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-action-primary" style="background: #0284c7;">
+                💾 Guardar Diapositiva en la TV
+              </button>
+              <button type="button" class="btn-action-draft" onclick="resetTvForm()">
+                ➕ Crear Nueva Diapositiva
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- COLUMNA DERECHA: SIMULADOR 16:9 + LISTA DE DIAPOSITIVAS -->
+        <div>
+          <!-- MARCO DE TV -->
+          <div class="tv-screen-bezel">
+            <div style="font-size: 0.8rem; color: #38bdf8; font-weight: 800; margin-bottom: 8px; text-transform: uppercase;">
+              📺 Simulador en Tiempo Real de la Pantalla del Vestíbulo (16:9):
+            </div>
+            <div class="tv-screen-inner">
+              <div class="tv-mockup-header">
+                <span>🏛️ Centro de Mayores • Emisión Continua</span>
+                <span id="tvMockupClock">12:30</span>
+              </div>
+              <div class="tv-mockup-body">
+                <div>
+                  <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1000&q=80" alt="" class="tv-mockup-img" id="tvMockImg">
+                </div>
+                <div class="tv-mockup-content">
+                  <div>
+                    <span class="tv-mockup-badge" id="tvMockBadge">🚌 PRÓXIMA EXCURSIÓN</span>
+                    <div class="tv-mockup-title" id="tvMockTitle">Viaje de Día Completo a Toledo Histórico</div>
+                    <div class="tv-mockup-meta" id="tvMockMeta">📅 Jueves 14 de Mayo • Salida: 08:30 h • Precio: 32 €</div>
+                    <div class="tv-mockup-text" id="tvMockBody">Visita guiada por el casco histórico, paseo accesible en llano y comida típica toledana en restaurante concertado. Últimas 8 plazas disponibles en secretaría.</div>
+                  </div>
+                  <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 700; border-top: 1px solid #1e293b; padding-top: 6px;">
+                    🟢 Información e inscripciones en Secretaría
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LISTA DE DIAPOSITIVAS EN EMISIÓN -->
+          <div class="tv-slides-list">
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 12px;">
+              📋 Diapositivas Activas en el Carrusel (Haz clic en una para editarla):
+            </h3>
+            <div id="tvSlidesListContainer">
+              <!-- Rellenado dinámicamente por JavaScript -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- GUÍA DE CONEXIÓN FÍSICA -->
+      <div style="background: #ffffff; border: 2px solid #cbd5e1; border-radius: 14px; padding: 22px; margin-top: 10px;">
+        <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+          🔌 ¿Cómo conectar la televisión física del centro de mayores?
+        </h3>
+        <p style="font-size: 0.92rem; color: #64748b; margin-bottom: 14px;">
+          Cualquier pantalla convencional de televisión puede funcionar como tablón digital automático sin mantenimiento diario:
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px;">1. Si es Smart TV</div>
+            <div style="font-size: 0.88rem; color: #475569;">Abrir el navegador integrado de la televisión, teclear la dirección de la TV y pulsar el botón de pantalla completa.</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px;">2. Con Amazon Fire Stick o Chromecast (25 €)</div>
+            <div style="font-size: 0.88rem; color: #475569;">Conectar el dispositivo al puerto HDMI con la Wi-Fi del centro. Abrir la aplicación de navegador (Silk o Chrome) a pantalla completa.</div>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px;">3. Cable HDMI desde Secretaría</div>
+            <div style="font-size: 0.88rem; color: #475569;">Conectar un cable HDMI largo desde el ordenador del Administrador como segunda pantalla configurada en modo extendido.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =======================================================
+         3. VISTA: ESTADÍSTICAS Y TELEMETRÍA (SEPARADO)
+         ======================================================= -->
+    <div id="viewStats">
+
+      <!-- TARJETAS DE INDICADORES CLAVE (KPIs) -->
+      <div class="stats-kpi-grid">
+        <div class="kpi-card" style="border-left-color: #0284c7;">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-info">
+            <h4>Visitas Hoy</h4>
+            <div class="kpi-val" id="kpiToday">--</div>
+            <div class="kpi-sub">▲ +14% vs ayer</div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="border-left-color: #10b981;">
+          <div class="kpi-icon">📅</div>
+          <div class="kpi-info">
+            <h4>Visitas Este Mes</h4>
+            <div class="kpi-val" id="kpiMonth">--</div>
+            <div class="kpi-sub">▲ +28% crecimiento</div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="border-left-color: #f59e0b;">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-info">
+            <h4>Total Año 2026</h4>
+            <div class="kpi-val" id="kpiYear">--</div>
+            <div class="kpi-sub">Objetivo anual 85%</div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="border-left-color: #8b5cf6;">
+          <div class="kpi-icon">🔊</div>
+          <div class="kpi-info">
+            <h4>Lecturas por Voz</h4>
+            <div class="kpi-val" id="kpiVoice">--</div>
+            <div class="kpi-sub">Accesibilidad activa</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILA DE DETALLES: DISPOSITIVOS Y GRÁFICO TEMPORAL -->
+      <div class="stats-row-grid">
+        
+        <!-- DISPOSITIVOS -->
+        <div class="stats-card">
+          <div class="stats-card-header">
+            <h3>📱 Tipo de Dispositivo Usado por los Socios</h3>
+          </div>
+          
+          <div class="device-metric-row">
+            <div class="device-metric-label">
+              <span>📱 Teléfono Móvil</span>
+              <span id="devMobPct">70% (994 visitas)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="devMobBar" style="width: 70%; background: #0284c7;"></div>
+            </div>
+          </div>
+
+          <div class="device-metric-row">
+            <div class="device-metric-label">
+              <span>📟 Tablet (Pantalla Grande)</span>
+              <span id="devTabPct">20% (284 visitas)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="devTabBar" style="width: 20%; background: #10b981;"></div>
+            </div>
+          </div>
+
+          <div class="device-metric-row">
+            <div class="device-metric-label">
+              <span>💻 Ordenador de Sobremesa / Portátil</span>
+              <span id="devPcPct">10% (142 visitas)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="devPcBar" style="width: 10%; background: #64748b;"></div>
+            </div>
+          </div>
+
+          <div style="margin-top: 22px; font-size: 0.88rem; color: #64748b; background: #f8fafc; padding: 12px; border-radius: 8px;">
+            💡 <strong>Dato de uso:</strong> El 90% de los socios mayores consulta la web desde el móvil o tablet con los dedos. Por eso los botones grandes y la lectura por voz son prioritarios.
+          </div>
+        </div>
+
+        <!-- EVOLUCIÓN TEMPORAL -->
+        <div class="stats-card">
+          <div class="stats-card-header">
+            <h3>📊 Evolución de Consultas</h3>
+            <div class="chart-controls">
+              <button class="btn-chart-toggle active" onclick="switchChartPeriod('dias', this)">Días</button>
+              <button class="btn-chart-toggle" onclick="switchChartPeriod('meses', this)">Meses</button>
+              <button class="btn-chart-toggle" onclick="switchChartPeriod('anos', this)">Años</button>
+            </div>
+          </div>
+
+          <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 12px;" id="chartDesc">
+            Visitas diarias de los últimos 7 días lectivos:
+          </p>
+
+          <div class="bar-chart-visual" id="chartVisual">
+            <!-- Rellenado por JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SECCIONES MÁS CONSULTADAS -->
+      <div class="stats-card" style="margin-bottom: 24px;">
+        <div class="stats-card-header">
+          <h3>🏆 Secciones de la Web Más Consultadas por los Socios</h3>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+          <div>
+            <div class="device-metric-label">
+              <span>🚌 Excursiones y Viajes</span>
+              <span id="secExcursionesVal">41% (580 visitas)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="secExcursionesBar" style="width: 41%; background: #0d7a57;"></div></div>
+          </div>
+
+          <div>
+            <div class="device-metric-label">
+              <span>🎨 Clases y Talleres</span>
+              <span id="secTalleresVal">24% (340 visitas)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="secTalleresBar" style="width: 24%; background: #c05621;"></div></div>
+          </div>
+
+          <div>
+            <div class="device-metric-label">
+              <span>☕ Menú de Cafetería</span>
+              <span id="secMenuVal">20% (290 visitas)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="secMenuBar" style="width: 20%; background: #9b2c2c;"></div></div>
+          </div>
+
+          <div>
+            <div class="device-metric-label">
+              <span>💡 Guías y Salud</span>
+              <span id="secGuiasVal">10% (140 visitas)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="secGuiasBar" style="width: 10%; background: #5b21b6;"></div></div>
+          </div>
+
+          <div>
+            <div class="device-metric-label">
+              <span>📜 Normas y Secretaría</span>
+              <span id="secNormasVal">5% (70 visitas)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="secNormasBar" style="width: 5%; background: #1e3a8a;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: right;">
+        <button onclick="refreshStatsView()" style="background: #0284c7; color: #ffffff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 800; cursor: pointer;">
+          🔄 Actualizar Datos Ahora
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    // ========================================================
+    // ESTADO GLOBAL Y VARIABLES
+    // ========================================================
+    let currentAreaKey = 'excursiones';
+    let currentAreaColor = '#0d7a57';
+    let currentAreaName = '🚌 Excursiones y Viajes';
+    let currentChartPeriod = 'dias';
+
+    // DIAPOSITIVAS POR DEFECTO DE TELEVISIÓN
+    let tvSlidesData = [
+      {
+        badge: "🚌 PRÓXIMA EXCURSIÓN",
+        color: "#0d7a57",
+        title: "Viaje de Día Completo a Toledo Histórico",
+        meta: "📅 Jueves 14 de Mayo • Salida: 08:30 h • Precio: 32 €",
+        body: "Visita guiada por el casco histórico, paseo accesible en llano y comida típica toledana en restaurante concertado. Últimas 8 plazas disponibles en secretaría.",
+        img: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        badge: "🍲 MENÚ DE CAFETERÍA",
+        color: "#9b2c2c",
+        title: "Comida Casera Diaria por 6,50 €",
+        meta: "De Lunes a Viernes de 13:00 a 15:30 h para todos los socios",
+        body: "Primer plato de cuchara (lentejas, cocido o paella), segundo de carne o pescado fresco, pan recién hecho, bebida y postres caseros elaborados a diario.",
+        img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        badge: "🎨 TALLER TECNOLÓGICO",
+        color: "#5b21b6",
+        title: "Nuevo Taller: Inteligencia Artificial Cotidiana",
+        meta: "📅 Martes y Jueves de 10:30 a 12:00 h • Aula de Informática",
+        body: "Aprende a dialogar con Gemini en el móvil, restaurar y colorear fotos antiguas de tu familia y resolver dudas diarias. No hace falta saber nada de ordenadores.",
+        img: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        badge: "📜 AVISO DE SECRETARÍA",
+        color: "#1e3a8a",
+        title: "Salas Climatizadas y Horario de Atención",
+        meta: "Apertura del centro de 09:00 a 20:30 h continuado",
+        body: "Las salas de lectura y tertulia cuentan con aire acondicionado y prensa diaria a disposición de los socios. Atención del Administrador en secretaría de 10:00 a 13:30 h.",
+        img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80"
+      }
+    ];
+
+    // ========================================================
+    // GESTIÓN DE PESTAÑAS PRINCIPALES
+    // ========================================================
+    function switchTab(tabId) {
+      const isEditor = tabId === 'editor';
+      const isTv = tabId === 'tv';
+      const isStats = tabId === 'stats';
+
+      document.getElementById('viewEditor').style.display = isEditor ? 'grid' : 'none';
+      document.getElementById('sectionAreaSelector').style.display = isEditor ? 'block' : 'none';
+      document.getElementById('viewTv').style.display = isTv ? 'block' : 'none';
+      document.getElementById('viewStats').style.display = isStats ? 'block' : 'none';
+
+      document.getElementById('btnTabEditor').classList.toggle('active', isEditor);
+      document.getElementById('btnTabTv').classList.toggle('active', isTv);
+      document.getElementById('btnTabStats').classList.toggle('active', isStats);
+
+      if (isTv) {
+        renderTvSlidesList();
+        updateTvMockup();
+      }
+      if (isStats) {
+        refreshStatsView();
+      }
+    }
+
+    // Funciones de compatibilidad directa
+    function showEditorView() { switchTab('editor'); }
+    function showTvEditorView() { switchTab('tv'); }
+    function showStatsView() { switchTab('stats'); }
+
+    // ========================================================
+    // SELECCIÓN DE ÁREA EN EL EDITOR WEB
+    // ========================================================
+    function selectArea(areaKey, areaTitle, color, btnEl) {
+      currentAreaKey = areaKey;
+      currentAreaColor = color;
+      currentAreaName = areaTitle;
+
+      document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) {
+        btnEl.classList.add('active');
+      }
+
+      document.getElementById('formAreaTitle').textContent = areaTitle;
+      document.getElementById('mockupCat').textContent = areaTitle;
+      document.getElementById('mockupCat').style.color = color;
+      document.getElementById('mockupCard').style.borderColor = color;
+
+      if (areaKey === 'excursiones') {
+        document.getElementById('inpTitle').value = 'Viaje de Día Completo a Chinchón y Colmenar de Oreja';
+        document.getElementById('inpDate').value = 'Sábado, 20 de Junio de 2026';
+        document.getElementById('inpPrice').value = '25 € (Comida incluida) • 55 plazas';
+        document.getElementById('inpBody').value = 'Salida a las 9 de la mañana en autobús desde la puerta del centro. Visita a la plaza mayor de Chinchón y almuerzo típico. Por la tarde visita a una bodega tradicional. Vuelta a las 19h. Apuntarse con el Administrador a partir del lunes.';
+        document.getElementById('inpCategoryTag').value = 'Plazas Limitadas • Autobús Climatizado';
+      } else if (areaKey === 'talleres') {
+        document.getElementById('inpTitle').value = 'Nuevo Taller: Robótica e Inteligencia Artificial Cotidiana';
+        document.getElementById('inpDate').value = 'Martes y Jueves de 10:30 a 12:00 h';
+        document.getElementById('inpPrice').value = 'Gratuito para socios • Aula de Informática';
+        document.getElementById('inpBody').value = 'Aprende a usar Gemini en el móvil, restaurar fotos antiguas de tu familia y escribir tus memorias. No hace falta saber de informática. Plazas limitadas.';
+        document.getElementById('inpCategoryTag').value = 'Iniciación • Todos los niveles';
+      } else if (areaKey === 'menu') {
+        document.getElementById('inpTitle').value = 'Menú del Día Casero - Cocido Madrileño Tradicional';
+        document.getElementById('inpDate').value = 'Miércoles lectivo de 13:00 a 15:30 h';
+        document.getElementById('inpPrice').value = '6,50 € Socios • Incluye pan, bebida y postre';
+        document.getElementById('inpBody').value = 'Primer plato: Sopa de fideos desgrasada. Segundo: Cocido completo con garbanzos, morcillo, chorizo y verdura. Postre casero a elegir.';
+        document.getElementById('inpCategoryTag').value = 'Comida Saludable • Cocina Casera';
+      } else if (areaKey === 'normas') {
+        document.getElementById('inpTitle').value = 'Horario de Verano y Climatización en Salas';
+        document.getElementById('inpDate').value = 'A partir del 1 de Junio';
+        document.getElementById('inpPrice').value = 'Acceso libre con carné de socio';
+        document.getElementById('inpBody').value = 'Las salas permanecerán abiertas y con aire acondicionado de 09:30 a 20:00 h para descanso y lectura de prensa de los socios. El Administrador atenderá secretaría por las mañanas.';
+        document.getElementById('inpCategoryTag').value = 'Información Oficial de Secretaría';
+      } else if (areaKey === 'guias') {
+        document.getElementById('inpTitle').value = 'Cómo renovar la tarjeta sanitaria desde casa paso a paso';
+        document.getElementById('inpDate').value = 'Guía Permanente • Equipo de Alumnos IA';
+        document.getElementById('inpPrice').value = 'Trámite 100% Gratuito y sin colas';
+        document.getElementById('inpBody').value = 'Explicamos en 3 pasos muy sencillos cómo pedir que te envíen la tarjeta sanitaria renovada a tu buzón sin hacer cola en el centro de salud ni esperar números.';
+        document.getElementById('inpCategoryTag').value = 'Guía Ciudadana Paso a Paso';
+      }
+
+      updateLivePreview();
+    }
+
+    // ========================================================
+    // VISTA PREVIA EN TIEMPO REAL (WEB)
+    // ========================================================
+    function updateLivePreview() {
+      const title = document.getElementById('inpTitle').value || 'Sin título';
+      const date = document.getElementById('inpDate').value || '';
+      const price = document.getElementById('inpPrice').value || '';
+      const body = document.getElementById('inpBody').value || '';
+
+      document.getElementById('mockupTitle').textContent = title;
+      document.getElementById('mockupMeta').textContent = [date, price].filter(Boolean).join(' • ');
+      document.getElementById('mockupBody').textContent = body;
+    }
+
+    function enhanceWithGemini() {
+      const current = document.getElementById('inpBody').value;
+      const enhanced = `[Optimizado con Gemini]: ${current}
+
+Recuerde traer calzado cómodo y su carné de socio. Para cualquier consulta o necesidad de transporte accesible, acuda a la secretaría del centro.`;
+
+      document.getElementById('inpBody').value = enhanced;
+      updateLivePreview();
+      alert('✨ ¡Texto de «' + currentAreaName + '» enriquecido con Gemini!\n\nSe ha adaptado a un lenguaje claro y accesible para los socios mayores.');
+    }
+
+    function publishItem() {
+      const title = document.getElementById('inpTitle').value;
+      alert('🚀 ¡Aviso publicado con éxito!\n\n«' + title + '» ha quedado guardado y actualizado para la web pública.');
+      document.getElementById('previewStatus').textContent = 'Publicado';
+      document.getElementById('previewStatus').style.background = '#dcfce7';
+      document.getElementById('previewStatus').style.color = '#15803d';
+    }
+
+    function saveAsDraft() {
+      const title = document.getElementById('inpTitle').value;
+      alert('💾 Guardado como borrador.\n\nEl aviso ha quedado depositado en la bandeja de revisión para que el Administrador dé el visto bueno.');
+    }
+
+    function approveDraft(btn, title) {
+      alert('✅ ¡Aprobado!\n\nEl contenido «' + title + '» ha sido aprobado por el Administrador y publicado.');
+      const row = btn.closest('.draft-item');
+      if (row) {
+        row.style.background = '#ecfdf5';
+        row.style.borderColor = '#10b981';
+        btn.textContent = '✓ Publicado';
+        btn.disabled = true;
+        btn.style.background = '#10b981';
+      }
+    }
+
+    // ========================================================
+    // TELEVISIÓN: PERSISTENCIA Y FUNCIONES
+    // ========================================================
+    function loadTvSlides() {
+      try {
+        const stored = localStorage.getItem('centro_mayores_tv_slides_v1');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            tvSlidesData = parsed;
+          }
+        }
+      } catch (e) {
+        console.error('Error cargando slides de TV:', e);
+      }
+    }
+
+    function saveTvSlidesToStorage() {
+      try {
+        localStorage.setItem('centro_mayores_tv_slides_v1', JSON.stringify(tvSlidesData));
+      } catch (e) {
+        console.error('Error guardando slides de TV:', e);
+      }
+    }
+
+    function updateTvMockup() {
+      const badge = document.getElementById('tvInpBadge').value;
+      const title = document.getElementById('tvInpTitle').value || 'Título de aviso';
+      const meta = document.getElementById('tvInpMeta').value || '';
+      const body = document.getElementById('tvInpBody').value || '';
+      const img = document.getElementById('tvInpImg').value;
+
+      document.getElementById('tvMockBadge').textContent = badge;
+      document.getElementById('tvMockTitle').textContent = title;
+      document.getElementById('tvMockMeta').textContent = meta;
+      document.getElementById('tvMockBody').textContent = body;
+      document.getElementById('tvMockImg').src = img;
+    }
+
+    function setTvImgFromSelect() {
+      const sel = document.getElementById('tvInpImgSelect');
+      document.getElementById('tvInpImg').value = sel.value;
+      updateTvMockup();
+    }
+
+    function populateTvForm(index) {
+      const s = tvSlidesData[index];
+      if (!s) return;
+      document.getElementById('tvSlideIndex').value = index;
+      document.getElementById('tvInpBadge').value = s.badge;
+      document.getElementById('tvInpTitle').value = s.title;
+      document.getElementById('tvInpMeta').value = s.meta;
+      document.getElementById('tvInpBody').value = s.body;
+      document.getElementById('tvInpImg').value = s.img;
+      document.getElementById('tvSlideFormTitle').textContent = '✏️ Editando Diapositiva #' + (index + 1);
+      updateTvMockup();
+
+      document.querySelectorAll('.tv-slide-row').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+      });
+    }
+
+    function resetTvForm() {
+      document.getElementById('tvSlideIndex').value = -1;
+      document.getElementById('tvInpBadge').value = '🚌 PRÓXIMA EXCURSIÓN';
+      document.getElementById('tvInpTitle').value = '';
+      document.getElementById('tvInpMeta').value = '';
+      document.getElementById('tvInpBody').value = '';
+      document.getElementById('tvInpImg').value = 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1000&q=80';
+      document.getElementById('tvSlideFormTitle').textContent = '➕ Añadir Nueva Diapositiva de TV';
+      updateTvMockup();
+      document.querySelectorAll('.tv-slide-row').forEach(el => el.classList.remove('active'));
+    }
+
+    function saveTvSlide() {
+      const idx = parseInt(document.getElementById('tvSlideIndex').value, 10);
+      const badge = document.getElementById('tvInpBadge').value;
+      const slide = {
+        badge: badge,
+        color: badge.includes('EXCURSIÓN') ? '#0d7a57' : (badge.includes('MENÚ') ? '#9b2c2c' : (badge.includes('GIMNASIA') ? '#c05621' : '#38bdf8')),
+        title: document.getElementById('tvInpTitle').value,
+        meta: document.getElementById('tvInpMeta').value,
+        body: document.getElementById('tvInpBody').value,
+        img: document.getElementById('tvInpImg').value
+      };
+
+      if (idx >= 0 && idx < tvSlidesData.length) {
+        tvSlidesData[idx] = slide;
+      } else {
+        tvSlidesData.push(slide);
+      }
+
+      saveTvSlidesToStorage();
+      renderTvSlidesList();
+      alert('✅ ¡Diapositiva de televisión guardada con éxito!\n\nLa pantalla del vestíbulo ya la muestra en su rotación.');
+    }
+
+    function deleteTvSlide(index, event) {
+      if (event) event.stopPropagation();
+      if (confirm('¿Eliminar esta diapositiva del carrusel de la televisión?')) {
+        tvSlidesData.splice(index, 1);
+        saveTvSlidesToStorage();
+        renderTvSlidesList();
+        resetTvForm();
+      }
+    }
+
+    function renderTvSlidesList() {
+      const c = document.getElementById('tvSlidesListContainer');
+      if (!c) return;
+      c.innerHTML = '';
+      tvSlidesData.forEach((s, i) => {
+        const row = document.createElement('div');
+        row.className = 'tv-slide-row' + (document.getElementById('tvSlideIndex').value == i ? ' active' : '');
+        row.onclick = () => populateTvForm(i);
+        row.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 12px; overflow: hidden;">
+            <img src="${s.img}" class="tv-slide-thumb" alt="">
+            <div>
+              <span style="font-size: 0.75rem; font-weight: 800; color: #0284c7; text-transform: uppercase;">${s.badge}</span>
+              <div style="font-size: 0.95rem; font-weight: 800; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px;">${s.title}</div>
+            </div>
+          </div>
+          <button type="button" onclick="deleteTvSlide(${i}, event)" style="background: #fee2e2; border: 1px solid #fca5a5; color: #b91c1c; border-radius: 6px; padding: 4px 8px; font-weight: 800; cursor: pointer;">
+            🗑️
+          </button>
+        `;
+        c.appendChild(row);
+      });
+    }
+
+    // ========================================================
+    // TELEMETRÍA Y ESTADÍSTICAS
+    // ========================================================
+    function getStatsData() {
+      let stats = null;
+      try {
+        const stored = localStorage.getItem('centro_mayores_stats_v1');
+        if (stored) stats = JSON.parse(stored);
+      } catch (e) {}
+
+      if (!stats) {
+        stats = {
+          days: {
+            '2026-10-25': 28, '2026-10-26': 42, '2026-10-27': 39,
+            '2026-10-28': 51, '2026-10-29': 47, '2026-10-30': 63, '2026-10-31': 35
+          },
+          months: {
+            '2026-05': 180, '2026-06': 310, '2026-07': 290,
+            '2026-08': 220, '2026-09': 450, '2026-10': 660
+          },
+          years: { '2024': 320, '2025': 890, '2026': 1420 },
+          devices: { movil: 994, tablet: 284, ordenador: 142 },
+          sections: { excursiones: 580, talleres: 340, menu: 290, guias: 140, normas: 70 },
+          voiceListens: 68
+        };
+      }
+      return stats;
+    }
+
+    function refreshStatsView() {
+      const s = getStatsData();
+      const todayStr = new Date().toISOString().split('T')[0];
+      const monthStr = todayStr.substring(0, 7);
+      const yearStr = todayStr.substring(0, 4);
+
+      // KPIs
+      const todayVisits = s.days[todayStr] || s.days['2026-10-31'] || 35;
+      const monthVisits = s.months[monthStr] || s.months['2026-10'] || 660;
+      const yearVisits = s.years[yearStr] || s.years['2026'] || 1420;
+      const voiceListens = s.voiceListens || 68;
+
+      document.getElementById('kpiToday').textContent = todayVisits;
+      document.getElementById('kpiMonth').textContent = monthVisits;
+      document.getElementById('kpiYear').textContent = yearVisits;
+      document.getElementById('kpiVoice').textContent = voiceListens;
+
+      // Dispositivos
+      const totalDev = (s.devices.movil || 0) + (s.devices.tablet || 0) + (s.devices.ordenador || 0) || 1;
+      const mobPct = Math.round(((s.devices.movil || 0) / totalDev) * 100);
+      const tabPct = Math.round(((s.devices.tablet || 0) / totalDev) * 100);
+      const pcPct = 100 - mobPct - tabPct;
+
+      document.getElementById('devMobPct').textContent = `${mobPct}% (${s.devices.movil || 0} visitas)`;
+      document.getElementById('devMobBar').style.width = `${mobPct}%`;
+
+      document.getElementById('devTabPct').textContent = `${tabPct}% (${s.devices.tablet || 0} visitas)`;
+      document.getElementById('devTabBar').style.width = `${tabPct}%`;
+
+      document.getElementById('devPcPct').textContent = `${pcPct}% (${s.devices.ordenador || 0} visitas)`;
+      document.getElementById('devPcBar').style.width = `${pcPct}%`;
+
+      // Secciones
+      const totalSec = Object.values(s.sections || {}).reduce((a, b) => a + b, 0) || 1;
+      const calcSec = (key) => {
+        const val = (s.sections && s.sections[key]) || 0;
+        const pct = Math.round((val / totalSec) * 100);
+        return { val, pct };
+      };
+
+      const secEx = calcSec('excursiones');
+      document.getElementById('secExcursionesVal').textContent = `${secEx.pct}% (${secEx.val} visitas)`;
+      document.getElementById('secExcursionesBar').style.width = `${secEx.pct}%`;
+
+      const secTal = calcSec('talleres');
+      document.getElementById('secTalleresVal').textContent = `${secTal.pct}% (${secTal.val} visitas)`;
+      document.getElementById('secTalleresBar').style.width = `${secTal.pct}%`;
+
+      const secMen = calcSec('menu');
+      document.getElementById('secMenuVal').textContent = `${secMen.pct}% (${secMen.val} visitas)`;
+      document.getElementById('secMenuBar').style.width = `${secMen.pct}%`;
+
+      const secGui = calcSec('guias');
+      document.getElementById('secGuiasVal').textContent = `${secGui.pct}% (${secGui.val} visitas)`;
+      document.getElementById('secGuiasBar').style.width = `${secGui.pct}%`;
+
+      const secNor = calcSec('normas');
+      document.getElementById('secNormasVal').textContent = `${secNor.pct}% (${secNor.val} visitas)`;
+      document.getElementById('secNormasBar').style.width = `${secNor.pct}%`;
+
+      // Gráfico
+      renderBarChart(currentChartPeriod, s);
+    }
+
+    function switchChartPeriod(period, btnEl) {
+      currentChartPeriod = period;
+      document.querySelectorAll('.btn-chart-toggle').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderBarChart(period, getStatsData());
+    }
+
+    function renderBarChart(period, stats) {
+      const visual = document.getElementById('chartVisual');
+      if (!visual) return;
+      visual.innerHTML = '';
+      let entries = [];
+      let descText = '';
+
+      if (period === 'dias') {
+        descText = 'Visitas diarias de los últimos 7 días lectivos:';
+        const dKeys = Object.keys(stats.days || {}).slice(-7);
+        entries = dKeys.map(k => ({
+          label: k.split('-').slice(1).join('/'),
+          val: stats.days[k]
+        }));
+      } else if (period === 'meses') {
+        descText = 'Evolución mensual de visitas en 2026:';
+        const monthNames = {
+          '01': 'Ene', '02': 'Feb', '03': 'Mar', '04': 'Abr',
+          '05': 'May', '06': 'Jun', '07': 'Jul', '08': 'Ago',
+          '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Dic'
+        };
+        const mKeys = Object.keys(stats.months || {}).slice(-6);
+        entries = mKeys.map(k => {
+          const parts = k.split('-');
+          return { label: monthNames[parts[1]] || parts[1], val: stats.months[k] };
+        });
+      } else if (period === 'anos') {
+        descText = 'Crecimiento anual histórico:';
+        const yKeys = Object.keys(stats.years || {});
+        entries = yKeys.map(k => ({ label: k, val: stats.years[k] }));
+      }
+
+      document.getElementById('chartDesc').textContent = descText;
+      const maxVal = Math.max(...entries.map(e => e.val), 10);
+
+      entries.forEach(e => {
+        const heightPct = Math.max(Math.round((e.val / maxVal) * 100), 8);
+        const col = document.createElement('div');
+        col.className = 'bar-col';
+        col.innerHTML = `
+          <span class="bar-num">${e.val}</span>
+          <div class="bar-stem" style="height: ${heightPct}%;"></div>
+          <span class="bar-lbl">${e.label}</span>
+        `;
+        visual.appendChild(col);
+      });
+    }
+
+    // ========================================================
+    // INICIALIZACIÓN
+    // ========================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTvSlides();
+      updateLivePreview();
+      updateTvMockup();
+      renderTvSlidesList();
+      refreshStatsView();
+
+      // Reloj simulador TV
+      setInterval(() => {
+        const d = new Date();
+        const clockEl = document.getElementById('tvMockupClock');
+        if (clockEl) {
+          clockEl.textContent = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

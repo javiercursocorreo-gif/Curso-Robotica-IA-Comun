@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carpeta de Trabajos para el Administrador • Centro de Mayores</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    h1 {
+      font-size: 28px;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      font-size: 15px;
+      color: #94a3b8;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #0284c7;
+      color: white;
+      text-decoration: none;
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .card-action:hover {
+      background: #0369a1;
+    }
+    .card-action.secondary {
+      background: #334155;
+      color: #f8fafc;
+    }
+    .card-action.secondary:hover {
+      background: #475569;
+    }
+    .notice {
+      background: rgba(30, 41, 59, 0.7);
+      border-left: 4px solid #38bdf8;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 35px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <span class="badge">Centro de Mayores • Robótica & IA</span>
+      <h1>Trabajos y Propuestas para el Administrador</h1>
+      <p class="subtitle">Panel de acceso a todos los documentos, prototipos interactivos y manuales en formato HTML</p>
+    </div>
+
+    <div class="grid">
+      
+      <!-- CARD 1: REGISTRO COMPLETO -->
+      <div class="card" style="border-top: 3px solid #38bdf8;">
+        <div>
+          <div class="card-title">📖 Memoria Completa del Proyecto</div>
+          <div class="card-desc">
+            Documento estructurado con todo el hilo de la conversación, análisis de viabilidad, tabla comparativa, ideas de talleres con IA y plan en 3 pasos.
+          </div>
+        </div>
+        <a class="card-action" href="REGISTRO_COMPLETO_CONVERSACION_Y_PROYECTO.html" target="_blank">
+          Abrir Memoria Completa &rarr;
+        </a>
+      </div>
+
+      <!-- CARD 2: PROTOTIPO GENERADOR EN BLOQUE -->
+      <div class="card" style="border-top: 3px solid #10b981;">
+        <div>
+          <div class="card-title">🖨️ Prototipo Generador por Lotes</div>
+          <div class="card-desc">
+            Aplicación web interactiva que genera de un tirón todas las hojas de asistencia del mes listas para imprimir en PDF con casillas tipo test [S / N / J].
+          </div>
+        </div>
+        <a class="card-action" style="background: #10b981;" href="GENERADOR_LOTES_ASISTENCIA_PROTOTIPO.html" target="_blank">
+          Probar Generador &rarr;
+        </a>
+      </div>
+
+      <!-- CARD NUEVA: PROTOTIPO WEB PÚBLICA -->
+      <div class="card" style="border-top: 3px solid #0d7a57;">
+        <div>
+          <div class="card-title">🌐 Web Pública del Centro (Mayores)</div>
+          <div class="card-desc">
+            Maquetación ultra amigable para personas mayores: botones gigantes sin menús desplegables, navegación por niveles, control de tamaño de letra y modo televisión para el vestíbulo.
+          </div>
+        </div>
+        <a class="card-action" style="background: #0d7a57;" href="WEB_PUBLICA_CENTRO_MAYORES.html" target="_blank">
+          Ver Web Pública &rarr;
+        </a>
+      </div>
+
+      <!-- CARD NUEVA: GESTOR DE CONTENIDOS BACKEND -->
+      <div class="card" style="border-top: 3px solid #7c3aed;">
+        <div>
+          <div class="card-title">✍️ Gestor de Contenidos (Backend)</div>
+          <div class="card-desc">
+            Panel para que los alumnos mayores alimenten la información por áreas temáticas, pulan textos con Gemini en 1 clic y el Administrador valide borradores antes de publicar.
+          </div>
+        </div>
+        <a class="card-action" style="background: #7c3aed;" href="GESTOR_CONTENIDOS_BACKEND.html" target="_blank">
+          Probar Gestor CMS &rarr;
+        </a>
+      </div>
+
+      <!-- CARD 3: CHULETA DE PROMPTS -->
+      <div class="card" style="border-top: 3px solid #f59e0b;">
+        <div>
+          <div class="card-title">🤖 Chuleta de Prompts para el Administrador</div>
+          <div class="card-desc">
+            Modelos de textos para copiar y pegar en Gemini para redactar avisos claros por WhatsApp para mayores, carteles de fiestas y juegos de memoria.
+          </div>
+        </div>
+        <a class="card-action secondary" href="PROMPTS_UTILES_PARA_NATI.html" target="_blank">
+          Ver Chuleta de Prompts &rarr;
+        </a>
+      </div>
+
+      <!-- CARD 4: CÓMO INSTALAR EN PC -->
+      <div class="card" style="border-top: 3px solid #8b5cf6;">
+        <div>
+          <div class="card-title">💻 Manual de Entrega en su PC</div>
+          <div class="card-desc">
+            Explicación sencilla de las 3 formas de colocar la herramienta en el Windows del Administrador (Pendrive, App de escritorio con 1 clic o Enlace en la nube).
+          </div>
+        </div>
+        <a class="card-action secondary" href="COMO_INSTALAR_Y_ENTREGAR_A_NATI.html" target="_blank">
+          Ver Manual de PC &rarr;
+        </a>
+      </div>
+
+      <!-- CARD 5: HOJA INDIVIDUAL A4 -->
+      <div class="card" style="border-top: 3px solid #64748b;">
+        <div>
+          <div class="card-title">📄 Modelo Individual de Hoja A4</div>
+          <div class="card-desc">
+            Plantilla limpia en formato A4 apaisado para firmas mensuales lista para imprimir de una sola clase.
+          </div>
+        </div>
+        <a class="card-action secondary" href="PLANTILLA_ASISTENCIA_MENSUAL_EJEMPLO.html" target="_blank">
+          Ver Hoja Individual &rarr;
+        </a>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      💡 <strong>Nota para imprimir o guardar en PDF:</strong> Todos los documentos HTML tienen en la parte superior derecha un botón de <strong>«🖨️ Imprimir / Guardar como PDF»</strong>. Al pulsar ese botón, tu navegador te permite guardarlo directamente como un archivo PDF en tu ordenador o imprimirlo en papel.
+    </div>
+
+  </div>
+
+</body>
+</html>

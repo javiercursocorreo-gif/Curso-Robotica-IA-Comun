@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Memoria del Proyecto: Automatizaciones e IA para el Administrador (Centro de Mayores)</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 15mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: #f8fafc;
+      padding: 30px 20px;
+    }
+    .document-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 25px;
+    }
+    .btn-action {
+      background: #0284c7;
+      color: #ffffff;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-action:hover {
+      background: #0369a1;
+    }
+    .doc-header {
+      border-bottom: 3px solid #0284c7;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 26px;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .doc-subtitle {
+      font-size: 15px;
+      color: #64748b;
+    }
+    .doc-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      background: #f1f5f9;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-top: 15px;
+    }
+    .meta-box strong {
+      color: #334155;
+    }
+    h2 {
+      font-size: 19px;
+      color: #0f172a;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    h3 {
+      font-size: 16px;
+      color: #0369a1;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 14px;
+      font-size: 14.5px;
+      color: #334155;
+    }
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+      font-size: 14.5px;
+      color: #334155;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    .highlight-card {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .warning-card {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .idea-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 12px;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+    .table-badge-ok {
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+    .table-badge-warn {
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .document-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .top-actions {
+        display: none;
+      }
+      h2 {
+        page-break-after: avoid;
+      }
+      table, .highlight-card, .warning-card, .idea-card {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="document-card">
+
+    <div class="top-actions">
+      <button class="btn-action" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+    </div>
+
+    <div class="doc-header">
+      <span class="badge">Memoria y Registro del Proyecto</span>
+      <h1>Automatizaciones de Gestión e Inteligencia Artificial para el Administrador</h1>
+      <div class="doc-subtitle">Resumen completo de la consulta, propuestas técnicas, arquitectura del sistema y plan de entrega</div>
+      
+      <div class="doc-meta">
+        <div class="meta-box"><strong>Destinataria:</strong> el Administrador (Coordinadora de Cursos)</div>
+        <div class="meta-box"><strong>Centro:</strong> Centro de Mayores</div>
+        <div class="meta-box"><strong>Fecha:</strong> Octubre 2026</div>
+        <div class="meta-box"><strong>Filosofía:</strong> Cero mantenimiento • Cero compromiso</div>
+      </div>
+    </div>
+
+    <h2>1. El Punto de Partida: La Consulta Inicial</h2>
+    <p>
+      El profesor del curso de Robótica e Inteligencia Artificial detecta en el centro donde imparte clases una oportunidad para ayudar a la coordinadora (el Administrador) en sus tareas administrativas diarias mediante automatización e Inteligencia Artificial.
+    </p>
+    <div class="idea-card">
+      <p><strong>El contexto del centro:</strong> Es un centro de mayores muy dinámico donde se imparten actividades muy diversas (gimnasia, pilates, costura, historia, cultura general, idiomas inglés y francés, senderismo, salidas de excursión en autobús y fiestas temáticas).</p>
+      <p><strong>El problema administrativo clave:</strong> El control de asistencia mensual. Para cada clase existe una lista en papel/Excel con los nombres de los alumnos a la izquierda y los días del mes arriba. Todos los meses el Administrador tiene que rehacer a mano los días de la semana y los números, reimprimir todas las hojas y entregarlas a los profesores para que pongan firmas o cruces.</p>
+      <p><strong>La condición irrenunciable:</strong> La propuesta es voluntaria y sólo se llevará a cabo si es sencilla, limpia y no exige soporte técnico continuo ni compromisos que aten al profesor.</p>
+    </div>
+
+    <h2>2. Enfoque Estratégico: "La Regla del Cero Mantenimiento"</h2>
+    <p>
+      Se estableció como principio básico <strong>no crear programas tradicionales ni aplicaciones con bases de datos instalables</strong> en el ordenador del Administrador. En centros públicos o comunitarios, los ordenadores son compartidos y el software a medida acaba fallando cuando se actualiza el sistema, convirtiendo al creador en el informático de guardia.
+    </p>
+    <div class="highlight-card">
+      <strong>La solución recomendada:</strong> Desarrollar herramientas autónomas basadas en <strong>un único archivo web (HTML/JS)</strong> que se abre con doble clic en Google Chrome o Microsoft Edge. No requiere instalar nada, no pide permisos de administrador y funciona sin conexión a internet.
+    </div>
+
+    <h2>3. La Gran Aportación: Generador en Bloque y Lectura por Foto</h2>
+    <p>
+      Durante el análisis se identificó el verdadero valor de la herramienta y una solución técnica sobresaliente:
+    </p>
+
+    <h3>A. El Generador por Lotes (De un solo tirón)</h3>
+    <p>
+      Una plantilla suelta no le ahorra tiempo a el Administrador si tiene 20 cursos. El valor reside en que el Administrador seleccione el mes (ej. <em>"Noviembre 2026"</em>) y con un solo clic el sistema genere un <strong>único documento PDF con todas las clases maquetadas</strong>, con sus días lectivos reales ya calculados y listas para mandar a la fotocopiadora.
+    </p>
+
+    <h3>B. El Formato Tipo Quiniela [S / N / J] con Cruces</h3>
+    <p>
+      Pedirle a un sistema OCR que reconozca palabras escritas a mano (<em>"sí"</em>, <em>"no"</em>, <em>"justificada"</em> o firmas a mano alzada) es una fuente garantizada de errores. La solución ideal diseñada es dividir cada día en <strong>tres columnas fijas</strong>:
+    </p>
+    <ul>
+      <li><strong>[S]:</strong> Sí asistió.</li>
+      <li><strong>[N]:</strong> No asistió (falta injustificada).</li>
+      <li><strong>[J]:</strong> Falta justificada.</li>
+    </ul>
+    <p>
+      El profesor solo pone una <strong>cruz (X)</strong> con bolígrafo en la casilla correspondiente. Esto simplifica drásticamente la lectura visual.
+    </p>
+
+    <h3>C. Lectura por Foto con Visión Artificial (Gemini)</h3>
+    <p>
+      Al final del mes, el Administrador le hace una foto con el móvil a la hoja física de firmas y la IA multimodal extrae la tabla completa, calculando automáticamente:
+    </p>
+    <ul>
+      <li>Total de asistencias por alumno.</li>
+      <li>Total de faltas y justificaciones.</li>
+      <li>Alerta de alumnos en riesgo de perder la plaza por absentismo continuado (para llamar a la lista de espera).</li>
+    </ul>
+
+    <h2>4. Tabla Comparativa de Soluciones</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Módulo o Propuesta</th>
+          <th>Ahorro de Tiempo</th>
+          <th>Dificultad</th>
+          <th>Riesgo de Soporte</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Generador por Lotes (HTML)</strong></td>
+          <td>Altísimo (horas cada mes)</td>
+          <td>Baja</td>
+          <td><span class="table-badge-ok">0% (Inofensivo)</span></td>
+          <td><strong>Prototipo completado</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Lectura por Foto (Gemini Vision)</strong></td>
+          <td>Muy alto (conteo automático)</td>
+          <td>Media</td>
+          <td><span class="table-badge-ok">Bajo (Vía Gemini Web)</span></td>
+          <td><strong>En fase de prueba piloto</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Plantilla de Excursiones / Autobuses</strong></td>
+          <td>Medio-Alto</td>
+          <td>Baja</td>
+          <td><span class="table-badge-ok">0% (Plantilla fija)</span></td>
+          <td><strong>Diseñada</strong></td>
+        </tr>
+        <tr>
+          <td><strong>App instalable con Base de Datos</strong></td>
+          <td>Alto</td>
+          <td>Alta</td>
+          <td><span class="table-badge-warn">Alto (Peligro de soporte)</span></td>
+          <td><strong>Descartada por prudencia</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>5. Actividades Novedosas de IA para los Alumnos Mayores</h2>
+    <p>Además de la parte administrativa, se plantearon tres actividades con IA para dinamizar el centro con un componente humano y emocional:</p>
+    <div class="idea-card">
+      <p><strong>1. Taller «Revive tus Recuerdos» (Fotos antiguas a color):</strong> Los alumnos traen fotografías antiguas en blanco y negro o estropeadas de su juventud o de sus pueblos, y mediante IA se restauran y colorean en 10 segundos. El impacto afectivo es extraordinario.</p>
+      <p><strong>2. «Historia Oral y Memorias Familiares»:</strong> Los mayores graban notas de voz contando una vivencia o tradición de su época, y la IA transcribe y redacta el texto con estilo literario para crear un librito de memorias que puedan regalar a sus nietos.</p>
+      <p><strong>3. Estimulación Cognitiva Personalizada:</strong> Creación en 1 minuto de pasatiempos, adivinanzas populares, completar refranes y trivials de canciones de los años 50, 60 y 70 para las clases de cultura general y memoria.</p>
+    </div>
+
+    <h2>6. Cómo se Pone la Aplicación en el Ordenador del Administrador</h2>
+    <p>El archivo de la aplicación no requiere instalación ni software especial. Para entregárselo existen tres vías:</p>
+    <ol>
+      <li><strong>En un Pendrive o por correo (Opción directa):</strong> Se guarda el archivo en <code>C:\Documentos\</code> de su ordenador y se crea un acceso directo en su Escritorio llamado <em>"🖨️ Generador de Asistencias"</em>. Cada fin de mes hace doble clic y se le abre en Chrome.</li>
+      <li><strong>Instalada como ventana de escritorio (PWA):</strong> Desde Chrome o Edge se hace clic en <em>"Guardar y compartir -> Instalar como aplicación"</em>. Queda con su icono propio en la barra de tareas de Windows como un programa independiente.</li>
+      <li><strong>Alojada en la nube (Opción más cómoda):</strong> Se aloja en una dirección web gratuita (como GitHub Pages) y se le guarda una estrella en los favoritos del navegador. Si un día hay que modificar un festivo, se actualiza en la nube sin tener que tocar su PC.</li>
+    </ol>
+
+    <h2>7. Gran Proyecto Colaborativo de Fin de Curso: Grupo de Investigación Sénior & Web del Centro</h2>
+    <p>Se debatió y estructuró la creación de un <strong>grupo de investigación avanzado fuera del horario lectivo</strong>, donde los alumnos con mayor destreza colaboren en remoto sobre un repositorio común de GitHub.</p>
+    
+    <div class="idea-card">
+      <p><strong>• El Proyecto Elegido (La Web Oficial del Centro de Mayores):</strong> Transformar el proyecto en un servicio público real que sustituya el corcho físico de papel y la televisión de avisos del centro. Incorpora:</p>
+      <ul style="margin-left: 24px; margin-top: 6px; margin-bottom: 8px;">
+        <li><strong>Tablón Digital Vivo:</strong> Cartelera de excursiones, fiestas, horarios y avisos consultables desde el móvil de cualquier socio.</li>
+        <li><strong>Modo Pantalla / TV (<code>/tv</code>):</strong> Vista a pantalla completa para la televisión del vestíbulo que se actualiza sola sin pendrives.</li>
+        <li><strong>Rincón de Guías Ciudadanas con IA:</strong> Tutoriales con letra grande de citas médicas, banca online, avisos contra fraudes y ciberseguridad.</li>
+      </ul>
+      <p><strong>• Independencia Técnica Total:</strong> Repositorio creado bajo una Organización institucional de GitHub propiedad del centro (Director y el Administrador como <em>Owners</em>), alojado en GitHub Pages a coste 0€ y sin mantenimiento de servidores. Si el profesor concluye su ciclo, la web permanece íntegra en el centro.</p>
+      <p><strong>• Debate Clave: ¿Gestor de Contenidos (CMS) por IA vs. Necesidad de los Alumnos?</strong> La IA es capaz de programar la web y el CMS en minutos (el contenedor). Sin embargo, El Administrador carece de tiempo para redactar e investigar a diario. Los alumnos asumen el rol de <strong>Gabinete de Comunicación y Redacción con IA</strong>: El Administrador solo da avisos breves y valida, mientras los alumnos investigan, enriquecen con Gemini, ilustran y publican, logrando un impacto real en su comunidad y un empoderamiento personal extraordinario.</p>
+    </div>
+
+    <h2>8. Plan de Acción Recomendado</h2>
+    <div class="warning-card">
+      <strong>Estrategia en 3 pasos:</strong>
+      <ol style="margin-top: 8px; margin-bottom: 0;">
+        <li><strong>Paso 1:</strong> Abrir el archivo <code>GENERADOR_LOTES_ASISTENCIA_PROTOTIPO.html</code> en el navegador propio y comprobar que el diseño de impresión en PDF es impecable.</li>
+        <li><strong>Paso 2:</strong> Probar en privado la lectura por foto: rellenar a mano con boli unas casillas de prueba, sacarle una foto con el móvil y pasársela a Gemini para verificar su fiabilidad.</li>
+        <li><strong>Paso 3:</strong> Presentarle a el Administrador únicamente el generador de plantillas como un detalle de ayuda. Si le entusiasma, se le entrega. Si no tiene interés, no se contrae ninguna obligación.</li>
+      </ol>
+    </div>
+
+    <div class="footer">
+      Documento generado automáticamente • Centro de Mayores • Curso de Robótica e Inteligencia Artificial • Octubre 2026
+    </div>
+
+  </div>
+
+</body>
+</html>
