@@ -3,7 +3,7 @@
 **Curso:** Robótica e Inteligencia Artificial  
 **Horario habitual:** Martes y Jueves (1.5 horas por sesión / 90 minutos)  
 **Periodo lectivo:** 01/10/2026 a 30/05/2027 (59 clases lectivas totales = 88.5 h)  
-**Estado actual (al 24/11/2026):** **16 clases impartidas (24.0 h)** | **43 clases restantes (64.5 h)**  
+**Estado actual (al 26/11/2026):** **17 clases impartidas (25.5 h · 28.8%)** | **42 clases restantes (63.0 h)**  
 
 ---
 
@@ -82,7 +82,7 @@ El libro contiene exactamente **2 hojas oficiales**:
 
 ---
 
-## 🌟 Análisis del Itinerario Oficial: Alternancia Robótica - IA (Actualizado al 24/11/2026)
+## 🌟 Análisis del Itinerario Oficial: Alternancia Robótica - IA (Actualizado al 26/11/2026)
 
 ### 1. Principios Pedagógicos Clave
 * **Prioridad Inamovible 1 (Robótica):** 19 clases restantes (con `2.3` fin de Bloque 2, `5.3 MIXAMO` a 2 días y `6.2 Star Wars` a 2 días; y retiradas `2.4`, `2.5`, `3.2`, `4.1`, `4.2`, `4.3` y `4.4`).
@@ -96,19 +96,19 @@ El libro contiene exactamente **2 hojas oficiales**:
 * **Clase 13 (12/11, Jueves - IMPARTIDA):** ROB 1.4 Semáforos inteligentes (Fase 2: P3. Bloques y P4. Juego - ¡Fin Bloque 1!).
 * **Clase 14 (17/11, Martes - IMPARTIDA):** ROB 2.1 Silla de Ruedas Eléctrica + ROB 2.2 Roomba (Impartidas ambas clases enteras en la misma sesión).
 * **Clase 15 (19/11, Jueves - IMPARTIDA):** **IA Monográfico 2 (Mundo Digital Senior / NotebookLM - Hasta Punto 5 Botón 2)** *(Manejo de Gemini Book / NotebookLM avanzado: creación de fuentes, notas y síntesis documental)*.
-* **Clase 16 (24/11, Martes - IMPARTIDA HOY):** **IA Monográfico 2 (Finalización completa: Studio, Videojuegos y Libros de Texto)** *(Conclusión definitiva de NotebookLM al 100% con éxito)*.
-* **Clase 17 (26/11, Jueves - PRÓXIMA CLASE):** IA Sesión 03 (Pinacoteca, Cómics con IA [CUENT-003] & Google Flow - Día 1/2).
-* **Clase 18 (01/12, Martes):** IA Sesión 03 (Ciencia, Vida Práctica & Radar Geopolítico - Día 2/2).
+* **Clase 16 (24/11, Martes - IMPARTIDA):** **IA Monográfico 2 (Finalización completa: Studio, Videojuegos y Libros de Texto)** *(Conclusión definitiva de NotebookLM al 100% con éxito)*.
+* **Clase 17 (26/11, Jueves - IMPARTIDA):** **IA Monográfico 3 (Finalización completa) + Sesión 03 (Ítem #01 `[INFO-003]`)** *(Cuentos y Cómics con NLM terminados al 100% e inicio de Sesión 03)*.
+* **Clase 18 (01/12, Martes - PRÓXIMA CLASE):** IA Sesión 03 (Continuación desde `#02`: Ciencia, Vida Práctica & Radar Geopolítico).
 * **Clase 19 (03/12, Jueves):** ROB 2.3 Aparcamiento asistido (Condición IF-ELSE - ¡Fin Bloque 2!).
 * **Martes 08/12:** Festivo Nacional — Inmaculada Concepción.
 * **Clase 20 (10/12, Jueves):** IA Monográfico 4 (Mi Biografía con IA y Redacción Guiada).
 * **Clase 21 (15/12, Martes):** IA Sesión 04 (Aporte de Valor Senior y Prompts Cotidianos - Día 1/2).
 * **Clase 22 (17/12, Jueves):** IA Sesión 04 (Prompts Cotidianos y Resumen de Fin de Año - Día 2/2 - Cierre previo a Navidad).
 
-### 3. Repartición Matemática del Calendario Restante (43 clases)
+### 3. Repartición Matemática del Calendario Restante (42 clases)
 * **Robótica:** 6 impartidas (1.1, 1.2, 1.3, 1.4, 2.1, 2.2) + 19 proyectadas = **25 clases totales** (Bloques 1 al 6 prioritario completo).
-* **IA:** 10 impartidas (+ presentación inaugural y Classroom) + 24 proyectadas = **34 clases totales** (7 Monográficos + Sesiones IA 03 a 11 + Sesión 12).
-* **Total:** 16 impartidas + 43 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (43 / 43 restantes)!**
+* **IA:** 11 impartidas (+ presentación inaugural y Classroom) + 23 proyectadas = **34 clases totales** (7 Monográficos + Sesiones IA 03 a 11 + Sesión 12).
+* **Total:** 17 impartidas + 42 proyectadas = **59 clases lectivas totales (88.5 h)**. **¡Desviación cero (42 / 42 restantes)!**
 
 ---
 
